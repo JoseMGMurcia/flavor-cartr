@@ -1,0 +1,23 @@
+@use 'assets/scss/custom-colors.scss' as colors;
+
+.dialog-wrapper {
+  padding: 12px;
+
+  .dialog-title {
+    color: colors.$primary;
+    width: 100%;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .dialog-message {
+    width: max-content;
+    text-align: justify;
+    max-width: 450px;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 24px;
+  }
+}

@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve -o",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "serve:ssr:carrito": "node dist/carrito/server/server.mjs"
+    "test": "ng test --code-coverage=true",
+    "serve:ssr:carrito": "node dist/carrito/server/server.mjs",
+    "lint:css": "stylelint \"src/**/*.scss\" --config .stylelintrc",
+    "precommit": "npm run lint && npm run test && npm run build"
   },
   "private": true,
   "dependencies": {
@@ -21,8 +23,10 @@
     "@angular/platform-server": "^17.0.0",
     "@angular/router": "^17.0.0",
     "@angular/ssr": "^17.0.7",
+    "@ngx-translate/core": "^15.0.0",
+    "@ngx-translate/http-loader": "^8.0.0",
     "express": "^4.18.2",
-    "rxjs": "~7.8.0",
+    "rxjs": "~7.8.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
   },
@@ -39,6 +43,10 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "stylelint": "13.13.1",
+    "stylelint-config-standard": "22.0.0",
+    "stylelint-order": "4.1.0",
+    "stylelint-scss": "3.19.0",
     "typescript": "~5.2.2"
   }
 }

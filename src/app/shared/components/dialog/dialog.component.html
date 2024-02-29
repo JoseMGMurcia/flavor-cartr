@@ -1,0 +1,14 @@
+<div class="dialog-wrapper">
+  <p class="dialog-title">{{ options.title }}</p>
+  <p class="dialog-message">{{ options.message }}</p>
+  <div class="u-flex u-flex-wrap u-flex-space-center">
+    @for (button of options.buttons; track button.label) {
+      <button
+        (click)="doAction(button)"
+        class="dialog-button margin-left"
+        [ngClass]="button.className || 'secondary-button'">
+        {{ button.label }}
+      </button>
+    }
+  </div>
+</div>

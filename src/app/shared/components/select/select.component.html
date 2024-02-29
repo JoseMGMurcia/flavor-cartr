@@ -1,0 +1,11 @@
+<div class="select-wraper">
+  <label *ngIf="label">{{ label }}</label>
+  <select
+    (change)="propagateChange($event)"
+    (blur)="propagateTouched()"
+    (change)="onchange($event)">
+    <option *ngFor="let option of options" [value]="option.value" [selected]="option.selected">
+      <p>{{ option.label }}</p>
+    </option>
+  </select>
+</div>

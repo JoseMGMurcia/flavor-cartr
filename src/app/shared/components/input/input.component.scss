@@ -1,0 +1,27 @@
+@use '../../../../assets/scss/custom-colors.scss' as colors;
+
+.input-wraper {
+  border: 1px solid colors.$white-50;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  margin: 4px;
+  width: min-content;
+
+  label {
+    color: colors.$white-200;
+    background-color: colors.$primary;
+    border-radius: 8px 8px 0 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding-left: 16px;
+    margin-bottom: 0.1rem;
+  }
+
+  input {
+    font-size: 1.1rem;
+    border-radius: 0 0 8px 8px;
+    background-color: colors.$background-light;
+    color: colors.$text-primary;
+  }
+}
