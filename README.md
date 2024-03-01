@@ -4,8 +4,8 @@ This project was generated with Angular version 17.0.7
 
 ## Authors
  - Estíbaliz Echeverría Aristu
- - María Giménez Requiel
- - José Martínez García 
+ - [María Giménez Requiel](https://github.com/MariaGimenezRequiel)
+ - [José Martínez García](https://github.com/JoseMGMurcia) 
 
 ## Purpose
 
