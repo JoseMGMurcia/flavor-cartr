@@ -1,3 +1,17 @@
 {
-  "TITLE": "Carrito de Sabor"
+  "TITLE": "Carrito de Sabor",
+
+  "FOOTER": {
+    "ALL_RIGHTS_RESERVED": "© Todos los derechos reservados"
+
+  },
+  "LOGGER":{
+    "LOG_IN": "Iniciar sesión"
+  },
+  "MENU": {
+    "LISTS": "Listas",
+    "RECIPES": "Recetas",
+    "COMUNITY": "Comunidad",
+    "LOG_IN": "Iniciar sesión"
+  }
 }

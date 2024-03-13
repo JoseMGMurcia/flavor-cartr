@@ -1,0 +1,17 @@
+@use '../../../../assets/scss/custom-colors.scss' as colors;
+
+.footer-wraper {
+  background-color: colors.$menu-background;
+
+  font-weight: 500;
+  min-height: 25px;
+  width: 100%;
+
+  .footer-text {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 0.8rem;
+    color: colors.$menu-text-color;
+    padding: 0 3rem;
+    min-width: max-content;
+  }
+}

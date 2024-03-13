@@ -1,23 +1,26 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { HomeContainerComponent } from './home-container.component';
+
+import { MenuComponent } from './menu.component';
+import { socialAuthServiceConfigProvider } from '@shared/constants/social.constants';
 import { TranslateModule } from '@ngx-translate/core';
 
-describe('HomeContainerComponent', () => {
-  let component: HomeContainerComponent;
-  let fixture: ComponentFixture<HomeContainerComponent>;
+describe('MenuComponent', () => {
+  let component: MenuComponent;
+  let fixture: ComponentFixture<MenuComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HomeContainerComponent],
+      declarations: [MenuComponent],
       imports: [
         TranslateModule.forRoot(),
-        HttpClientTestingModule,
       ],
+      providers: [
+        socialAuthServiceConfigProvider
+      ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(HomeContainerComponent);
+    fixture = TestBed.createComponent(MenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

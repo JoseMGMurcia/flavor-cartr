@@ -7,3 +7,7 @@
   - Custom imput text Component.
   - Custom imput select Component.
   - Custom loading indicator service.
+  - Menu Component added.
+  - Footer Component added.
+  - Logger Component added.
+  - App colors added.

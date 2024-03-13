@@ -10,7 +10,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class AppComponent implements OnInit{
   title = 'carrito';
-  public loading = false;
+  public loading = true;
   private _destroyRef = inject(DestroyRef);
 
   constructor(
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit{
   }
 
   private setLoagingStatus(): void {
-    this.loadingService.character$
+    this.loadingService.loading$
     .pipe(takeUntilDestroyed(this._destroyRef))
     .subscribe((loading: boolean) => {
       this.loading = loading;
@@ -33,8 +33,8 @@ export class AppComponent implements OnInit{
   }
 
   private setTranslationsLanguage(language: string): void {
-    // this.translate.setDefaultLang(language);
-    // this.translate.use(language);
+    this.translate.setDefaultLang(language);
+    this.translate.use(language);
   }
 
   private async fetch() {

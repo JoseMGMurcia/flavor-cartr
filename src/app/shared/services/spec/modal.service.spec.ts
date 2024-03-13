@@ -1,9 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { ModalService } from '../modal.service';
-import { ComponentRef, ViewContainerRef, TemplateRef, Type } from '@angular/core';
+import { ComponentRef } from '@angular/core';
 import { ModalComponent } from '../../components/modal/modal.component';
 import { DialogComponent } from '@shared/components/dialog/dialog.component';
-import { ModalOptions } from '@shared/models/modal.model';
 
 describe('ModalService', () => {
   let modalService: ModalService;

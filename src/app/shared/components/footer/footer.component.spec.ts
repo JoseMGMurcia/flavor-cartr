@@ -1,23 +1,22 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { HomeContainerComponent } from './home-container.component';
+
+import { FooterComponent } from './footer.component';
 import { TranslateModule } from '@ngx-translate/core';
 
-describe('HomeContainerComponent', () => {
-  let component: HomeContainerComponent;
-  let fixture: ComponentFixture<HomeContainerComponent>;
+describe('FooterComponent', () => {
+  let component: FooterComponent;
+  let fixture: ComponentFixture<FooterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HomeContainerComponent],
+      declarations: [FooterComponent],
       imports: [
         TranslateModule.forRoot(),
-        HttpClientTestingModule,
       ],
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(HomeContainerComponent);
+    fixture = TestBed.createComponent(FooterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

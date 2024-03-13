@@ -3,7 +3,7 @@
 This project was generated with Angular version 17.0.7
 
 ## Authors
- - Estíbaliz Echeverría Aristu
+ - [Estíbaliz Echeverría Aristu](https://github.com/Stubilis)
  - [María Giménez Requiel](https://github.com/MariaGimenezRequiel)
  - [José Martínez García](https://github.com/JoseMGMurcia) 
 
