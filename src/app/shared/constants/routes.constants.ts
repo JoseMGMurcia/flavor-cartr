@@ -16,4 +16,8 @@ export const ROUTES = {
     path: 'comunity',
     filePath: './modules/+comunity/comunity.module',
   },
+  USER: {
+    path: 'user',
+    filePath: './modules/+user/user.module',
+  },
 };

@@ -35,11 +35,7 @@ export class MenuComponent implements OnInit{
     const options: ModalOptions = {
       animations: {
         modal: {
-          enter: 'enter-slide-down 0.8s',
-        },
-        overlay: {
-          enter: 'fade-in 0.8s',
-          leave: 'fade-out 0.3s forwards',
+          enter: 'enter-scaling 0.4s',
         },
       },
         };

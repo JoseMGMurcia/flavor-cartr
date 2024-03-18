@@ -1,9 +1,14 @@
 {
   "TITLE": "Carrito de Sabor",
-
   "FOOTER": {
-    "ALL_RIGHTS_RESERVED": "© Todos los derechos reservados"
-
+    "ALL_RIGHTS_RESERVED": "© Todos los derechos reservados",
+    "AUTHOR1": "Estíbaliz Echeverría Aristu",
+    "AUTHOR2": "María Giménez Requiel",
+    "AUTHOR3": "José Martínez García",
+    "HIGH_SCHOOL": "IES José Planes"
+  },
+  "HOME": {
+    "EXPLANATION": "Carrito de Sabor es una aplicación web que te permite buscar recetas de cocina y añadir los ingredientes necesarios a una lista de la compra. Además, podrás compartir tus recetas con el resto de la comunidad."
   },
   "LOGGER":{
     "LOG_IN": "Iniciar sesión"

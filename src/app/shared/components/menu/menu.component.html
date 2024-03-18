@@ -1,26 +1,37 @@
 <div class="menu-wraper u-flex u-flex-align-center">
-  <p class="menu-title">{{ 'TITLE' | translate }}</p><!-- TODO REMOVE -->
+  <img class="menu-logo" src="assets/images/logo.png" alt="Logo" (click)="goSection(ROUTES.HOME.path)">
   <div class="menu-divider u-flex u-flex-space-between u-flex-align-center u-width-100">
     <div class="menu-options u-flex u-flex-align-center">
       <p class="menu-option" (click)="goSection(ROUTES.LISTS.path)">{{ 'MENU.LISTS' |translate }}</p>
       <p class="menu-option" (click)="goSection(ROUTES.RECIPES.path)">{{ 'MENU.RECIPES' |translate }}</p>
       <p class="menu-option" (click)="goSection(ROUTES.COMUNITY.path)">{{ 'MENU.COMUNITY' |translate }}</p>
     </div>
-    <div class="menu-social u-flex u-flex-align-center">
-      @if (!user) {
-        <button class="login-button" (click)="logIn()">{{ 'MENU.LOG_IN' | translate }}</button>
-      } @else {
-        <img
-          class="user-img"
-          src="{{ user.photoUrl }}"
-          referrerpolicy="no-referrer">
-        <p>{{ user.name }}</p>
-        <img
-          class="log-out-icon"
-          src="../../../../assets/icons/favicon.png"
-          alt="Log out"
-          (click)="signOut()">
-      }
+    <div class="menu-right u-flex u-flex-align-center">
+      <div class="u-flex u-flex-align-center">
+        <img class="menu-icon" src="assets/icons/cart-shopping-solid2.svg" alt="cart" (click)="goSection(ROUTES.LISTS.path)">
+        <img class="menu-icon" src="assets/icons/user-solid2.svg" alt="user" (click)="goSection(ROUTES.USER.path)">
+      </div>
+      <div class="menu-social u-flex u-flex-align-center">
+        @if (!user) {
+          <button class="login-button" (click)="logIn()">
+            <img class="menu-icon-mini" src="assets/icons/circle-user-solid2.svg" alt="user" (click)="goSection(ROUTES.USER.path)">
+            {{ 'MENU.LOG_IN' | translate }}
+          </button>
+        } @else {
+          <img
+            class="user-img"
+            src="{{ user.photoUrl }}"
+            alt="User photo"
+            referrerpolicy="no-referrer">
+          <p>{{ user.name }}</p>
+          <img
+            class="menu-icon-mini"
+            src="assets/icons/logOff-circle2.svg"
+            alt="Log out"
+            (click)="signOut()">
+        }
+      </div>
     </div>
+
   </div>
 </div>
