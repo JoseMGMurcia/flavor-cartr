@@ -1,6 +1,8 @@
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser } from "@abacritt/angularx-social-login";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import { ROUTES } from "@shared/constants/routes.constants";
 import { STRING_EMPTY } from "@shared/constants/string.constants";
 import { BehaviorSubject, Observable } from "rxjs";
 
@@ -8,6 +10,10 @@ import { BehaviorSubject, Observable } from "rxjs";
   providedIn: 'root',
 })
 export class SocialService {
+
+  constructor(
+    private router: Router,
+  ) {}
 
 
   public get user$(): Observable<SocialUser> { return this.user.asObservable();}
@@ -31,6 +37,8 @@ export class SocialService {
 
   signOut(authService: SocialAuthService): void {
     authService.signOut();
+    this.loggedIn.next(false);
+    this.router.navigate([ROUTES.HOME.path]);
   }
 
   refreshToken(authService: SocialAuthService): void {
@@ -52,5 +60,9 @@ export class SocialService {
         alert('Look at your console');
         console.log('events', events);
       });
+  }
+
+  isLogged(): boolean {
+    return this.loggedIn.value;
   }
 }

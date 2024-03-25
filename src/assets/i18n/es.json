@@ -7,6 +7,9 @@
     "AUTHOR3": "José Martínez García",
     "HIGH_SCHOOL": "IES José Planes"
   },
+  "FORBIDDEN": {
+    "UNAUTHORIZED": "Debes iniciar sesión para acceder a esta página."
+  },
   "HOME": {
     "EXPLANATION": "Carrito de Sabor es una aplicación web que te permite buscar recetas de cocina y añadir los ingredientes necesarios a una lista de la compra. Además, podrás compartir tus recetas con el resto de la comunidad."
   },
@@ -18,5 +21,16 @@
     "RECIPES": "Recetas",
     "COMUNITY": "Comunidad",
     "LOG_IN": "Iniciar sesión"
+  },
+  "UNKNOW": {
+    "INVALID_URL": "¡Ups! Parece que la página que buscas no existe."
+  },
+  "USER": {
+    "ADRESS": "Dirección",
+    "NAME": "Nombre",
+    "PHONE": "Teléfono",
+    "SURNAME": "Apellidos",
+    "MAIL": "Correo",
+    "ZIP": "Código Postal"
   }
 }

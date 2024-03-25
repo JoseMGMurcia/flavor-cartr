@@ -20,4 +20,12 @@ export const ROUTES = {
     path: 'user',
     filePath: './modules/+user/user.module',
   },
+  UNKNOW: {
+    path: 'unknown',
+    filePath: './shared/components/unknown/unknown.component',
+  },
+  FORBIDDEN: {
+    path: 'forbidden',
+    filePath: './shared/components/forbidden/forbidden.component',
+  }
 };

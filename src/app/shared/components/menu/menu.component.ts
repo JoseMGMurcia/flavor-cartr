@@ -28,6 +28,11 @@ export class MenuComponent implements OnInit{
     this.authService.authState.subscribe((user) => {
       this.user = user;
       this.socialService.setUser(user);
+
+      // if we are in forviden or unknow page, we redirect to home
+      if (this.router.url === `/${ROUTES.FORBIDDEN.path}` || this.router.url === `/${ROUTES.UNKNOW.path}`) {
+        this.router.navigate([ROUTES.HOME.path]);
+      }
     });
   }
 
@@ -47,7 +52,7 @@ export class MenuComponent implements OnInit{
   }
 
   signOut(): void {
-    this.authService.signOut();
+    this.socialService.signOut(this.authService);
   }
 
 }
