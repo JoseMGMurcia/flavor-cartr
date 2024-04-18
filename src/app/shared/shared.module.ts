@@ -9,11 +9,13 @@ import { DialogComponent } from './components/dialog/dialog.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { UnknowComponent } from './components/unknow/unknow.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
+import { TableComponent } from './components/table/table.component';
 
 const components = [
   InputComponent,
   SelectComponent,
   UnknowComponent,
+  TableComponent,
 ];
 
 @NgModule({

@@ -5,13 +5,23 @@
     "AUTHOR1": "Estíbaliz Echeverría Aristu",
     "AUTHOR2": "María Giménez Requiel",
     "AUTHOR3": "José Martínez García",
-    "HIGH_SCHOOL": "IES José Planes"
+    "HIGH_SCHOOL": "IES José PQUANTITYlanes"
   },
   "FORBIDDEN": {
     "UNAUTHORIZED": "Debes iniciar sesión para acceder a esta página."
   },
   "HOME": {
     "EXPLANATION": "Carrito de Sabor es una aplicación web que te permite buscar recetas de cocina y añadir los ingredientes necesarios a una lista de la compra. Además, podrás compartir tus recetas con el resto de la comunidad."
+  },
+  "LISTS": {
+    "ADD_LIST": "Añadir lista",
+    "TITLE": "Listas de la compra",
+    "HEADERS": {
+      "NAME": "Nombre",
+      "CATEGORY": "Categoría",
+      "QUANTITY": "Cantidad",
+      "DETAIL": "Detalle"
+    }
   },
   "LOGGER":{
     "LOG_IN": "Iniciar sesión"
@@ -22,6 +32,10 @@
     "COMUNITY": "Comunidad",
     "LOG_IN": "Iniciar sesión"
   },
+  "TABLE": {
+    "NO_DATA": "No hay datos que mostrar",
+    "PAGE_OF": "Página {{page}} de {{pages}}"
+  },
   "UNKNOW": {
     "INVALID_URL": "¡Ups! Parece que la página que buscas no existe."
   },
@@ -31,6 +45,14 @@
     "PHONE": "Teléfono",
     "SURNAME": "Apellidos",
     "MAIL": "Correo",
+    "NICKNAME": "Nombre de usuario",
     "ZIP": "Código Postal"
+  },
+  "VALIDATORS": {
+    "REQUIRED": "* Campo requerido",
+    "IS_MAIL": "* Correo inválido",
+    "MAX_LENGTH": "* Máximos caracteres permitidos: {{max}}",
+    "MIN_LENGTH": "* Mínimos caracteres permitidos: {{min}}",
+    "SPECIAL_CHARS": "* Hay caracteres no permitidos"
   }
 }

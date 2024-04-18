@@ -2,6 +2,10 @@ import { ChangeDetectorRef, Component, DestroyRef, OnInit, inject } from '@angul
 import { TranslateService } from '@ngx-translate/core';
 import { LoadingService } from '@shared/services/loading.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { CartService } from '@shared/services/cart.service';
+import { NUMBERS } from '@shared/constants/number.constants';
+import { Article, Category } from '@shared/models/cart.models';
+import { LanguageEnum } from '@shared/models/language.models';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +20,7 @@ export class AppComponent implements OnInit{
   constructor(
     private translate: TranslateService,
     private loadingService: LoadingService,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
   ) { }
 
   async ngOnInit() {
@@ -38,7 +42,7 @@ export class AppComponent implements OnInit{
   }
 
   private async fetch() {
-    this.setTranslationsLanguage('es');
+    this.setTranslationsLanguage(LanguageEnum.SPANISH);
     this.setLoagingStatus();
   }
 }

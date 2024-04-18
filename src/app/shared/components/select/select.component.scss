@@ -21,7 +21,11 @@
   select {
     font-size: 1.1rem;
     border-radius: 0 0 8px 8px;
-    background-color: colors.$background-light;
+    background-color: colors.$menu-background-contrast;
     color: colors.$text-primary;
+  }
+
+  &:focus {
+    outline: 1.5px solid colors.$secondary;
   }
 }

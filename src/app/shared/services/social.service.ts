@@ -4,6 +4,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { ROUTES } from "@shared/constants/routes.constants";
 import { STRING_EMPTY } from "@shared/constants/string.constants";
+import { User } from "@shared/models/cart.models";
 import { BehaviorSubject, Observable } from "rxjs";
 
 @Injectable({
@@ -16,8 +17,11 @@ export class SocialService {
   ) {}
 
 
-  public get user$(): Observable<SocialUser> { return this.user.asObservable();}
-  private user: BehaviorSubject<SocialUser> = new BehaviorSubject(undefined as unknown as SocialUser);
+  public get socialUser$(): Observable<SocialUser> { return this.socialUser.asObservable();}
+  private socialUser: BehaviorSubject<SocialUser> = new BehaviorSubject(undefined as unknown as SocialUser);
+
+  public get user$(): Observable<User> { return this.user.asObservable();}
+  private user: BehaviorSubject<User> = new BehaviorSubject(undefined as unknown as User);
 
   public get loggedIn$(): Observable<boolean> { return this.loggedIn.asObservable();}
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject(false);
@@ -25,10 +29,14 @@ export class SocialService {
   public get accessToken$(): Observable<string> { return this.accessToken.asObservable();}
   private accessToken: BehaviorSubject<string> = new BehaviorSubject(STRING_EMPTY);
 
-  public setUser(user: SocialUser): void {
+  public setSocialUser(socialUser: SocialUser): void {
+    this.socialUser.next(socialUser);
+    this.accessToken.next(socialUser.idToken);
+    this.loggedIn.next(socialUser != null);
+  }
+
+  public setUser(user: User): void {
     this.user.next(user);
-    this.accessToken.next(user.idToken);
-    this.loggedIn.next(user != null);
   }
 
   signInWithFB(authService: SocialAuthService): void {
@@ -38,6 +46,7 @@ export class SocialService {
   signOut(authService: SocialAuthService): void {
     authService.signOut();
     this.loggedIn.next(false);
+    this.user.next(undefined as unknown as User);
     this.router.navigate([ROUTES.HOME.path]);
   }
 

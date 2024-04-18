@@ -6,6 +6,8 @@ import { ModalOptions } from '@shared/models/modal.model';
 import { ModalService } from '@shared/services/modal.service';
 import { SocialService } from '@shared/services/social.service';
 import { LoggerComponent } from '../logger/logger.component';
+import { User } from '@shared/models/cart.models';
+import { STRING_EMPTY } from '@shared/constants/string.constants';
 
 @Component({
   selector: 'app-menu',
@@ -13,7 +15,8 @@ import { LoggerComponent } from '../logger/logger.component';
   styleUrl: './menu.component.scss'
 })
 export class MenuComponent implements OnInit{
-  user!: SocialUser;
+  socialUser!: SocialUser;
+  user!: User;
 
   ROUTES = ROUTES;
 
@@ -26,10 +29,19 @@ export class MenuComponent implements OnInit{
 
   ngOnInit() {
     this.authService.authState.subscribe((user) => {
-      this.user = user;
-      this.socialService.setUser(user);
+      this.socialUser = user;
+      this.socialService.setSocialUser(user);
+      this.user = {
+        id: user.name,
+        name: user?.firstName,
+        surname: user?.lastName,
+        email: user?.email,
+        nickname: `@${user?.name}`,
+        password: STRING_EMPTY,
+      };
+      this.socialService.setUser(this.user);
 
-      // if we are in forviden or unknow page, we redirect to home
+      // if we are in forbidden or unknow page, we redirect to home
       if (this.router.url === `/${ROUTES.FORBIDDEN.path}` || this.router.url === `/${ROUTES.UNKNOW.path}`) {
         this.router.navigate([ROUTES.HOME.path]);
       }
@@ -48,11 +60,12 @@ export class MenuComponent implements OnInit{
   }
 
   goSection(section: string) {
-    this.router.navigate([section]);
+    this.router.navigate([section], section === ROUTES.USER.path ? { state: { user: this.user } } : {});
   }
 
   signOut(): void {
     this.socialService.signOut(this.authService);
+    this.user = undefined as unknown as User;
   }
 
 }

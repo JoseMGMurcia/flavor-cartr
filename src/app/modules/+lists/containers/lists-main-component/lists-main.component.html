@@ -1,0 +1,14 @@
+<div class="lists-main-component">
+  <div class="lists-main-component__table">
+    <p class="table-title">{{ "LISTS.TITLE" | translate }}</p>
+    <app-table
+      [tableConfig]="tableConfig"
+      [tableData]="tableData"
+    />
+    <button
+      class="action-button"
+      (click)="handleNewList()">
+        {{ "LISTS.ADD_LIST" | translate }}
+    </button>
+  </div>
+</div>

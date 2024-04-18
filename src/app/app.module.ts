@@ -46,7 +46,6 @@ function appInitializerFactory(translateService: TranslateService) {
     }),
     SocialLoginModule,
     GoogleSigninButtonModule,
-
   ],
   providers: [
     provideClientHydration(),
@@ -56,7 +55,7 @@ function appInitializerFactory(translateService: TranslateService) {
       deps: [TranslateService, Injector],
       multi: true
     },
-    socialAuthServiceConfigProvider
+    socialAuthServiceConfigProvider,
   ],
   bootstrap: [AppComponent]
 })

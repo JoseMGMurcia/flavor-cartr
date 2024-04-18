@@ -1,0 +1,64 @@
+<div class="table-wraper">
+  @if(tableData.length) {
+    <div class="columns">
+      @for(column of tableConfig.columns; track column.key; let cIndex = $index) {
+        <div class="column">
+          <p class="column-header" [ngClass]="getHeaderClass(cIndex)">
+            {{ column.label | translate }}
+          </p>
+          @for(row of currentPageData; track row.id; let rIndex = $index) {
+            <div class="column-row" [ngClass]="getRowClass(rIndex, cIndex)">
+              @if(column.type === tableColumnTypeEnum.ACTIONS) {
+                <div class="action-wrapper">
+                  <button
+                    class="action-button"
+                    (click)="doAction(row, column)">
+                      {{ "ACTION" | translate }}
+                  </button>
+                </div>
+              } @else {
+                <p [ngClass]="column['aling']?.toString() || 'left'">
+                  {{ row[column.key] }}
+                </p>
+              }
+            </div>
+          }
+        </div>
+      }
+    </div>
+    <div class="pagination">
+      <p>{{ "TABLE.PAGE_OF" | translate: { page: tableConfig.pagination.actualPage, pages: totalPages } }}</p>
+      <div class="pagination-buttons">
+        <button
+          class="pagination-button"
+          [disabled]="tableConfig.pagination.actualPage === NUMBERS.N_1"
+          (click)="changePage(NUMBERS.N_1)">
+            {{ "FIRST" | translate }}
+        </button>
+        <button
+          class="pagination-button"
+          [disabled]="tableConfig.pagination.actualPage === NUMBERS.N_1"
+          (click)="changePage(tableConfig.pagination.actualPage - NUMBERS.N_1)">
+            {{ "PREVIOUS" | translate }}
+        </button>
+        <button
+          class="pagination-button"
+          [disabled]="tableConfig.pagination.actualPage === totalPages"
+          (click)="changePage(tableConfig.pagination.actualPage + NUMBERS.N_1)">
+            {{ "NEXT" | translate }}
+        </button>
+        <button
+          class="pagination-button"
+          [disabled]="tableConfig.pagination.actualPage === totalPages"
+          (click)="changePage(totalPages)">
+            {{ "LAST" | translate }}
+        </button>
+      </div>
+    </div>
+  }
+  @else {
+    <div class="no-data">
+      <p>{{ "TABLE.NO_DATA" | translate }}</p>
+    </div>}
+
+</div>

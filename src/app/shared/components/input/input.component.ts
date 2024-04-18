@@ -1,5 +1,6 @@
-import { Component, Input, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, Input, OnInit, forwardRef } from '@angular/core';
+import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { STRING_EMPTY } from '@shared/constants/string.constants';
 
 @Component({
   selector: 'app-input',
@@ -13,11 +14,12 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     }
   ]
 })
-export class InputComponent implements ControlValueAccessor{
-  @Input() public label = '';
+export class InputComponent implements ControlValueAccessor {
+  @Input() public label = STRING_EMPTY;
   @Input() public type = 'text';
-  @Input() public placeholder = '';
-  @Input() public value = '';
+  @Input() public placeholder = STRING_EMPTY;
+  @Input() public value = STRING_EMPTY;
+  @Input({required: true}) public control!: FormControl;
 
   // ControlValueAccessor interface methods
   writeValue(obj: any): void {
@@ -34,4 +36,15 @@ export class InputComponent implements ControlValueAccessor{
 
   propagateChange = (_: any) => {};
   propagateTouched = () => {};
+
+  getErrors(): string[] {
+    const errors = this.control.errors;
+    if (!errors) {
+      return [];
+    }
+    return Object.keys(errors).map((key) => {
+      return errors[key] ? key : STRING_EMPTY;
+    });
+
+  }
 }

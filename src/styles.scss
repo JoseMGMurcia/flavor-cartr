@@ -47,8 +47,8 @@ p {
 .primary-button {
   background-color: colors.$primary;
   border: none;
-  border-radius: 4px;
-  color: colors.$white;
+  border-radius: 8px;
+  color: colors.$white-200;
   cursor: pointer;
   font-size: 16px;
   font-weight: 500;
@@ -62,7 +62,7 @@ p {
   }
 
   &:disabled {
-    background-color: lighten(colors.$primary, 20%);
+    background-color: mix(colors.$primary, colors.$blue-gray-300, 60%);
     cursor: not-allowed;
   }
 }

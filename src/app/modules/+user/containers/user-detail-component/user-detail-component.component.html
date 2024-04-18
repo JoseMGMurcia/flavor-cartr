@@ -1,4 +1,43 @@
 <div class="user-container">
-  <app-input
-    label="{{ 'USER.NAME' | translate }}"/>
+  <form [formGroup]="form">
+    <div>
+      <app-input
+        formControlName="name"
+        [control]="form.controls.name"
+        label="{{ 'USER.NAME' | translate }}"/>
+      <app-input
+        formControlName="surname"
+        [control]="form.controls.surname"
+        label="{{ 'USER.SURNAME' | translate }}"/>
+    </div>
+    <div>
+      <app-input
+        class="u-width-100"
+        formControlName="email"
+        [control]="form.controls.email"
+        label="{{ 'USER.MAIL' | translate }}"/>
+    </div>
+    <div>
+      <app-input
+        class="u-width-75"
+        formControlName="nickname"
+        [control]="form.controls.nickname"
+        label="{{ 'USER.NICKNAME' | translate }}"/>
+
+        @if (form.controls.nickname.disabled) {
+          <button
+            (click)="editionMode()"
+            class="primary-button">
+              <img class="menu-icon" src="assets/icons/pen-solid2.svg" alt="cart">
+          </button>
+        } @else {
+          <button
+            (click)="saveNickname()"
+            class="primary-button"
+            [disabled]="form.controls.nickname.invalid">
+              <img class="menu-icon" src="assets/icons/floppy-disk-solid2.svg" alt="user">
+          </button>
+        }
+    </div>
+  </form>
 </div>

@@ -88,11 +88,14 @@ $white-50: #fffffe;
 $white-100: #fffffd;
 $white-200: #d6d6d6;
 
+$error-red: #831a05;
 
 // Carrito de Sabor
 $menu-background: #086922;
 $menu-background-50: #08692260;
 $menu-background-secondary: #82bf49;
+$menu-background-contrast: #dae5cf;
+$menu-background-contrast-50: #c2d2b1;
 $menu-text-color: #e1ede4;
 $menu-text-color-fade: #c6cdc7;
 
@@ -114,9 +117,15 @@ $background-sec-contrast: $light-blue-700;
 $background-tertiary: $orange-a400;
 $background-tertiary-hover: $orange-a200;
 
-$primary: $indigo-a700;
-
+$primary: $menu-background;
+$secondary: $menu-background-secondary;
 $text-primary: $tema-contrast-light;
+$text-primary-disabled: $blue-gray-500;
+
+$table-header: $menu-background;
+$table-header-text: $menu-text-color;
+$table-background: $menu-background-contrast-50;
+$table-background-even: $menu-background-contrast;
 
 $card-background: $blue-gray-300;
 $card-color: $blue-gray-900;
