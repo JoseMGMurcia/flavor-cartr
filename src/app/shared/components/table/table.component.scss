@@ -5,8 +5,7 @@
   flex-direction: column;
   min-width: min-content;
   width: 100%;
-
-
+  max-height: calc(100% - 8px);
 
   .columns {
     border-radius: 4px;
@@ -46,6 +45,7 @@
         padding: 2px 16px;
         min-width: max-content;
         max-height: 18px;
+        height: 18px;
 
         &.even {
           background-color: colors.$table-background-even;
@@ -80,14 +80,9 @@
       .action-wrapper {
         display: flex;
         justify-content: center;
+        align-items: center;
         height: 18px ;
         width: 100%;
-
-
-        .action-button {
-          font-size: 9px;
-        }
-
       }
     }
   }

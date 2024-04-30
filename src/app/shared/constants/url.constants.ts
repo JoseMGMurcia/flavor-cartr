@@ -14,6 +14,7 @@ export const API_URLS = {
   PRICE_ID: '/PriceFirestore/{id}',
   USERS: '/UserFirestore',
   USERS_ID: '/UserFirestore/{id}',
+  VERIFY: '/ArticleFirestore/verify',
 };
 
 export const getApiUrl = (url: string, params: Params = {}): string => {

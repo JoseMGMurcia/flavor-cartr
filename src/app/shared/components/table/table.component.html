@@ -10,15 +10,11 @@
             <div class="column-row" [ngClass]="getRowClass(rIndex, cIndex)">
               @if(column.type === tableColumnTypeEnum.ACTIONS) {
                 <div class="action-wrapper">
-                  <button
-                    class="action-button"
-                    (click)="doAction(row, column)">
-                      {{ "ACTION" | translate }}
-                  </button>
+                  <img class="icon-action" [src]="'assets/icons/' + column.actionIcon" alt="cart" (click)="doAction(row, column)">
                 </div>
               } @else {
                 <p [ngClass]="column['aling']?.toString() || 'left'">
-                  {{ row[column.key] }}
+                  {{ cutString(row[column.key], column.maxChars) }}
                 </p>
               }
             </div>

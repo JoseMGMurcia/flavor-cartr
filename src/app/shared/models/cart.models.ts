@@ -18,11 +18,10 @@ export interface Article {
   description?: string;
   imageUrl?: string;
   brand?: string;
-
   prices?: Price[];
-  categories?: Category[];
-  averagePrize: number;
-  count?: number;
+  categories?: string[];
+  averagePrice: number;
+  quantity?: number;
   unit?: string;
 }
 

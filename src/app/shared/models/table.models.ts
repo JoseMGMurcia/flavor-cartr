@@ -1,3 +1,5 @@
+import { IconType } from "./icon.models";
+
 export enum TableColumnTypeEnum {
   TEXT = 'text',
   DATE = 'date',
@@ -27,7 +29,8 @@ export interface TableColumn {
   format?: string;
   aling?: TableAlingType;
   action?: (row: TableRow) => void;
-  actionIcon?: string;
+  actionIcon?: IconType;
+  maxChars?: number;
 }
 
 export interface TablePagination {
@@ -57,5 +60,5 @@ export type TableRowStatusType =
 export interface TableRow {
   id: string;
   status?: TableRowStatusType;
-  [key: string]: string | number | undefined;
+  [key: string]: any | undefined;
 }

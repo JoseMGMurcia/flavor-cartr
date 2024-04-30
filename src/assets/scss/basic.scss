@@ -187,6 +187,18 @@
 
 
 .icon {
+
+  &-action {
+    height: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      transform: scale(1.3);
+    }
+
+  }
+
   &-small {
     font-size: 1.2rem;
   }

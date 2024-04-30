@@ -1,14 +1,21 @@
 <div class="lists-main-component">
   <div class="lists-main-component__table">
     <p class="table-title">{{ "LISTS.TITLE" | translate }}</p>
-    <app-table
-      [tableConfig]="tableConfig"
-      [tableData]="tableData"
-    />
-    <button
-      class="action-button"
-      (click)="handleNewList()">
+    <div class="u-flex u-flex-space-between u-flex-align-center">
+      <app-select
+        class="u-width-50 margin-bottom"
+        label="{{ 'LISTS.SELECT_LIST' | translate }}"
+      />
+      <button class="primary-button" (click)="handleNewList()">
+        <img class="icon icon-sm margin-right" src="assets/icons/square-plus-solid2.svg" alt="cart">
         {{ "LISTS.ADD_LIST" | translate }}
-    </button>
+      </button>
+    </div>
+    @if(swLoadingFinished){
+      <app-table
+        [tableConfig]="tableConfig"
+        [tableData]="tableData"
+      />
+    }
   </div>
 </div>

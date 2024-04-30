@@ -6,6 +6,7 @@
 
   display: flex;
   justify-content: center;
+  min-width: min-content;
 
   background-attachment: fixed;
   background-image: url('assets/images/lists.jpg');
@@ -19,12 +20,14 @@
     border-radius: 10px;
     padding: 24px;
     width: min-content;
+    min-width: 40%;
     height: fit-content;
+    max-height: 90%;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 
     .table-title {
       font-size: 1.5rem;
-      font-weight: 500;
+      font-weight: 600;
       margin: 16px;
       min-width: max-content;
     }

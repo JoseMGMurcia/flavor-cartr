@@ -11,6 +11,7 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
+  min-width: max-content;
 }
 
 .app-content {
@@ -50,12 +51,12 @@ p {
   border-radius: 8px;
   color: colors.$white-200;
   cursor: pointer;
-  font-size: 16px;
+  display: flex;
+  font-size: 12px;
   font-weight: 500;
-  height: 40px;
   outline: none;
-  padding: 0 16px;
-  text-transform: uppercase;
+  padding: 8px 12px;
+  min-width: max-content;
 
   &:hover {
     background-color: darken(colors.$primary, 10%);
@@ -73,16 +74,16 @@ p {
   border-radius: 4px;
   color: colors.$primary;
   cursor: pointer;
-  font-size: 16px;
+  display: flex;
+  font-size: 12px;
   font-weight: 600;
-  height: 40px;
   outline: none;
-  padding: 0 16px;
-  text-transform: uppercase;
+  padding: 8px 12px;
+  min-width: max-content;
 
   &:hover {
-    background-color: colors.$primary;
-    color: colors.$white;
+    background-color: darken(colors.$menu-background-contrast-50, 1%);
+    color: darken(colors.$secondary, 18%);
   }
 
   &:disabled {
@@ -195,6 +196,11 @@ p {
 .icon {
   height: 24px;
   width: 24px;
+
+  &-sm {
+    height: 12px;
+    width: 12px;
+  }
 }
 
 .group {
