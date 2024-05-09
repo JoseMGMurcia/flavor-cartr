@@ -12,6 +12,7 @@ import { socialAuthServiceConfigProvider } from '@shared/constants/social.consta
 import { MenuComponent } from '@shared/components/menu/menu.component';
 import { FooterComponent } from '@shared/components/footer/footer.component';
 import { LoggerComponent } from '@shared/components/logger/logger.component';
+import { ToastComponent } from '@shared/components/toast/toast.component';
 
 export const createTranslateLoader = (http: HttpClient) => {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -30,6 +31,7 @@ function appInitializerFactory(translateService: TranslateService) {
     MenuComponent,
     FooterComponent,
     LoggerComponent,
+    ToastComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,7 @@
+﻿<div
+  [@toastTrigger]="(toast.showsToast$ | async) ? 'open' : 'close'"
+  [class]="toast.toastState$ | async"
+>
+  <div>{{ toast.toastMessage$ | async }}</div>
+  <img class="icon-action" src="assets/icons/trash-can-solid.svg" alt="close" (click)="dismiss()">
+</div>

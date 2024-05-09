@@ -3,9 +3,10 @@
   <select
     (change)="propagateChange($event)"
     (blur)="propagateTouched()"
-    (change)="onchange($event)">
+    (change)="onchange($event)"
+    [ngClass]="{ 'no-label': !label }">
     <option *ngFor="let option of options" [value]="option.value" [selected]="option.selected">
-      <p>{{ option.label }}</p>
+      {{ option.label }}
     </option>
   </select>
 </div>

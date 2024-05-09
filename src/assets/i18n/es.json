@@ -1,5 +1,6 @@
 {
   "CANCEL": "Cancelar",
+  "DIMISS": "Descartar",
   "TITLE": "Carrito de Sabor",
   "FOOTER": {
     "ALL_RIGHTS_RESERVED": "© Todos los derechos reservados",
@@ -43,10 +44,16 @@
   },
   "TABLE": {
     "NO_DATA": "No hay datos que mostrar",
-    "PAGE_OF": "Página {{page}} de {{pages}}"
+    "PAGE_OF": "Página {{page}} de {{pages}}",
+    "PAGE_SIZE": "Tamaño de página:"
   },
   "UNKNOW": {
     "INVALID_URL": "¡Ups! Parece que la página que buscas no existe."
+  },
+  "TOAST": {
+    "ARTICLES_OR_CATEGORIES": "Error al obtener artículos y categorias.",
+    "USER": "Error al obtener usuario.",
+    "USER_TOKEN": "Error al identificar al usuario en la aplicación."
   },
   "USER": {
     "ADRESS": "Dirección",

@@ -87,6 +87,7 @@ $white: #fff;
 $white-50: #fffffe;
 $white-100: #fffffd;
 $white-200: #d6d6d6;
+$white-100-fade: #fffffd05;
 
 $error-red: #831a05;
 
@@ -120,6 +121,7 @@ $background-tertiary-hover: $orange-a200;
 $primary: $menu-background;
 $secondary: $menu-background-secondary;
 $text-primary: $tema-contrast-light;
+$text-primary-dark: $blue-gray-800;
 $text-primary-disabled: $blue-gray-500;
 
 $table-header: $menu-background;
@@ -133,3 +135,6 @@ $card-background-even: $blue-gray-400;
 $card-icon-button: $light-blue-900;
 $card-icon-button-hover: $orange-400;
 
+$warning: $tema;
+$success: $menu-background-secondary;
+$error: $orange-a900;

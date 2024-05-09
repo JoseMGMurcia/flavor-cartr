@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NUMBERS } from '@shared/constants/number.constants';
 import { STRING_EMPTY } from '@shared/constants/string.constants';
-import { TableAlingEnum, TableColumn, TableColumnTypeEnum, TableConfig, TableRow } from '@shared/models/table.models';
+import { TableAlingEnum, TableColumn, TableColumnTypeEnum, TableConfig, TablePageSizesEnum, TableRow } from '@shared/models/table.models';
 import { cutString } from '@shared/utils/string.utils';
+import { CartOption } from '../select/select.component';
 
 @Component({
   selector: 'app-table',
@@ -15,6 +16,12 @@ export class TableComponent implements OnInit{
 
   currentPageData!: TableRow[];
   NUMBERS = NUMBERS;
+  sizeOptions: CartOption[] = [
+    {label: '5', value: `${TablePageSizesEnum.T5}`},
+    {label: '10', value: `${TablePageSizesEnum.T10}`},
+    {label: '20', value: `${TablePageSizesEnum.T20}`, selected: true},
+    {label: '50', value: `${TablePageSizesEnum.T50}`},
+  ];
 
   tableAling = TableAlingEnum;
   tableColumnTypeEnum = TableColumnTypeEnum;
@@ -36,6 +43,11 @@ export class TableComponent implements OnInit{
       (this.tableConfig.pagination.actualPage - NUMBERS.N_1) * this.tableConfig.pagination.itemsPerPage,
       this.tableConfig.pagination.actualPage * this.tableConfig.pagination.itemsPerPage
     );
+  }
+
+  changePageSize(size: string): void {
+    this.tableConfig.pagination.itemsPerPage = Number(size);
+    this.changePage(NUMBERS.N_1);
   }
 
   getHeaderClass(columnIndex: number): string {

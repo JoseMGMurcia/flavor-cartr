@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { STRING_EMPTY } from '@shared/constants/string.constants';
 import { API_URLS, getApiUrl } from '@shared/constants/url.constants';
-import { Article, Category, List, Price, User } from '@shared/models/cart.models';
+import { Article, Category, List, Price, TokenUser, User } from '@shared/models/cart.models';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -127,30 +127,28 @@ export class CartService {
 
   // USERS
 
-  getUsers(): Observable<User[]> {
+  getUsers(): Observable<TokenUser[]> {
     const url = getApiUrl(API_URLS.USERS);
     return this.http.get<User[]>(url, { headers: this.headers });
   }
 
-  postUser(user: User): Observable<User> {
+  postUser(user: User): Observable<TokenUser> {
     const url = getApiUrl(API_URLS.USERS);
     return this.http.post<User>(url, user, { headers: this.headers });
   }
 
-  getUserById(id: string): Observable<User> {
+  getUserById(id: string): Observable<TokenUser> {
     const url = getApiUrl(API_URLS.USERS_ID, { id });
-    return this.http.get<User>(url, { headers: this.headers });
+    return this.http.get<TokenUser>(url, { headers: this.headers });
   }
 
   putUser(user: User): Observable<User> {
-    const url = getApiUrl(API_URLS.USERS_ID, { id: user.id });
+    const url = getApiUrl(API_URLS.USERS_ID, { id: STRING_EMPTY });
     return this.http.put<User>(url, user, { headers: this.headers });
   }
 
-  // VERIFICATION
-
-  verifyUser(email: string): Observable<void> {
-    const url = getApiUrl(API_URLS.VERIFY);
-    return this.http.post<void>(url, { email } , { headers: this.headers });
+  getUserByEmail(email: string): Observable<TokenUser> {
+    const url = getApiUrl(API_URLS.USER_EMAIL, { email });
+    return this.http.get<TokenUser>(url, { headers: this.headers });
   }
 }

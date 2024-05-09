@@ -10,6 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { UnknowComponent } from './components/unknow/unknow.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { TableComponent } from './components/table/table.component';
+import { ListComponent } from './components/list/list.component';
 
 const components = [
   InputComponent,
@@ -24,6 +25,7 @@ const components = [
     ModalComponent,
     DialogComponent,
     ForbiddenComponent,
+    ListComponent,
   ],
   imports: [
     CommonModule,

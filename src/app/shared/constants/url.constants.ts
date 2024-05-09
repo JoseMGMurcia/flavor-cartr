@@ -12,9 +12,10 @@ export const API_URLS = {
   LIST_USER: '/ListsFirestore/user/{id}',
   PRICE: '/PriceFirestore',
   PRICE_ID: '/PriceFirestore/{id}',
-  USERS: '/UserFirestore',
-  USERS_ID: '/UserFirestore/{id}',
-  VERIFY: '/ArticleFirestore/verify',
+  USERS: '/UserToken',
+  USERS_ID: '/UserToken/{id}',
+  VERIFY: '/UserToken/verify',
+  USER_EMAIL: '/UserToken/{email}',
 };
 
 export const getApiUrl = (url: string, params: Params = {}): string => {

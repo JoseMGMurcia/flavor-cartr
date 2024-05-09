@@ -40,5 +40,3 @@ export const NUMBERS = {
   N_95: 95,
   N_100: 100,
 };
-
-export const DICE_SEPARATOR = 'D';

@@ -6,6 +6,7 @@ import { TranslateModule } from "@ngx-translate/core";
 import { ListsRoutingModule } from "./lists-routing.module";
 import { ListsMainComponent } from "./containers/lists-main-component/lists-main.component";
 import { AddListComponent } from './components/add-list/add-list.component';
+import { RouterModule } from "@angular/router";
 
 @NgModule({
   declarations: [

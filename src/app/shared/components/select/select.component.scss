@@ -17,6 +17,8 @@
     padding: 0 16px;
     margin-bottom: 0.1rem;
     min-width: max-content;
+
+
   }
 
   select {
@@ -24,6 +26,15 @@
     border-radius: 0 0 8px 8px;
     background-color: colors.$menu-background-contrast;
     color: colors.$text-primary;
+
+    &.no-label {
+      border-radius: 8px;
+    }
+
+    option {
+      width: 100%;
+      text-align: center;
+    }
   }
 
   &:focus {

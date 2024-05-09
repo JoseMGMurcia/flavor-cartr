@@ -10,7 +10,7 @@ export const socialAuthServiceConfigProvider =  {
     providers: [
       {
         id: GoogleLoginProvider.PROVIDER_ID,
-        provider: new GoogleLoginProvider(GOOGLE_CLIENT_ID )
+        provider: new GoogleLoginProvider(GOOGLE_CLIENT_ID)
       },
       {
         id: FacebookLoginProvider.PROVIDER_ID,

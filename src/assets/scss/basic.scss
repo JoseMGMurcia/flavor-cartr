@@ -12,6 +12,10 @@
   &-right {
     text-align: right;
   }
+
+  &-wide {
+    min-width: max-content;
+  }
 }
 
 .justyfy {

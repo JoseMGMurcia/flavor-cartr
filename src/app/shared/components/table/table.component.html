@@ -23,8 +23,18 @@
       }
     </div>
     <div class="pagination">
-      <p>{{ "TABLE.PAGE_OF" | translate: { page: tableConfig.pagination.actualPage, pages: totalPages } }}</p>
-      <div class="pagination-buttons">
+      <div class="u-flex u-flex-center">
+        <p>{{ "TABLE.PAGE_OF" | translate: { page: tableConfig.pagination.actualPage, pages: totalPages } }}</p>
+        <div class="u-flex u-flex-center margin-left">
+          <p class="margin-left u-text-wide">{{ "TABLE.PAGE_SIZE" | translate }}</p>
+          <app-select
+            [options]="sizeOptions"
+            (valueChanges)="changePageSize($event)"
+          />
+        </div>
+      </div>
+
+      <div class="pagination-buttons u-flex u-flex-center">
         <button
           class="pagination-button"
           [disabled]="tableConfig.pagination.actualPage === NUMBERS.N_1"

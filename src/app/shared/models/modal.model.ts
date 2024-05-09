@@ -23,6 +23,14 @@ export interface ModalOptions {
   preventCloseOnEsc?: boolean;
 }
 
+export const DEFAULT_MODAL_OPTIONS: ModalOptions = {
+  animations: {
+    modal: {
+      enter: 'enter-scaling 0.4s',
+    },
+  },
+};
+
 export interface DialogOptions {
   title?: string;
   message?: string;

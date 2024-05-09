@@ -16,7 +16,7 @@ import { STRING_EMPTY } from '@shared/constants/string.constants';
 })
 export class SelectComponent implements ControlValueAccessor{
   @Input() public label = STRING_EMPTY;
-  @Input() public options: RQGOption[] = [];
+  @Input() public options: CartOption[] = [];
   @Input() public value = STRING_EMPTY;
 
   @Output() public valueChanges = new EventEmitter<string>();
@@ -40,10 +40,14 @@ export class SelectComponent implements ControlValueAccessor{
     this.valueChanges.emit(event.target.value);
   }
 
+  getLabelClass(): string {
+    return this.label === STRING_EMPTY ? 'no-label' : STRING_EMPTY;
+  }
+
 }
 
-export class RQGOption {
-  label = '';
-  value = '';
+export class CartOption {
+  label = STRING_EMPTY;
+  value = STRING_EMPTY;
   selected? = false;
 }

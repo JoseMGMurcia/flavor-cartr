@@ -3,6 +3,9 @@
 @import 'assets/scss/basic.scss';
 @import 'assets/scss/aminations/modal.animations.scss';
 
+app-root {   z-index: 1; }
+app-toast, .toast-class {   z-index: 2; }
+
 html,
 body {
   background-color: colors.$background;
@@ -92,6 +95,28 @@ p {
     color: lighten(colors.$primary, 20%);
     cursor: not-allowed;
   }
+}
+
+.link-button {
+  background-color: transparent;
+  border: none;
+  color: colors.$primary;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  outline: none;
+  padding: 0;
+
+  &:hover {
+    font-size: 16px;
+    text-transform: bold;
+  }
+
+  &:disabled {
+    color: lighten(colors.$primary, 20%);
+    cursor: not-allowed;
+  }
+
 }
 
 .icon-button {

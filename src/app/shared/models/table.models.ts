@@ -62,3 +62,10 @@ export interface TableRow {
   status?: TableRowStatusType;
   [key: string]: any | undefined;
 }
+
+export enum TablePageSizesEnum {
+  T5 = 5,
+  T10 = 10,
+  T20 = 20,
+  T50 = 50,
+}
