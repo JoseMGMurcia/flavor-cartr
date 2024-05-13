@@ -1,5 +1,15 @@
 # Rune Master
 
+## 0.0.3 Functionality
+
+  - All components are now responsive.
+  - Login modal added.
+  - Add List modal added.
+  - Added a dinamic custom table component.
+  - List component added.
+  - Toast custom component added with 3 diferent status types: success, warning and error.
+  - Status service added.
+
 ## 0.0.2 Security
 
   - Google loggin method added.
@@ -21,13 +31,13 @@
 
 
 ## TODO IN BACK:
-  - Relate users with google users (Maybe not in front)
-  - Add surname2 to user? Not sure about that
   - delete password from user
   - GET prices by article
   - GET user by GoogleId or Login using google token
   - add languaje to user
+  - 
 
 ## TODO IN FRONT:
   - minimize weight of images
   - Social Links
+

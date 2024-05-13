@@ -103,6 +103,11 @@ export class CartService {
     return this.http.get<List[]>(url, { headers: this.headers });
   }
 
+  deleteList(id: string): Observable<void> {
+    const url = getApiUrl(API_URLS.LISTS_ID, { id });
+    return this.http.delete<void>(url, { headers: this.headers });
+  }
+
   // PRICES
 
   getPrices(): Observable<Price[]> {
@@ -127,11 +132,6 @@ export class CartService {
 
   // USERS
 
-  getUsers(): Observable<TokenUser[]> {
-    const url = getApiUrl(API_URLS.USERS);
-    return this.http.get<User[]>(url, { headers: this.headers });
-  }
-
   postUser(user: User): Observable<TokenUser> {
     const url = getApiUrl(API_URLS.USERS);
     return this.http.post<User>(url, user, { headers: this.headers });
@@ -143,12 +143,12 @@ export class CartService {
   }
 
   putUser(user: User): Observable<User> {
-    const url = getApiUrl(API_URLS.USERS_ID, { id: STRING_EMPTY });
+    const url = getApiUrl(API_URLS.USER_EMAIL, { email: user.email });
     return this.http.put<User>(url, user, { headers: this.headers });
   }
 
-  getUserByEmail(email: string): Observable<TokenUser> {
+  getUserByEmail(email: string): Observable<User[]> {
     const url = getApiUrl(API_URLS.USER_EMAIL, { email });
-    return this.http.get<TokenUser>(url, { headers: this.headers });
+    return this.http.get<User[]>(url, { headers: this.headers });
   }
 }

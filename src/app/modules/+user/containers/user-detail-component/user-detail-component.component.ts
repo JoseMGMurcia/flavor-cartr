@@ -9,6 +9,8 @@ import { NUMBERS } from '@shared/constants/number.constants';
 import { STRING_EMPTY } from '@shared/constants/string.constants';
 import { SocialService } from '@shared/services/social.service';
 import { LoadingService } from '@shared/services/loading.service';
+import { finalize } from 'rxjs';
+import { TOAST_STATE, ToastService } from '@shared/services/toast.service';
 
 @Component({
   selector: 'app-user-detail-component',
@@ -26,6 +28,7 @@ export class UserDetailComponentComponent implements OnInit {
     private translate: TranslateService,
     private socialService: SocialService,
     private loadingService: LoadingService,
+    private toast: ToastService,
 
   ) { }
 
@@ -35,11 +38,6 @@ export class UserDetailComponentComponent implements OnInit {
       .subscribe((user: User) => {
         this._user = user;
         this.form.patchValue(user);
-      });
-    this.cartService.getArticleById('R85WkUhecKUy0sxNbEVE')
-      .pipe(takeUntilDestroyed(this._destroyRef))
-      .subscribe((response: Article) => {
-        console.log('ARTICLE', response);
       });
   }
 
@@ -53,11 +51,15 @@ export class UserDetailComponentComponent implements OnInit {
       this.socialService.setUser(this._user);
       this.form.controls.nickname.disable();
 
-      // TODO: delete this (Simulate loading)
       this.loadingService.show();
-      setTimeout(() => {
-        this.loadingService.hide();
-      }, 3000);
+      this.cartService.putUser(this._user)
+        .pipe(takeUntilDestroyed(this._destroyRef),
+          finalize(() => this.loadingService.hide()))
+        .subscribe({
+          next: () => this.toast.showToast(TOAST_STATE.SUCCESS, this.translate.instant('TOAST.SAVE_USER_OK')),
+          error: () => this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.SAVE_USER_KO')),
+
+        });
 
     }
   }

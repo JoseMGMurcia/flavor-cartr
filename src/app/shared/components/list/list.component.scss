@@ -1,0 +1,24 @@
+@use '../../../../assets/scss/custom-colors.scss' as colors;
+
+.list-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .button-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin: 16px 0;
+
+    .button-group {
+      display: flex;
+      flex-direction: row;
+      margin: 16px 0;
+    }
+  }
+
+
+}
+

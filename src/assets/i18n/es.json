@@ -17,11 +17,23 @@
   },
   "LISTS": {
     "ADD_LIST": "Añadir lista",
+    "NEW_LIST": "Nueva lista",
     "PUBLIC_LIST": "Lista pública",
     "RECICE": "Receta",
     "SAVE_LIST": "Guardar lista",
     "SELECT_LIST": "Selecciona una lista",
-    "TITLE": "Listas de la compra",
+    "TITLE": "Mis Listas",
+    "ACTIONS": {
+      "ADD_ARTICLE": "Añadir artículo",
+      "DELETE_LIST": "Eliminar lista",
+      "EDIT_LIST_DETAILS": "Editar lista"
+    },
+    "DELETE_LIST_DIALOG": {
+      "TITLE": "Eliminar lista",
+      "CONTENT": "¿Estás seguro de que quieres eliminar la lista: {{name}}?. Si sigues adelante, no podrás dehacer los cambios.",
+      "CANCEL": "Cancelar",
+      "DELETE": "Eliminar"
+    },
     "HEADERS": {
       "AVERAGE_PRICE": "Precio medio",
       "NAME": "Nombre",
@@ -52,8 +64,18 @@
   },
   "TOAST": {
     "ARTICLES_OR_CATEGORIES": "Error al obtener artículos y categorias.",
+    "CREATE_LIST_OK": "Lista creada correctamente.",
+    "CREATE_LIST_KO": "Error al crear la lista.",
+    "EDIT_LIST_OK": "Lista editada correctamente.",
+    "EDIT_LIST_KO": "Error al editar la lista.",
+    "DELETE_LIST_OK": "Lista eliminada correctamente.",
+    "DELETE_LIST_KO": "Error al eliminar la lista.",
+    "SAVE_LIST_OK": "Lista guardada correctamente.",
+    "SAVE_LIST_KO": "Error al guardar la lista.",
     "USER": "Error al obtener usuario.",
-    "USER_TOKEN": "Error al identificar al usuario en la aplicación."
+    "USER_TOKEN": "Error al identificar al usuario en la aplicación.",
+    "SAVE_USER_KO": "Error al guardar el usuario.",
+    "SAVE_USER_OK": "Usuario guardado correctamente."
   },
   "USER": {
     "ADRESS": "Dirección",

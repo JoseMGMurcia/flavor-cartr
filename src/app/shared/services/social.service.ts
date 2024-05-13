@@ -16,7 +16,6 @@ export class SocialService {
     private router: Router,
   ) {}
 
-
   public get socialUser$(): Observable<SocialUser> { return this.socialUser.asObservable();}
   private socialUser: BehaviorSubject<SocialUser> = new BehaviorSubject(undefined as unknown as SocialUser);
 

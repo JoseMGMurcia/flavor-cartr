@@ -1,1 +1,28 @@
-<p>list works!</p>
+@if(list) {
+  <div class="list-wrapper">
+    <p class="list-title">{{ list.name }}</p>
+    <div class="button-row">
+      <div class="button-group">
+        <button class="secondary-button margin-right" (click)="handleDeleteList()">
+          <img class="icon icon-sm margin-right" src="assets/icons/trash-can-solid.svg" alt="cart">
+          {{ "LISTS.ACTIONS.DELETE_LIST" | translate }}
+        </button>
+      </div>
+      <div class="button-group">
+        <button class="secondary-button margin-right" (click)="handleEditList()">
+          <img class="icon icon-sm margin-right" src="assets/icons/pen-solid.svg" alt="cart">
+          {{ "LISTS.ACTIONS.EDIT_LIST_DETAILS" | translate }}
+        </button>
+        <button class="secondary-button margin-right" (click)="handleAddArticle()">
+          <img class="icon icon-sm margin-right" src="assets/icons/square-plus-solid.svg" alt="cart">
+          {{ "LISTS.ACTIONS.ADD_ARTICLE" | translate }}
+        </button>
+        <button class="primary-button" (click)="handleSaveList()">
+          <img class="icon icon-sm margin-right" src="assets/icons/floppy-disk-solid2.svg" alt="cart">
+          {{ "LISTS.SAVE_LIST" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+}
+

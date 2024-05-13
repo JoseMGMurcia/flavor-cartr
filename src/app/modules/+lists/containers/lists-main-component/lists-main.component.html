@@ -5,6 +5,8 @@
       <app-select
         class="u-width-50 margin-bottom"
         label="{{ 'LISTS.SELECT_LIST' | translate }}"
+        [options]="listsOptions"
+        (valueChanges)="handleListChange($event)"
       />
       <button class="primary-button" (click)="handleNewList()">
         <img class="icon icon-sm margin-right" src="assets/icons/square-plus-solid2.svg" alt="cart">
@@ -12,6 +14,13 @@
       </button>
     </div>
     @if(swLoadingFinished){
+      <app-list
+        [list]="selectedList"
+        [articles]="articles"
+        [categories]="categories"
+        [user]="user"
+      />
+
       <app-table
         [tableConfig]="tableConfig"
         [tableData]="tableData"

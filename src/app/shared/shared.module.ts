@@ -17,6 +17,7 @@ const components = [
   SelectComponent,
   UnknowComponent,
   TableComponent,
+  ListComponent,
 ];
 
 @NgModule({
@@ -25,7 +26,6 @@ const components = [
     ModalComponent,
     DialogComponent,
     ForbiddenComponent,
-    ListComponent,
   ],
   imports: [
     CommonModule,

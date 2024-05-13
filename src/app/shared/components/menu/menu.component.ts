@@ -6,7 +6,7 @@ import { DEFAULT_MODAL_OPTIONS, ModalOptions } from '@shared/models/modal.model'
 import { ModalService } from '@shared/services/modal.service';
 import { SocialService } from '@shared/services/social.service';
 import { LoggerComponent } from '../logger/logger.component';
-import { TokenUser, User } from '@shared/models/cart.models';
+import { User } from '@shared/models/cart.models';
 import { STRING_EMPTY } from '@shared/constants/string.constants';
 import { CartService } from '@shared/services/cart.service';
 import { LoadingService } from '@shared/services/loading.service';
@@ -14,6 +14,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { finalize } from 'rxjs';
 import { TOAST_STATE, ToastService } from '@shared/services/toast.service';
 import { TranslateService } from '@ngx-translate/core';
+import { NUMBERS } from '@shared/constants/number.constants';
 
 @Component({
   selector: 'app-menu',
@@ -45,34 +46,20 @@ export class MenuComponent implements OnInit{
       finalize(() => this.loading.hide()))
     .subscribe({
       next: (user) => this.handleGoogleResponse(user),
-      error: (err) => {
-        console.error('ERROR', err);
-      },
+      error: () => this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.USER_TOKEN')),
+
     });
   }
 
   handleGoogleResponse(socialUser: SocialUser): void {
-    this.loading.show();
     this.socialUser = socialUser;
     this.socialService.setSocialUser(socialUser);
     this.cartService.setToken(socialUser.idToken);
-    this.user = {
-      id: STRING_EMPTY,
-      email: socialUser.email,
-      name: socialUser.firstName,
-      surname: socialUser.lastName,
-      password: STRING_EMPTY,
-      nickname: socialUser.name,
-    };
-
-    this.socialService.setUser(this.user);
-    console.log('Social User', socialUser);
 
     this.cartService.getUserByEmail(socialUser.email)
-      .pipe(takeUntilDestroyed(this._destroyRef),
-        finalize(() => this.loading.hide()))
+      .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe({
-        next: (tokenUser: TokenUser) => this.handleUserResponse(tokenUser),
+        next: (user: User[]) => this.handleUserResponse(user, socialUser),
         error: () => this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.USER_TOKEN')),
       });
 
@@ -82,8 +69,16 @@ export class MenuComponent implements OnInit{
     }
   }
 
-  handleUserResponse(user: TokenUser): void {
-    //TODO: handle user response
+  handleUserResponse(user: User[], socialUser: SocialUser): void {
+    this.user = {
+      id: user[NUMBERS.N_0].id,
+      email: user[NUMBERS.N_0].email,
+      name: socialUser.firstName,
+      surname: socialUser.lastName,
+      password: STRING_EMPTY,
+      nickname: user[NUMBERS.N_0].nickname,
+    };
+    this.socialService.setUser(this.user);
   }
 
   logIn(): void {

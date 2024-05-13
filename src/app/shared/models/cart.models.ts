@@ -31,10 +31,15 @@ export interface ArticleList {
   id: number;
 }
 
+export interface ArticleList {
+  articleId: string;
+  amount: number;
+}
+
 export interface List {
   id: string;
   name: string;
-  articleList: string[];
+  articleList: ArticleList[];
   totalPrize: number;
   userId: string;
   creationDate: string;

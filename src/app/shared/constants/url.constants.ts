@@ -1,5 +1,5 @@
 import { Params } from "@shared/models/params.models";
-import { BACK_LOCAL_URL, BACK_PROD_URL } from "./enviroment.constants";
+import { BACK_LOCAL_URL } from "./enviroment.constants";
 
 export const API_URLS = {
   ARTICLES: '/ArticleFirestore',
@@ -15,7 +15,7 @@ export const API_URLS = {
   USERS: '/UserToken',
   USERS_ID: '/UserToken/{id}',
   VERIFY: '/UserToken/verify',
-  USER_EMAIL: '/UserToken/{email}',
+  USER_EMAIL: '/UserFirestore/{email}',
 };
 
 export const getApiUrl = (url: string, params: Params = {}): string => {
@@ -25,4 +25,3 @@ export const getApiUrl = (url: string, params: Params = {}): string => {
   });
   return `${BACK_LOCAL_URL}${newUrl}`;
 }
-
