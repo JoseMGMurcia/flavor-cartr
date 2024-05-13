@@ -95,15 +95,18 @@ export class AddListComponent extends ModalDataGet implements OnInit{
     this.cartService.postList(list)
       .pipe(
         takeUntilDestroyed(this._destroyRef),
-        finalize(() => this.loadingService.hide())
+        finalize(() => {
+          this.loadingService.hide();
+          this.modalService.close();
+        })
       )
       .subscribe({
         next: () => {
           this.statusService.setReloadListsPending(true)
-          this.toastService.showToast(TOAST_STATE.SUCCESS, this.translate.instant('LISTS.CREATE_LIST_OK'));
+          this.toastService.showToast(TOAST_STATE.SUCCESS, this.translate.instant('TOAST.CREATE_LIST_OK'));
           this.modalService.close();
         },
-        error: () => this.toastService.showToast(TOAST_STATE.ERROR, this.translate.instant('LISTS.CREATE_LIST_KO')),
+        error: () => this.toastService.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.CREATE_LIST_KO')),
       });
   }
 

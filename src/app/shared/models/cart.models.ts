@@ -37,12 +37,12 @@ export interface ArticleList {
 }
 
 export interface List {
-  id: string;
+  id?: string;
   name: string;
   articleList: ArticleList[];
   totalPrize: number;
   userId: string;
-  creationDate: string;
+  creationDate?: string;
   isPublic: boolean;
 }
 

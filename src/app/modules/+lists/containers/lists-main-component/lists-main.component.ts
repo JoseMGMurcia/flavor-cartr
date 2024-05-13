@@ -15,6 +15,7 @@ import { IconEmum } from '@shared/models/icon.models';
 import { SocialService } from '@shared/services/social.service';
 import { TOAST_STATE, ToastService } from '@shared/services/toast.service';
 import { CartOption } from '@shared/components/select/select.component';
+import { stringFrom } from '@shared/utils/string.utils';
 
 @Component({
   selector: 'app-lists-main-component',
@@ -144,7 +145,7 @@ export class ListsMainComponent implements OnInit{
 
   private getListOptions(lists: List[]): CartOption[] {
     return lists.map((list: List) => ({
-      value: list.id,
+      value: stringFrom(list.id),
       label: list.name,
     }));
   }

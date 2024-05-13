@@ -14,11 +14,9 @@ export const formatPrice = (price: number): string => {
 }
 
 export const getNewList = (translate: TranslateService, userId: string): List => ({
-  id: STRING_EMPTY,
   name: translate.instant('LISTS.NEW_LIST'),
   articleList: [],
   totalPrize: NUMBERS.N_0,
   userId,
-  creationDate: new Date().toISOString(),
   isPublic: false
 });

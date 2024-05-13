@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { STRING_EMPTY } from '@shared/constants/string.constants';
 import { API_URLS, getApiUrl } from '@shared/constants/url.constants';
 import { Article, Category, List, Price, TokenUser, User } from '@shared/models/cart.models';
+import { stringFrom } from '@shared/utils/string.utils';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -94,7 +95,7 @@ export class CartService {
   }
 
   putList(list: List): Observable<List> {
-    const url = getApiUrl(API_URLS.LISTS_ID, { id: list.id });
+    const url = getApiUrl(API_URLS.LISTS_ID, { id: stringFrom(list.id) });
     return this.http.put<List>(url, list, { headers: this.headers });
   }
 
