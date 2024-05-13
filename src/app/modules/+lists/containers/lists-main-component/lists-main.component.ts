@@ -91,7 +91,7 @@ export class ListsMainComponent implements OnInit{
         .pipe(catchError(() => of([])),
           takeUntilDestroyed(this._destroyRef)
         ),
-      this.cartService.getListsByUser(this.user.email)
+      this.cartService.getListsByUser(this.user.id)
         .pipe(catchError(() => of([])),
           takeUntilDestroyed(this._destroyRef)
         ),
