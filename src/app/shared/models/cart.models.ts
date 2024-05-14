@@ -25,11 +25,6 @@ export interface Article {
   unit?: string;
 }
 
-export interface ArticleList {
-  articles: Article[];
-  name: string;
-  id: number;
-}
 
 export interface ArticleList {
   articleId: string;

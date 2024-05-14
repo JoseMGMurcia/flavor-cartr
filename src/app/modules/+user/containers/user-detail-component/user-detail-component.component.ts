@@ -1,7 +1,7 @@
 import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { CartService } from '@shared/services/cart.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Article, User } from '@shared/models/cart.models';
+import { User } from '@shared/models/cart.models';
 import { FormControl, FormGroup } from '@angular/forms';
 import { isEmail, maxLength, noSpecialChars, required } from '@shared/utils/validator.utils';
 import { TranslateService } from '@ngx-translate/core';

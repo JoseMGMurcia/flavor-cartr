@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { NUMBERS } from '@shared/constants/number.constants';
 import { STRING_EMPTY } from '@shared/constants/string.constants';
 import { TableAlingEnum, TableColumn, TableColumnTypeEnum, TableConfig, TablePageSizesEnum, TableRow } from '@shared/models/table.models';
@@ -10,7 +10,7 @@ import { CartOption } from '../select/select.component';
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
 })
-export class TableComponent implements OnInit{
+export class TableComponent implements OnInit, OnChanges{
   @Input({required: true}) tableConfig!: TableConfig;
   @Input({required: true}) tableData!: TableRow[];
 
@@ -35,6 +35,24 @@ export class TableComponent implements OnInit{
       (this.tableConfig.pagination.actualPage - NUMBERS.N_1) * this.tableConfig.pagination.itemsPerPage,
       this.tableConfig.pagination.actualPage * this.tableConfig.pagination.itemsPerPage
     );
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['tableData']) {
+      this.currentPageData = this.tableData.slice(
+        (this.tableConfig.pagination.actualPage - NUMBERS.N_1) * this.tableConfig.pagination.itemsPerPage,
+        this.tableConfig.pagination.actualPage * this.tableConfig.pagination.itemsPerPage
+      );
+    }
+
+    if (changes['tableConfig']) {
+      this.sizeOptions = this.sizeOptions.map((option: CartOption) => {
+        return {
+          ...option,
+          selected: option.value === `${this.tableConfig.pagination.itemsPerPage}`,
+        };
+      });
+    }
   }
 
   changePage(page: number): void {
@@ -71,7 +89,7 @@ export class TableComponent implements OnInit{
   }
 
   cutString(value: string, maxChars: number | undefined): string {
-    return maxChars ? cutString(value, maxChars): value;
+    return (value && maxChars) ? cutString(value, maxChars): value;
   }
 
   private isMultipleOf(number: number, multiple: number): boolean {

@@ -1,10 +1,12 @@
-import { Component, DestroyRef, inject, Input } from '@angular/core';
+import { Component, DestroyRef, inject, Input, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AddListComponent } from '@modules/+lists/components/add-list/add-list.component';
+import { AddProductComponentComponent } from '@modules/+lists/components/add-product-component/add-product-component.component';
 import { TranslateService } from '@ngx-translate/core';
 import { NUMBERS } from '@shared/constants/number.constants';
+import { STRING_EMPTY } from '@shared/constants/string.constants';
 import { BUTTON_CLASS } from '@shared/constants/style.constants';
-import { Article, Category, List, User } from '@shared/models/cart.models';
+import { Article, ArticleList, Category, List, User } from '@shared/models/cart.models';
 import { IconEmum } from '@shared/models/icon.models';
 import { DEFAULT_MODAL_OPTIONS, DialogOptions } from '@shared/models/modal.model';
 import { TableAlingEnum, TableColumnTypeEnum, TableConfig, TableRow } from '@shared/models/table.models';
@@ -13,6 +15,7 @@ import { LoadingService } from '@shared/services/loading.service';
 import { ModalService } from '@shared/services/modal.service';
 import { StatusService } from '@shared/services/status.service';
 import { TOAST_STATE, ToastService } from '@shared/services/toast.service';
+import { getCategory } from '@shared/utils/cart.utils';
 import { stringFrom } from '@shared/utils/string.utils';
 import { finalize } from 'rxjs';
 
@@ -21,7 +24,7 @@ import { finalize } from 'rxjs';
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
-export class ListComponent {
+export class ListComponent implements OnInit{
   @Input({required: true}) list!: List | undefined;
   @Input({required: true}) articles!: Article[];
   @Input({required: true}) categories!: Category[];
@@ -29,6 +32,10 @@ export class ListComponent {
 
   tableData: TableRow[] = [];
   tableConfig: TableConfig = this.getTableConfig();
+
+  get listName(): string {
+    return  `${stringFrom(this.list?.name)} (${this.translate.instant(this.list?.isPublic ? 'LISTS.PUBLIC_LIST' : 'LISTS.PRIVATE_LIST')})`;
+  }
 
   private _destroyRef = inject(DestroyRef);
 
@@ -40,6 +47,33 @@ export class ListComponent {
     private modalService: ModalService,
     private toast: ToastService,
   ) {}
+
+
+  ngOnInit(): void {
+    this.assingEvents();
+    this.tableData = this.list?.articleList.map((articleList: ArticleList) => this.getTableRow(articleList)) || [];
+  }
+
+  assingEvents(): void {
+    this.statusService.addedarticle$
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe((articleId: string) => {
+        const articleAlreadyPresent = this.list?.articleList.some((articleList: ArticleList) => articleList.articleId === articleId)
+        const articleIdIsString = typeof articleId === 'string';
+        if (!!articleId && !articleAlreadyPresent && articleIdIsString) {
+          const articleList: ArticleList = {
+            articleId,
+            amount: NUMBERS.N_0,
+          };
+          this.list?.articleList.push(articleList);
+          const row = this.getTableRow(articleList);
+          if (!!row['category'] && !!row['name']) {
+            this.tableData = [ ...this.tableData, this.getTableRow(articleList)];
+            this.tableConfig = this.getTableConfig();
+          }
+        }
+      });
+  }
 
   handleDeleteList(): void {
     const literals = this.translate.instant('LISTS.DELETE_LIST_DIALOG');
@@ -63,7 +97,24 @@ export class ListComponent {
   }
 
   handleAddArticle(): void {
-    // TODO
+    this.modalService.open(AddProductComponentComponent, {
+      ...DEFAULT_MODAL_OPTIONS,
+      data: { articles: this.articles, categories: this.categories },
+      prevenCloseOutside: true,
+    });
+  }
+
+  getTableRow(articleList: ArticleList): TableRow {
+    const article = this.articles.find((a: Article) => a.id === articleList.articleId);
+    console.log('Add article', article );
+
+    return {
+      ...article,
+      ...articleList,
+      category: article ? getCategory(article, this.categories) : STRING_EMPTY,
+      id: articleList.articleId,
+    };
+
   }
 
   handleDeleteArticle(row: TableRow): void {
@@ -100,13 +151,21 @@ export class ListComponent {
     this.loading.show();
     this.cartService.deleteList(stringFrom(this.list?.id))
       .pipe(takeUntilDestroyed(this._destroyRef),
-        finalize(() => this.loading.hide()))
+        finalize(() => {
+          this.loading.hide();
+          this.statusService.setReloadListsPending(true);
+        }))
       .subscribe({
         next: () => {
-          this.statusService.setReloadListsPending(true);
-          this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.DELETE_LIST_KO'));
+          this.toast.showToast(TOAST_STATE.SUCCESS, this.translate.instant('TOAST.DELETE_LIST_OK'));
         },
-        error: () => this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.DELETE_LIST_KO')),
+        error: (error) => {
+          if(error.status !== NUMBERS.N_200){
+            this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.DELETE_LIST_KO'));
+            return;
+          }
+          this.toast.showToast(TOAST_STATE.SUCCESS, this.translate.instant('TOAST.DELETE_LIST_OK'));
+        },
       });
   }
 
@@ -120,26 +179,31 @@ export class ListComponent {
           type: TableColumnTypeEnum.TEXT,
         },
         {
-          key: 'brand',
-          label: literals.BRAND,
-          type: TableColumnTypeEnum.TEXT,
-        },
-        {
           key: 'category',
           label: literals.CATEGORY,
           type: TableColumnTypeEnum.TEXT,
         },
+
         {
-          key: 'description',
-          label: literals.DESCRIPTION,
-          type: TableColumnTypeEnum.TEXT,
-          maxChars: NUMBERS.N_20,
-        },
-        {
-          key: 'quantity',
+          key: 'amount',
           label: literals.QUANTITY,
           type: TableColumnTypeEnum.TEXT,
           aling: TableAlingEnum.CENTER,
+        },
+        {
+          key: 'detail',
+          label: STRING_EMPTY,
+          type: TableColumnTypeEnum.ACTIONS,
+          action: (row: TableRow) =>
+            row['amount'] = Number(row['amount']) - NUMBERS.N_1 >  NUMBERS.N_0 ? Number(row['amount']) - NUMBERS.N_1 :NUMBERS.N_0,
+          actionIcon: IconEmum.MINUS ,
+        },
+        {
+          key: 'detail',
+          label: STRING_EMPTY,
+          type: TableColumnTypeEnum.ACTIONS,
+          action: (row: TableRow) => row['amount'] = Number(row['amount']) + NUMBERS.N_1,
+          actionIcon: IconEmum.PLUS ,
         },
         {
           key: 'averagePrice',
@@ -151,7 +215,7 @@ export class ListComponent {
           key: 'detail',
           label: literals.DETAIL,
           type: TableColumnTypeEnum.ACTIONS,
-          action: (row: TableRow) => row['quantity'] = Number(row['quantity']) + NUMBERS.N_1,
+          action: (row: TableRow) => row['amount'] = Number(row['amount']) + NUMBERS.N_1,
           actionIcon: IconEmum.DETAIL ,
         }
       ],

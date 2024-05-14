@@ -1,6 +1,5 @@
 import {inject} from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, Router, CanActivateFn, ActivatedRoute, mapToCanActivate
-} from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, Router, CanActivateFn } from '@angular/router';
 import { SocialService } from './social.service';
 import { ROUTES } from '@shared/constants/routes.constants';
 

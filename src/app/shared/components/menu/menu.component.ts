@@ -59,7 +59,7 @@ export class MenuComponent implements OnInit{
     this.cartService.getUserByEmail(socialUser.email)
       .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe({
-        next: (user: User[]) => this.handleUserResponse(user, socialUser),
+        next: (user: User) => this.handleUserResponse(user, socialUser),
         error: () => this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.USER_TOKEN')),
       });
 
@@ -69,14 +69,14 @@ export class MenuComponent implements OnInit{
     }
   }
 
-  handleUserResponse(user: User[], socialUser: SocialUser): void {
+  handleUserResponse(user: User, socialUser: SocialUser): void {
     this.user = {
-      id: user[NUMBERS.N_0].id,
-      email: user[NUMBERS.N_0].email,
+      id: user.id,
+      email: user.email,
       name: socialUser.firstName,
       surname: socialUser.lastName,
       password: STRING_EMPTY,
-      nickname: user[NUMBERS.N_0].nickname,
+      nickname: user.nickname,
     };
     this.socialService.setUser(this.user);
   }

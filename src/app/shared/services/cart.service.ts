@@ -148,8 +148,8 @@ export class CartService {
     return this.http.put<User>(url, user, { headers: this.headers });
   }
 
-  getUserByEmail(email: string): Observable<User[]> {
+  getUserByEmail(email: string): Observable<User> {
     const url = getApiUrl(API_URLS.USER_EMAIL, { email });
-    return this.http.get<User[]>(url, { headers: this.headers });
+    return this.http.get<User>(url, { headers: this.headers });
   }
 }

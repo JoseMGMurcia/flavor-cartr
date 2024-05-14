@@ -1,0 +1,37 @@
+<div class="add-article-wrapper">
+  <p class="add-list-text">{{ 'LISTS.ADD_ARTICLE' | translate }}</p>
+  <form [formGroup]="form" class="u-width-100">
+    <div>
+      <app-select
+        formControlName="category"
+        class="u-width-50 margin-bottom"
+        label="{{ 'LISTS.SELECT_CATEGORY' | translate }}"
+        [options]="categoryOptions"
+        (valueChanges)="changeCategory($event)"
+      />
+    </div>
+    <div>
+      <app-select
+        formControlName="article"
+        class="u-width-50 margin-bottom"
+        label="{{ 'LISTS.SELECT_ARTICLE' | translate }}"
+        [options]="articleOptions"
+        (valueChanges)="changeArticle($event)"
+      />
+    </div>
+
+  </form>
+
+  <div class="u-flex u-flex-end u-width-100">
+    <div class="u-flex">
+      <button class="secondary-button margin-right" (click)="handleCancel()">
+        <img class="icon icon-sm margin-right" src="assets/icons/trash-can-solid.svg" alt="cart">
+        {{ "CANCEL" | translate }}
+      </button>
+      <button class="primary-button" (click)="handleAdd()" [disabled]="!bothSelected">
+        <img class="icon icon-sm margin-right" src="assets/icons/floppy-disk-solid2.svg" alt="cart">
+        {{ "LISTS.ADD_ARTICLE" | translate }}
+      </button>
+    </div>
+  </div>
+</div>

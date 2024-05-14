@@ -61,7 +61,6 @@ export class AddListComponent extends ModalDataGet implements OnInit{
       ...initialList,
       name: stringFrom(values.name),
       isPublic: !!values.public,
-      //TODO receipt
     };
   }
 
@@ -120,7 +119,6 @@ export class AddListComponent extends ModalDataGet implements OnInit{
       this.form.patchValue({
         name: this.data['list'].name,
         public: this.data['list'].isPublic,
-        //TODO receipt
       });
     }
   }
@@ -129,7 +127,6 @@ export class AddListComponent extends ModalDataGet implements OnInit{
     return new FormGroup({
      name: new FormControl({ value: STRING_EMPTY, disabled: false}, this.getValidators(NUMBERS.N_100)),
      public: new FormControl({ value: false, disabled: false}),
-     receipt: new FormControl({ value: false, disabled: false}),
    });
  }
 

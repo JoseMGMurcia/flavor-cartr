@@ -2,9 +2,6 @@ import { ChangeDetectorRef, Component, DestroyRef, OnInit, inject } from '@angul
 import { TranslateService } from '@ngx-translate/core';
 import { LoadingService } from '@shared/services/loading.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { CartService } from '@shared/services/cart.service';
-import { NUMBERS } from '@shared/constants/number.constants';
-import { Article, Category } from '@shared/models/cart.models';
 import { LanguageEnum } from '@shared/models/language.models';
 
 @Component({

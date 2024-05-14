@@ -1,6 +1,15 @@
 @if(list) {
   <div class="list-wrapper">
-    <p class="list-title">{{ list.name }}</p>
+    <p class="list-title">{{ listName }}</p>
+    @if(!!tableData.length){
+      <app-table
+      [tableConfig]="tableConfig"
+      [tableData]="tableData"
+    />
+    } @else {
+      <p class="list-empty">{{ "LISTS.EMPTY_LIST" | translate }}</p>
+    }
+
     <div class="button-row">
       <div class="button-group">
         <button class="secondary-button margin-right" (click)="handleDeleteList()">

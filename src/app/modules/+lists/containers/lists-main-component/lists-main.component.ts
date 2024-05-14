@@ -16,6 +16,7 @@ import { SocialService } from '@shared/services/social.service';
 import { TOAST_STATE, ToastService } from '@shared/services/toast.service';
 import { CartOption } from '@shared/components/select/select.component';
 import { stringFrom } from '@shared/utils/string.utils';
+import { StatusService } from '@shared/services/status.service';
 
 @Component({
   selector: 'app-lists-main-component',
@@ -47,6 +48,7 @@ export class ListsMainComponent implements OnInit{
     private modalService: ModalService,
     private socialService: SocialService,
     private toast: ToastService,
+    private statusService: StatusService,
   ) { }
 
   handleNewList(): void {
@@ -63,6 +65,17 @@ export class ListsMainComponent implements OnInit{
 
   private fetch(): void {
     this.getUser();
+    this.asingEvents();
+  }
+
+  private asingEvents(): void {
+    this.statusService.reloadListsPending$
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe((pending) => {
+        if(pending){
+          this.loadData();
+        }
+      });
   }
 
   private getUser(): void {
@@ -111,7 +124,7 @@ export class ListsMainComponent implements OnInit{
           category: getCategory(article, this.categories),
         }));
         this.tableConfig = this.getTableConfig();
-        if (articles.length === NUMBERS.N_0) {
+        if (articles?.length === NUMBERS.N_0) {
           this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.ARTICLES_OR_CATEGORIES'));
         }
         this.handleLists(lists);
@@ -129,18 +142,18 @@ export class ListsMainComponent implements OnInit{
 
   private createInitialList(): void {
     const list: List = getNewList(this.translate, this.user.id);
-    // this.loading.show();
-    // this.cartService.postList(list)
-    //   .pipe(takeUntilDestroyed(this._destroyRef),
-    //     finalize(() => this.loading.hide()))
-    //   .subscribe({
-    //     next: () => {
+    this.loading.show();
+    this.cartService.postList(list)
+      .pipe(takeUntilDestroyed(this._destroyRef),
+        finalize(() => this.loading.hide()))
+      .subscribe({
+        next: () => {
           this._lists.push(list);
           this.listsOptions = this.getListOptions(this._lists);
           this.selectedList = list;
-      //   },
-      //   error: () => this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.LIST')),
-      // });
+        },
+        error: () => this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.LIST')),
+      });
   }
 
   private getListOptions(lists: List[]): CartOption[] {

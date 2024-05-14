@@ -1,5 +1,6 @@
 {
   "CANCEL": "Cancelar",
+  "FILTER": "Filtro",
   "DIMISS": "Descartar",
   "TITLE": "Carrito de Sabor",
   "FOOTER": {
@@ -16,11 +17,16 @@
     "EXPLANATION": "Carrito de Sabor es una aplicación web que te permite buscar recetas de cocina y añadir los ingredientes necesarios a una lista de la compra. Además, podrás compartir tus recetas con el resto de la comunidad."
   },
   "LISTS": {
+    "ADD_ARTICLE": "Añadir artículo",
     "ADD_LIST": "Añadir lista",
+    "EMPTY_LIST": "Aún no hay artículos en la lista.",
     "NEW_LIST": "Nueva lista",
     "PUBLIC_LIST": "Lista pública",
+    "PRIVATE_LIST": "Lista privada",
     "RECICE": "Receta",
     "SAVE_LIST": "Guardar lista",
+    "SELECT_ARTICLE": "Selecciona un artículo",
+    "SELECT_CATEGORY": "Selecciona una categoría",
     "SELECT_LIST": "Selecciona una lista",
     "TITLE": "Mis Listas",
     "ACTIONS": {
@@ -63,6 +69,7 @@
     "INVALID_URL": "¡Ups! Parece que la página que buscas no existe."
   },
   "TOAST": {
+    "ARTICLE_ALREADY_PRESENT": "El artículo ya está en la lista.",
     "ARTICLES_OR_CATEGORIES": "Error al obtener artículos y categorias.",
     "CREATE_LIST_OK": "Lista creada correctamente.",
     "CREATE_LIST_KO": "Error al crear la lista.",

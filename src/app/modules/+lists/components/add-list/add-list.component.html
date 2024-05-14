@@ -6,13 +6,9 @@
       formControlName="name"
       [control]="form.controls.name"
       label="{{ 'USER.NAME' | translate }}"/>
-    <div class="u-flex u-width-100 margin-bottom">
+    <div class="u-flex u-width-100 margin-bottom margin-top">
       <input type="checkbox" id="public" formControlName="public">
       <label for="public">{{ "LISTS.PUBLIC_LIST" | translate }}</label>
-    </div>
-    <div class="u-flex u-width-100">
-      <input type="checkbox" id="receipt" formControlName="receipt">
-      <label for="receipt">{{ "LISTS.RECICE" | translate }}</label>
     </div>
   </form>
   <div class="u-flex u-flex-end u-width-100">
