@@ -35,7 +35,7 @@ export interface List {
   id?: string;
   name: string;
   articleList: ArticleList[];
-  totalPrize: number;
+  totalPrice: number;
   userId: string;
   creationDate?: string;
   isPublic: boolean;

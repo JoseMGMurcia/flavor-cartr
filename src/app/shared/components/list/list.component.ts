@@ -15,7 +15,7 @@ import { LoadingService } from '@shared/services/loading.service';
 import { ModalService } from '@shared/services/modal.service';
 import { StatusService } from '@shared/services/status.service';
 import { TOAST_STATE, ToastService } from '@shared/services/toast.service';
-import { getCategory } from '@shared/utils/cart.utils';
+import { formatPrice, getCategory } from '@shared/utils/cart.utils';
 import { stringFrom } from '@shared/utils/string.utils';
 import { finalize } from 'rxjs';
 
@@ -66,11 +66,7 @@ export class ListComponent implements OnInit{
             amount: NUMBERS.N_0,
           };
           this.list?.articleList.push(articleList);
-          const row = this.getTableRow(articleList);
-          if (!!row['category'] && !!row['name']) {
-            this.tableData = [ ...this.tableData, this.getTableRow(articleList)];
-            this.tableConfig = this.getTableConfig();
-          }
+          this.updatetable();
         }
       });
   }
@@ -112,6 +108,7 @@ export class ListComponent implements OnInit{
       ...article,
       ...articleList,
       category: article ? getCategory(article, this.categories) : STRING_EMPTY,
+      averagePrice: `${formatPrice(article ? article.averagePrice : NUMBERS.N_0)}`,
       id: articleList.articleId,
     };
 
@@ -217,6 +214,13 @@ export class ListComponent implements OnInit{
           type: TableColumnTypeEnum.ACTIONS,
           action: (row: TableRow) => row['amount'] = Number(row['amount']) + NUMBERS.N_1,
           actionIcon: IconEmum.DETAIL ,
+        },
+        {
+          key: 'delete',
+          label: literals.DELETE,
+          type: TableColumnTypeEnum.ACTIONS,
+          action: (row: TableRow) => this.removeArticleFromList(row),
+          actionIcon: IconEmum.TRASH ,
         }
       ],
       pagination: {
@@ -225,5 +229,22 @@ export class ListComponent implements OnInit{
         totalItems: this.tableData.length,
       }
     };
+  }
+
+
+  private removeArticleFromList(row: TableRow): void {
+    if (!this.list) {
+      return;
+    }
+    this.list.articleList = this.list.articleList.filter((articleList: ArticleList) => articleList.articleId !== row.id);
+    this.updatetable();
+  }
+
+  private updatetable(): void{
+    if (!this.list) {
+      return;
+    }
+    this.tableData = this.list.articleList.map((articleList: ArticleList) => this.getTableRow(articleList));
+    this.tableConfig = this.getTableConfig();
   }
 }

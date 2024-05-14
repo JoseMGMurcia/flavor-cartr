@@ -152,7 +152,7 @@ export class ListsMainComponent implements OnInit{
           this.listsOptions = this.getListOptions(this._lists);
           this.selectedList = list;
         },
-        error: () => this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.LIST')),
+        error: () => this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.CREATE_LIST_KO')),
       });
   }
 
@@ -162,7 +162,6 @@ export class ListsMainComponent implements OnInit{
       label: list.name,
     }));
   }
-
 
   private getTableConfig(): TableConfig {
     const literals = this.translate.instant('LISTS.HEADERS');

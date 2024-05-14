@@ -48,7 +48,8 @@
       "DESCRIPTION": "Descripción",
       "QUANTITY": "Cantidad",
       "PRICE": "Precio",
-      "DETAIL": "Detalle"
+      "DETAIL": "Detalle",
+      "DELETE": "Eliminar"
     }
   },
   "LOGGER":{
