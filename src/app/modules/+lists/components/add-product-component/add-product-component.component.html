@@ -1,34 +1,103 @@
 <div class="add-article-wrapper">
   <p class="add-list-text">{{ 'LISTS.ADD_ARTICLE' | translate }}</p>
-  <form [formGroup]="form" class="u-width-100">
-    <div>
-      <app-select
-        formControlName="category"
-        class="u-width-50 margin-bottom"
-        label="{{ 'LISTS.SELECT_CATEGORY' | translate }}"
-        [options]="categoryOptions"
-        (valueChanges)="changeCategory($event)"
-      />
-    </div>
-    <div>
-      <app-select
-        formControlName="article"
-        class="u-width-50 margin-bottom"
-        label="{{ 'LISTS.SELECT_ARTICLE' | translate }}"
-        [options]="articleOptions"
-        (valueChanges)="changeArticle($event)"
-      />
-    </div>
+  <form [formGroup]="form" class="e-flex">
+    @if(!addingCategory) {
+      <div class="u-flex u-width-100">
+        <div class="u-width-75">
+          <app-select
+            formControlName="category"
+            class="u-width-100 margin-bottom"
+            label="{{ 'LISTS.SELECT_CATEGORY' | translate }}"
+            [options]="categoryOptions"
+            (valueChanges)="changeCategory($event)"
+          />
+        </div>
+        <div class="u-flex u-flex-space-center u-flex-center u-width-25 margin-left">
+          <button class="secondary-button margin-left" (click)="handleAddCategory()">
+            <img class="icon icon-sm margin-right" src="assets/icons/square-plus-solid.svg" alt="cart">
+            {{ "NEW_FEMALE" | translate }}
+          </button>
+        </div>
+      </div>
+    } @else {
+      <div class="u-flex u-width-100">
+        <div class="u-width-75">
+          <app-input
+            class="u-width-100"
+            formControlName="newCategory"
+            [control]="form.controls.newCategory"
+            label="{{ 'LISTS.NEW_CATEGORY' | translate }}"/>
+        </div>
+        <div class="u-flex u-flex-space-center u-flex-center u-width-25 margin-left">
+          <button class="secondary-button margin-left" (click)="handleAddCategory()">
+            <img class="icon icon-sm margin-right" src="assets/icons/trash-can-solid.svg" alt="cart">
+            {{ "CANCEL" | translate }}
+          </button>
+        </div>
+      </div>
+    }
 
+    @if(!addingArticle) {
+      <div class="u-flex u-width-100 section">
+        <div class="u-width-75">
+          <app-select
+            formControlName="article"
+            class="u-width-75 margin-bottom"
+            label="{{ 'LISTS.SELECT_ARTICLE' | translate }}"
+            [options]="articleOptions"
+            (valueChanges)="changeArticle($event)"
+          />
+        </div>
+        <div class="u-flex u-flex-space-center u-flex-center u-width-25">
+          <button class="secondary-button margin-left" (click)="handleAddArticle()">
+            <img class="icon icon-sm margin-right" src="assets/icons/square-plus-solid.svg" alt="cart">
+            {{ "NEW" | translate }}
+          </button>
+        </div>
+      </div>
+    } @else {
+      <div class="section articleForm">
+        <div class="u-width-100">
+          <app-input
+            class="u-width-100"
+            formControlName="newArticle"
+            [control]="form.controls.newArticle"
+            label="{{ 'LISTS.NEW_ARTICLE' | translate }}"/>
+        </div>
+        <div class="u-width-100 section">
+          <app-input
+            class="u-width-100"
+            [area]="true"
+            formControlName="newDescription"
+            [control]="form.controls.newDescription"
+            label="{{ 'LISTS.NEW_DESCRIPTION' | translate }}"/>
+        </div>
+        <div class="u-flex u-width-100 section">
+          <div class="u-width-75">
+            <app-input
+              class="u-width-100"
+              formControlName="newArticleBrand"
+              [control]="form.controls.newArticleBrand"
+              label="{{ 'LISTS.BRAND' | translate }}"/>
+          </div>
+          <div class="u-flex u-flex-space-center u-flex-center u-width-25 margin-left">
+            <button class="secondary-button margin-left" (click)="handleAddArticle()">
+              <img class="icon icon-sm margin-right" src="assets/icons/trash-can-solid.svg" alt="cart">
+              {{ "CANCEL" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    }
   </form>
 
-  <div class="u-flex u-flex-end u-width-100">
+  <div class="u-flex u-flex-end u-width-100 section">
     <div class="u-flex">
       <button class="secondary-button margin-right" (click)="handleCancel()">
         <img class="icon icon-sm margin-right" src="assets/icons/trash-can-solid.svg" alt="cart">
         {{ "CANCEL" | translate }}
       </button>
-      <button class="primary-button" (click)="handleAdd()" [disabled]="!bothSelected">
+      <button class="primary-button" (click)="handleAdd()" [disabled]="!disableSavingButton">
         <img class="icon icon-sm margin-right" src="assets/icons/floppy-disk-solid2.svg" alt="cart">
         {{ "LISTS.ADD_ARTICLE" | translate }}
       </button>

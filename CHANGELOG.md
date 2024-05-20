@@ -1,4 +1,11 @@
-# Rune Master
+# Flavort Chart
+
+## 0.0.5 Article Management
+
+  - Article added to list.
+  - Quantity management.
+  - In chart functionality.
+  - Export to pdf functionality.
 
 ## 0.0.3 Functionality
 

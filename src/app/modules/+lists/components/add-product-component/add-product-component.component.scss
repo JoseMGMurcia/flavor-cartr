@@ -3,7 +3,7 @@
 .add-article-wrapper {
   padding: 24px;
   min-height: min-content;
-  min-width: 420px;
+  min-width: 480px;
 
   .add-list-text {
     color: colors.$menu-background;
@@ -15,8 +15,20 @@
     margin-bottom: 30px;
   }
 
-   //selector para todos los elementos dentro del formulario
-  form * {
-    margin-bottom: 35px;
+  .section {
+    margin-top: 20px;
   }
+}
+
+button {
+  margin-top: 10px;
+  max-height: 32px;
+}
+
+.articleForm{
+  border-radius: 8px;
+  border: 1px solid colors.$menu-background;
+  padding: 12px;
+  padding-right: 20px;
+  width: calc(100% - 32px);
 }

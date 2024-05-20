@@ -1,8 +1,12 @@
 {
+  "ADD": "Añadir",
   "CANCEL": "Cancelar",
   "CLOSE": "Cerrar",
   "FILTER": "Filtro",
   "DIMISS": "Descartar",
+  "NEW": "Nuevo",
+  "NEW_FEMALE": "Nueva",
+  "SAVE": "Guardar",
   "TITLE": "Carrito de Sabor",
   "FOOTER": {
     "ALL_RIGHTS_RESERVED": "© Todos los derechos reservados",
@@ -20,7 +24,11 @@
   "LISTS": {
     "ADD_ARTICLE": "Añadir artículo",
     "ADD_LIST": "Añadir lista",
+    "BRAND": "Marca",
     "EMPTY_LIST": "Aún no hay artículos en la lista.",
+    "NEW_ARTICLE": "Nuevo artículo",
+    "NEW_CATEGORY": "Nueva categoría",
+    "NEW_DESCRIPTION": "Nueva descripción",
     "NEW_LIST": "Nueva lista",
     "PUBLIC_LIST": "Lista pública",
     "PRIVATE_LIST": "Lista privada",
@@ -82,6 +90,7 @@
     "EDIT_LIST_KO": "Error al editar la lista.",
     "DELETE_LIST_OK": "Lista eliminada correctamente.",
     "DELETE_LIST_KO": "Error al eliminar la lista.",
+    "GET_PDF_KO": "Error al obtener el PDF.",
     "SAVE_LIST_OK": "Lista guardada correctamente.",
     "SAVE_LIST_KO": "Error al guardar la lista.",
     "USER": "Error al obtener usuario.",

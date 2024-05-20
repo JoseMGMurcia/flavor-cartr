@@ -1,13 +1,24 @@
 <div class="input-wraper">
   <div class="input-body">
     <p class="label">{{ label }}</p>
-    <input
-      [type]="type"
-      [placeholder]="placeholder"
-      [(ngModel)]="value"
-      [disabled]="control.disabled"
-      (ngModelChange)="propagateChange($event)"
-      (blur)="propagateTouched()">
+    @if(!area) {
+      <input
+        [type]="type"
+        [placeholder]="placeholder"
+        [(ngModel)]="value"
+        [disabled]="control.disabled"
+        (ngModelChange)="propagateChange($event)"
+        (blur)="propagateTouched()">
+    } @else {
+      <textarea
+        [placeholder]="placeholder"
+        [(ngModel)]="value"
+        [maxlength]="maxTexAreaLength"
+        [disabled]="control.disabled"
+        (ngModelChange)="propagateChange($event)"
+        (blur)="propagateTouched()">
+      </textarea>
+    }
   </div>
 
 @if(control.invalid && control.touched){

@@ -172,7 +172,7 @@ export class ListComponent implements OnInit{
             prevenCloseOutside: true,
           });
         },
-        error: () => this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.GET_EXCEL_KO')),
+        error: () => this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.GET_PDF_KO')),
       });
   }
 
