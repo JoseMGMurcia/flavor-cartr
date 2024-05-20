@@ -1,5 +1,6 @@
 {
   "CANCEL": "Cancelar",
+  "CLOSE": "Cerrar",
   "FILTER": "Filtro",
   "DIMISS": "Descartar",
   "TITLE": "Carrito de Sabor",
@@ -32,7 +33,9 @@
     "ACTIONS": {
       "ADD_ARTICLE": "Añadir artículo",
       "DELETE_LIST": "Eliminar lista",
-      "EDIT_LIST_DETAILS": "Editar lista"
+      "EDIT_LIST_DETAILS": "Editar lista",
+      "PDF": "Descargar PDF",
+      "RECEIPTS": "Añadir receta"
     },
     "DELETE_LIST_DIALOG": {
       "TITLE": "Eliminar lista",
@@ -74,6 +77,7 @@
     "ARTICLES_OR_CATEGORIES": "Error al obtener artículos y categorias.",
     "CREATE_LIST_OK": "Lista creada correctamente.",
     "CREATE_LIST_KO": "Error al crear la lista.",
+    "DELETE_LAST_LIST": "No puedes eliminar la última lista que tienes.",
     "EDIT_LIST_OK": "Lista editada correctamente.",
     "EDIT_LIST_KO": "Error al editar la lista.",
     "DELETE_LIST_OK": "Lista eliminada correctamente.",

@@ -7,12 +7,14 @@ import { ListsRoutingModule } from "./lists-routing.module";
 import { ListsMainComponent } from "./containers/lists-main-component/lists-main.component";
 import { AddListComponent } from './components/add-list/add-list.component';
 import { AddProductComponentComponent } from './components/add-product-component/add-product-component.component';
+import { PdfContainerComponent } from './components/pdf-container/pdf-container.component';
 
 @NgModule({
   declarations: [
     ListsMainComponent,
     AddListComponent,
     AddProductComponentComponent,
+    PdfContainerComponent,
   ],
   imports: [
     CommonModule,

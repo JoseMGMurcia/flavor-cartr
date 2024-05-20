@@ -13,18 +13,10 @@
         {{ "LISTS.ADD_LIST" | translate }}
       </button>
     </div>
-    @if(swLoadingFinished){
       <app-list
-        [list]="selectedList"
-        [articles]="articles"
-        [categories]="categories"
+        #list
         [user]="user"
+        [swLastList]="listsOptions.length === 1"
       />
-
-      <app-table
-        [tableConfig]="tableConfig"
-        [tableData]="tableData"
-      />
-    }
   </div>
 </div>

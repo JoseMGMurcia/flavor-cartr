@@ -1,7 +1,8 @@
-import { Component, DestroyRef, inject, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, Input, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AddListComponent } from '@modules/+lists/components/add-list/add-list.component';
 import { AddProductComponentComponent } from '@modules/+lists/components/add-product-component/add-product-component.component';
+import { PdfContainerComponent } from '@modules/+lists/components/pdf-container/pdf-container.component';
 import { TranslateService } from '@ngx-translate/core';
 import { NUMBERS } from '@shared/constants/number.constants';
 import { STRING_EMPTY } from '@shared/constants/string.constants';
@@ -22,13 +23,16 @@ import { finalize } from 'rxjs';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrl: './list.component.scss'
+  styleUrl: './list.component.scss',
 })
 export class ListComponent implements OnInit{
-  @Input({required: true}) list!: List | undefined;
-  @Input({required: true}) articles!: Article[];
-  @Input({required: true}) categories!: Category[];
+
+  articles!: Article[];
+  categories!: Category[];
   @Input({required: true}) user!: User;
+  @Input({required: true}) swLastList!: boolean;
+
+  list!: List | undefined;
 
   tableData: TableRow[] = [];
   tableConfig: TableConfig = this.getTableConfig();
@@ -48,10 +52,16 @@ export class ListComponent implements OnInit{
     private toast: ToastService,
   ) {}
 
+  public setData(list: List, articles: Article[], categories: Category[]): void {
+    this.articles = articles;
+    this.categories = categories;
+    this.list = list;
+    this.updatetable();
+  }
 
   ngOnInit(): void {
     this.assingEvents();
-    this.tableData = this.list?.articleList.map((articleList: ArticleList) => this.getTableRow(articleList)) || [];
+    this.updatetable();
   }
 
   assingEvents(): void {
@@ -63,9 +73,11 @@ export class ListComponent implements OnInit{
         if (!!articleId && !articleAlreadyPresent && articleIdIsString) {
           const articleList: ArticleList = {
             articleId,
-            amount: NUMBERS.N_0,
+            amount: NUMBERS.N_1,
+            unit: STRING_EMPTY, //TODO: Add unit
           };
           this.list?.articleList.push(articleList);
+          this.saveList();
           this.updatetable();
         }
       });
@@ -102,7 +114,6 @@ export class ListComponent implements OnInit{
 
   getTableRow(articleList: ArticleList): TableRow {
     const article = this.articles.find((a: Article) => a.id === articleList.articleId);
-    console.log('Add article', article );
 
     return {
       ...article,
@@ -126,10 +137,12 @@ export class ListComponent implements OnInit{
     });
   }
 
-  handleSaveList(): void {
+  private saveList(): void {
+    // Can't save a list if there is not list
     if (!this.list) {
       return;
     }
+    this.sortList();
     this.loading.show();
     this.cartService.putList(this.list)
       .pipe(takeUntilDestroyed(this._destroyRef),
@@ -141,10 +154,41 @@ export class ListComponent implements OnInit{
         },
         error: () => this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.SAVE_LIST_KO')),
       });
+  }
 
+  handlePdf(): void {
+    this.loading.show();
+    const id = this.list?.id || STRING_EMPTY;
+    this.cartService.getListPdf(id)
+    .pipe(takeUntilDestroyed(this._destroyRef),
+        finalize(() => this.loading.hide()))
+      .subscribe({
+        next: (response) => {
+
+          const file = new Blob([response], { type: 'application/pdf' });
+          this.modalService.open(PdfContainerComponent, {
+            ...DEFAULT_MODAL_OPTIONS,
+            data: { file, name: this.list?.name },
+            prevenCloseOutside: true,
+          });
+        },
+        error: () => this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.GET_EXCEL_KO')),
+      });
+  }
+
+  handleExportReceit(): void {
+    // TODO
   }
 
   private deleteList(): void {
+
+    // Can't delete last list
+    if (this.swLastList) {
+      this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.DELETE_LAST_LIST'));
+      return;
+    }
+
+    // Delete list
     this.loading.show();
     this.cartService.deleteList(stringFrom(this.list?.id))
       .pipe(takeUntilDestroyed(this._destroyRef),
@@ -156,6 +200,7 @@ export class ListComponent implements OnInit{
         next: () => {
           this.toast.showToast(TOAST_STATE.SUCCESS, this.translate.instant('TOAST.DELETE_LIST_OK'));
         },
+        // Handle error
         error: (error) => {
           if(error.status !== NUMBERS.N_200){
             this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.DELETE_LIST_KO'));
@@ -171,6 +216,13 @@ export class ListComponent implements OnInit{
     return {
       columns: [
         {
+          key: 'crossOut',
+          label: STRING_EMPTY,
+          type: TableColumnTypeEnum.ACTIONS,
+          action: (row: TableRow) => row['style'] = row['style'] ? STRING_EMPTY : 'text-decoration: line-through',
+          actionIcon: IconEmum.CART ,
+        },
+        {
           key: 'name',
           label: literals.NAME,
           type: TableColumnTypeEnum.TEXT,
@@ -180,32 +232,36 @@ export class ListComponent implements OnInit{
           label: literals.CATEGORY,
           type: TableColumnTypeEnum.TEXT,
         },
-
+        {
+          key: 'brand',
+          label: literals.BRAND,
+          type: TableColumnTypeEnum.TEXT,
+          aling: TableAlingEnum.CENTER,
+        },
         {
           key: 'amount',
           label: literals.QUANTITY,
-          type: TableColumnTypeEnum.TEXT,
+          type: TableColumnTypeEnum.NUMBER,
           aling: TableAlingEnum.CENTER,
         },
         {
           key: 'detail',
           label: STRING_EMPTY,
           type: TableColumnTypeEnum.ACTIONS,
-          action: (row: TableRow) =>
-            row['amount'] = Number(row['amount']) - NUMBERS.N_1 >  NUMBERS.N_0 ? Number(row['amount']) - NUMBERS.N_1 :NUMBERS.N_0,
+          action: (row: TableRow) => this.alterAmount(row, Number(row['amount']) - NUMBERS.N_1),
           actionIcon: IconEmum.MINUS ,
         },
         {
           key: 'detail',
           label: STRING_EMPTY,
           type: TableColumnTypeEnum.ACTIONS,
-          action: (row: TableRow) => row['amount'] = Number(row['amount']) + NUMBERS.N_1,
+          action: (row: TableRow) => this.alterAmount(row, Number(row['amount']) + NUMBERS.N_1),
           actionIcon: IconEmum.PLUS ,
         },
         {
           key: 'averagePrice',
           label: literals.PRICE,
-          type: TableColumnTypeEnum.TEXT,
+          type: TableColumnTypeEnum.NUMBER,
           aling: TableAlingEnum.RIGHT,
         },
         {
@@ -231,6 +287,30 @@ export class ListComponent implements OnInit{
     };
   }
 
+  private inOutChart(row: TableRow): void { //TODO use in table action
+    if (!this.list) {
+      return;
+    }
+    row['style'] = row['style'] ? STRING_EMPTY : 'text-decoration: line-through';
+    const articleList = this.list.articleList.find((articleList: ArticleList) => articleList.articleId === row.id);
+    if (articleList) {
+      // TODO articleList.inChart = !articleList.inChart;
+      this.saveList();
+      this.updatetable();
+    }
+  }
+
+  private alterAmount(row: TableRow, amount: number): void {
+    if (!this.list || amount < NUMBERS.N_1) {
+      return;
+    }
+    const articleList = this.list.articleList.find((articleList: ArticleList) => articleList.articleId === row.id);
+    if (articleList) {
+      articleList.amount = amount > NUMBERS.N_0 ? amount : NUMBERS.N_1;
+      this.saveList();
+      this.updatetable();
+    }
+  }
 
   private removeArticleFromList(row: TableRow): void {
     if (!this.list) {
@@ -238,6 +318,7 @@ export class ListComponent implements OnInit{
     }
     this.list.articleList = this.list.articleList.filter((articleList: ArticleList) => articleList.articleId !== row.id);
     this.updatetable();
+    this.saveList();
   }
 
   private updatetable(): void{
@@ -246,5 +327,19 @@ export class ListComponent implements OnInit{
     }
     this.tableData = this.list.articleList.map((articleList: ArticleList) => this.getTableRow(articleList));
     this.tableConfig = this.getTableConfig();
+  }
+
+  private sortList(): void {
+    if (!this.list) {
+      return;
+    }
+    this.list.articleList = this.list.articleList.sort((a: ArticleList, b: ArticleList) => {
+      const articleA = this.articles.find((article: Article) => article.id === a.articleId);
+      const articleB = this.articles.find((article: Article) => article.id === b.articleId);
+      if (articleA && articleB) {
+        return articleA.name.localeCompare(articleB.name);
+      }
+      return NUMBERS.N_0;
+    });
   }
 }

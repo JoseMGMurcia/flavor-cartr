@@ -3,9 +3,11 @@ export enum IconEmum {
   MINUS = 'square-minus-solid.svg',
   PLUS =  'square-plus-solid.svg',
   TRASH = 'trash-can-solid.svg',
+  CART = 'cart-shopping-solid.svg',
 }
 
 export type IconType = IconEmum.DETAIL |
   IconEmum.MINUS |
   IconEmum.PLUS |
-  IconEmum.TRASH;
+  IconEmum.TRASH |
+  IconEmum.CART;

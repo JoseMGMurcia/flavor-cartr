@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { STRING_EMPTY } from '@shared/constants/string.constants';
 import { BehaviorSubject } from 'rxjs';
 
-// Add this constant ⤵
 export const TOAST_STATE = {
   SUCCESS: 'success-toast',
   WARNING: 'warning-toast',
   ERROR: 'error-toast'
 };
+
+export const TOAST_AUTOCLOSE_TIME = 3000;
 
 @Injectable({
   providedIn: 'root'
@@ -26,10 +27,17 @@ export class ToastService {
   constructor() { }
 
   // Update the toastState, toastMessage, and showsToast behavioursubjects
-  showToast(toastState: string, toastMsg: string): void {
+  showToast(toastState: string, toastMsg: string, autoclose = true): void {
     this.toastState$.next(toastState);
     this.toastMessage$.next(toastMsg);
     this.showsToast$.next(true);
+
+    // If autoclose is true, dismiss the toast after 3 seconds.
+    if (autoclose) {
+      setTimeout(() => {
+        this.dismissToast();
+      }, TOAST_AUTOCLOSE_TIME);
+    }
   }
 
   // This updates the showsToast behavioursubject to 'false'

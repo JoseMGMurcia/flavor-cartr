@@ -152,4 +152,11 @@ export class CartService {
     const url = getApiUrl(API_URLS.USER_EMAIL, { email });
     return this.http.get<User>(url, { headers: this.headers });
   }
+
+  // FILES
+
+  getListPdf(id: string): Observable<Blob> {
+    const url = getApiUrl(API_URLS.PDF_ID, { id });
+    return this.http.get(url, { headers: this.headers, responseType: 'blob' });
+  }
 }

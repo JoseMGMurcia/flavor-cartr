@@ -4,6 +4,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 8px;
+  border: 1px solid colors.$menu-background;
+  padding: 12px;
+  background-color: colors.$menu-background-contrast-70;
 
   .button-row {
     display: flex;

@@ -1,7 +1,6 @@
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { NUMBERS } from '@shared/constants/number.constants';
-import { TableAlingEnum, TableColumnTypeEnum, TableConfig, TableRow } from '@shared/models/table.models';
 import { CartService } from '@shared/services/cart.service';
 import { LoadingService } from '@shared/services/loading.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -10,13 +9,13 @@ import { Article, Category, List, User } from '@shared/models/cart.models';
 import { ModalService } from '@shared/services/modal.service';
 import { DEFAULT_MODAL_OPTIONS } from '@shared/models/modal.model';
 import { AddListComponent } from '@modules/+lists/components/add-list/add-list.component';
-import { formatPrice, getCategory, getNewList } from '@shared/utils/cart.utils';
-import { IconEmum } from '@shared/models/icon.models';
+import { getNewList } from '@shared/utils/cart.utils';
 import { SocialService } from '@shared/services/social.service';
 import { TOAST_STATE, ToastService } from '@shared/services/toast.service';
 import { CartOption } from '@shared/components/select/select.component';
 import { stringFrom } from '@shared/utils/string.utils';
 import { StatusService } from '@shared/services/status.service';
+import { ListComponent } from '@shared/components/list/list.component';
 
 @Component({
   selector: 'app-lists-main-component',
@@ -25,8 +24,8 @@ import { StatusService } from '@shared/services/status.service';
 })
 export class ListsMainComponent implements OnInit{
 
-  tableData: TableRow[] = [];
-  tableConfig: TableConfig = this.getTableConfig();
+  @ViewChild('list', { static: false}) list!: ListComponent;
+
   swLoadingFinished = false;
   listsOptions: CartOption[] = [];
   selectedList: List | undefined = undefined;
@@ -61,6 +60,10 @@ export class ListsMainComponent implements OnInit{
 
   handleListChange(listId: string): void {
     this.selectedList = this._lists.find((list: List) => list.id === listId);
+    if (!this.selectedList) {
+      return;
+    }
+    this.list?.setData(this.selectedList, this.articles, this.categories);
   }
 
   private fetch(): void {
@@ -110,23 +113,11 @@ export class ListsMainComponent implements OnInit{
           takeUntilDestroyed(this._destroyRef)
         ),
     ])
-      .pipe(finalize(() => {
-        this.loading.hide();
-        this.swLoadingFinished = true;
-      }))
+      .pipe(finalize(() => this.loading.hide()))
       .subscribe(([articles, categories, lists]: [Article[], Category[], List[]]) => {
         this.articles = articles;
         this.categories = categories;
         this._lists = lists;
-        this.tableData = this.articles.map((article: Article) => ({
-          ...article,
-          averagePrice: formatPrice(article.averagePrice),
-          category: getCategory(article, this.categories),
-        }));
-        this.tableConfig = this.getTableConfig();
-        if (articles?.length === NUMBERS.N_0) {
-          this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.ARTICLES_OR_CATEGORIES'));
-        }
         this.handleLists(lists);
       })
   }
@@ -136,8 +127,10 @@ export class ListsMainComponent implements OnInit{
       this.createInitialList();
       return;
     }
+        const selectedList = this._lists.find((list: List) => list.id === this.selectedList?.id);
+    this.selectedList = selectedList || lists[NUMBERS.N_0];
     this.listsOptions = this.getListOptions(lists);
-    this.selectedList = lists[NUMBERS.N_0];
+    this.list?.setData(this.selectedList, this.articles, this.categories);
   }
 
   private createInitialList(): void {
@@ -151,6 +144,7 @@ export class ListsMainComponent implements OnInit{
           this._lists.push(list);
           this.listsOptions = this.getListOptions(this._lists);
           this.selectedList = list;
+          this.list?.setData(this.selectedList, this.articles, this.categories);
         },
         error: () => this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.CREATE_LIST_KO')),
       });
@@ -160,59 +154,7 @@ export class ListsMainComponent implements OnInit{
     return lists.map((list: List) => ({
       value: stringFrom(list.id),
       label: list.name,
+      selected: list.id === this.selectedList?.id,
     }));
-  }
-
-  private getTableConfig(): TableConfig {
-    const literals = this.translate.instant('LISTS.HEADERS');
-    return {
-      columns: [
-        {
-          key: 'name',
-          label: literals.NAME,
-          type: TableColumnTypeEnum.TEXT,
-        },
-        {
-          key: 'brand',
-          label: literals.BRAND,
-          type: TableColumnTypeEnum.TEXT,
-        },
-        {
-          key: 'category',
-          label: literals.CATEGORY,
-          type: TableColumnTypeEnum.TEXT,
-        },
-        {
-          key: 'description',
-          label: literals.DESCRIPTION,
-          type: TableColumnTypeEnum.TEXT,
-          maxChars: NUMBERS.N_20,
-        },
-        {
-          key: 'quantity',
-          label: literals.QUANTITY,
-          type: TableColumnTypeEnum.TEXT,
-          aling: TableAlingEnum.CENTER,
-        },
-        {
-          key: 'averagePrice',
-          label: literals.PRICE,
-          type: TableColumnTypeEnum.TEXT,
-          aling: TableAlingEnum.RIGHT,
-        },
-        {
-          key: 'detail',
-          label: literals.DETAIL,
-          type: TableColumnTypeEnum.ACTIONS,
-          action: (row: TableRow) => row['quantity'] = Number(row['quantity']) + NUMBERS.N_1,
-          actionIcon: IconEmum.DETAIL ,
-        }
-      ],
-      pagination: {
-        actualPage: NUMBERS.N_1,
-        itemsPerPage: NUMBERS.N_20 ,
-        totalItems: this.tableData.length,
-      }
-    }
   }
 }

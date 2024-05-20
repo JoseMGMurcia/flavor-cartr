@@ -16,6 +16,7 @@ export const API_URLS = {
   USERS_ID: '/UserToken/{id}',
   VERIFY: '/UserToken/verify',
   USER_EMAIL: '/UserFirestore/{email}',
+  PDF_ID: '/api/pdfcreator/list/{id}'
 };
 
 export const getApiUrl = (url: string, params: Params = {}): string => {

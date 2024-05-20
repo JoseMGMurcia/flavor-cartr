@@ -13,7 +13,7 @@
                   <img class="icon-action" [src]="'assets/icons/' + column.actionIcon" alt="cart" (click)="doAction(row, column)">
                 </div>
               } @else {
-                <p [ngClass]="column['aling']?.toString() || 'left'">
+                <p [ngClass]="column['aling']?.toString() || 'left'" [style]="column.type === tableColumnTypeEnum.TEXT ? row['style'] : ''">
                   {{ cutString(row[column.key], column.maxChars) }}
                 </p>
               }

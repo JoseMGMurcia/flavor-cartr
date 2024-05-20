@@ -4,12 +4,14 @@ export enum TableColumnTypeEnum {
   TEXT = 'text',
   DATE = 'date',
   ACTIONS = 'actions',
+  NUMBER = 'number',
 }
 
 export type TableColumnType =
   TableColumnTypeEnum.TEXT |
   TableColumnTypeEnum.DATE |
-  TableColumnTypeEnum.ACTIONS;
+  TableColumnTypeEnum.ACTIONS |
+  TableColumnTypeEnum.NUMBER;
 
 export enum TableAlingEnum {
   LEFT = 'left',

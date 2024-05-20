@@ -29,6 +29,7 @@ export interface Article {
 export interface ArticleList {
   articleId: string;
   amount: number;
+  unit: string;
 }
 
 export interface List {
