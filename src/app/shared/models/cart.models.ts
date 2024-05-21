@@ -7,6 +7,7 @@ export interface Category {
 export interface Price {
   id: string;
   articleId: string;
+  priceDate: string;
   cost: number;
   currency: string;
   shop: string;
@@ -30,6 +31,7 @@ export interface ArticleList {
   articleId: string;
   amount: number;
   unit: string;
+  isActive: boolean;
 }
 
 export interface List {

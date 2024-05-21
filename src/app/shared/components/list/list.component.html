@@ -2,9 +2,10 @@
     <p class="list-title">{{ listName }}</p>
     @if(!!tableData.length){
       <app-table
-      [tableConfig]="tableConfig"
-      [tableData]="tableData"
-    />
+        [tableConfig]="tableConfig"
+        [tableData]="tableData"
+      />
+      <p class="u-width-100 u-text-right total-price">{{ "LISTS.TOTAL_PRICE" | translate: { price: getFormattedPrice() } }}</p>
     } @else {
       <p class="list-empty">{{ "LISTS.EMPTY_LIST" | translate }}</p>
     }
@@ -15,6 +16,10 @@
           <img class="icon icon-sm margin-right" src="assets/icons/trash-can-solid.svg" alt="cart">
           {{ "LISTS.ACTIONS.DELETE_LIST" | translate }}
         </button>
+        <button class="secondary-button margin-right" (click)="handleTransforToReceipt()">
+          <img class="icon icon-sm margin-right" src="assets/icons/Capa 3.svg" alt="cart">
+          {{ "LISTS.ACTIONS.TRANSFOR_TO_RECIPE" | translate }}
+        </button>
       </div>
       <div class="button-group">
         <button class="secondary-button margin-right" (click)="handlePdf()">
@@ -22,7 +27,7 @@
           {{ "LISTS.ACTIONS.PDF" | translate }}
         </button>
         <button class="secondary-button margin-right" (click)="handleExportReceit()">
-          <img class="icon icon-sm margin-right" src="assets/icons/pen-solid.svg" alt="cart">
+          <img class="icon icon-sm margin-right" src="assets/icons/square-plus-solid.svg" alt="cart">
           {{ "LISTS.ACTIONS.RECEIPTS" | translate }}
         </button>
         <button class="secondary-button margin-right" (click)="handleEditList()">

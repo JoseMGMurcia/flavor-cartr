@@ -1,0 +1,138 @@
+<div class="article-detail-wrapper">
+  <p class="title">{{ 'ARTICLE.DETAIL' | translate }}</p>
+
+  @if(edditMode){
+    <form [formGroup]="form" class="u-width-100">
+      <div class="u-width-100 u-flex">
+        <app-input
+          class="half-width"
+          formControlName="name"
+          [control]="form.controls.name"
+          label="{{ 'LISTS.NEW_ARTICLE' | translate }}"/>
+        <app-input
+          class="half-width"
+          formControlName="imageUrl"
+          [control]="form.controls.imageUrl"
+          label="{{ 'LISTS.NEW_URL' | translate }}"/>
+      </div>
+      <div class="full-width section">
+        <app-input
+          class="u-width-100"
+          [area]="true"
+          formControlName="description"
+          [control]="form.controls.description"
+          label="{{ 'LISTS.NEW_DESCRIPTION' | translate }}"/>
+      </div>
+      <div class="u-flex full-width section">
+        <div class="u-width-100">
+          <app-input
+            class="u-width-100"
+            formControlName="brand"
+            [control]="form.controls.brand"
+            label="{{ 'LISTS.BRAND' | translate }}"/>
+        </div>
+      </div>
+    </form>
+  } @else {
+    <div class="article-card">
+      <div class="image-wrapper">
+        <img [src]="article.imageUrl && article.imageUrl !== 'string' ?
+        article.imageUrl : 'assets/images/default-article.jpg'" alt="article">
+      </div>
+      <div class="card">
+        <div class="field">
+          <p class="label">{{ 'ARTICLE.NAME' | translate }}</p>
+          <p class="value">{{ article.name }}</p>
+        </div>
+        <div class="field">
+          <p class="label">{{ 'ARTICLE.BRAND' | translate }}</p>
+          <p class="value">{{ article.brand }}</p>
+        </div>
+        <div class="field">
+          <p class="label">{{ 'ARTICLE.DESCRIPTION' | translate }}</p>
+          <p class="value">{{ article.description }}</p>
+        </div>
+        <div class="field">
+          <p class="label">{{ 'ARTICLE.URL' | translate }}</p>
+          <p class="value">{{ article.imageUrl }}</p>
+        </div>
+        <div class="field">
+          <p class="label">{{ 'ARTICLE.CATEGORIES' | translate }}</p>
+          <p class="value">{{ getCategoryName() }}</p>
+        </div>
+        <div class="field">
+          <p class="label">{{ 'ARTICLE.AVERAGE_PRICE' | translate }}</p>
+          <p class="value">{{ getFormattedPrice(article.averagePrice) }}</p>
+        </div>
+      </div>
+    </div>
+  }
+  <p class="prices-title">{{ "ARTICLE.PRICES" | translate }}</p>
+  @if(!addPriceMode){
+    <div class="bottom-space">
+      <app-table
+        [tableConfig]="tableConfig"
+        [tableData]="tableData"
+      />
+    </div>
+  } @else {
+    <form [formGroup]="priceForm" class="u-width-100 price-form">
+      <div class="article-group">
+        <p >{{ "ARTICLE.NEW_PRICE" | translate }}</p>
+      </div>
+      <div class="u-flex u-width-100">
+        <app-input
+          class="half-width"
+          formControlName="cost"
+          [control]="priceForm.controls.cost"
+          label="{{ 'ARTICLE.PRICE' | translate }}"/>
+        <app-input
+          class="half-width"
+          formControlName="currency"
+          [control]="priceForm.controls.currency"
+          label="{{ 'ARTICLE.CURRENCY' | translate }}"/>
+      </div>
+      <div class="u-flex full-width">
+        <app-input
+          class="u-width-100"
+          formControlName="shop"
+          [control]="priceForm.controls.shop"
+          label="{{ 'ARTICLE.SHOP' | translate }}"/>
+      </div>
+      <div class="u-flex u-flex-end u-width-100 margin-top">
+        <button class="secondary-button margin-right" (click)="handleAddPrice()">
+          <img class="icon icon-sm margin-right" src="assets/icons/trash-can-solid.svg" alt="cart">
+          {{ "ARTICLE.CANCEL_ADD_PRICE" | translate }}
+        </button>
+        <button class="primary-button" (click)="handleSave()" [disabled]="!priceForm.valid">
+          <img class="icon icon-sm margin-right" src="assets/icons/floppy-disk-solid2.svg" alt="cart">
+          {{ "SAVE" | translate }}
+        </button>
+      </div>
+    </form>
+  }
+
+  <div class="u-flex u-flex-space-between u-width-100 margin-top">
+    <button class="secondary-button margin-right" (click)="handleAddPrice()" [disabled]="addPriceMode">
+      <img class="icon icon-sm margin-right" src="assets/icons/square-plus-solid.svg" alt="cart">
+      {{ "ARTICLE.ADD_PRICE" | translate }}
+    </button>
+    <div class="u-flex">
+      <button class="secondary-button margin-right" (click)="handleCancel()">
+        <img class="icon icon-sm margin-right" src="assets/icons/trash-can-solid.svg" alt="cart">
+        {{ "CANCEL" | translate }}
+      </button>
+      @if(!edditMode){
+        <button class="primary-button" (click)="handleEdit()">
+          <img class="icon icon-sm margin-right" src="assets/icons/pen-solid2.svg" alt="cart">
+          {{ "EDIT" | translate }}
+        </button>
+      } @else {
+        <button class="primary-button" (click)="handleSave()" [disabled]="!form.valid">
+          <img class="icon icon-sm margin-right" src="assets/icons/floppy-disk-solid2.svg" alt="cart">
+          {{ "SAVE" | translate }}
+        </button>
+      }
+    </div>
+  </div>
+</div>

@@ -8,6 +8,7 @@ import { ListsMainComponent } from "./containers/lists-main-component/lists-main
 import { AddListComponent } from './components/add-list/add-list.component';
 import { AddProductComponentComponent } from './components/add-product-component/add-product-component.component';
 import { PdfContainerComponent } from './components/pdf-container/pdf-container.component';
+import { ArticleDetailComponent } from './components/article-detail/article-detail.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { PdfContainerComponent } from './components/pdf-container/pdf-container.
     AddListComponent,
     AddProductComponentComponent,
     PdfContainerComponent,
+    ArticleDetailComponent,
   ],
   imports: [
     CommonModule,

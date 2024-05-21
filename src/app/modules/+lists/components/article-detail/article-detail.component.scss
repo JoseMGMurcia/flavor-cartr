@@ -1,0 +1,168 @@
+@use '../../../../../assets/scss/custom-colors.scss' as colors;
+
+.article-detail-wrapper {
+  padding: 24px;
+  min-height: min-content;
+  max-height: 90dvh;
+  min-width: 640px;
+  width: calc(100% - 48px);
+  max-width: 640px;
+
+  // Do scrollbar to appear, but all inside of border radius.
+  overflow: auto;
+
+  .title {
+    color: colors.$menu-background;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 0 3rem;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+}
+
+.half-width {
+  width: calc(50% - 16px);
+  margin: 8px;
+}
+
+.full-width {
+  width: calc(100% - 16px);
+  margin: 8px;
+}
+
+.card {
+  display: inline-flex;
+  flex-wrap: wrap;
+  min-width: 75%;
+  border-radius: 8px;
+  background-color: colors.$menu-background-contrast-70;
+  margin-bottom: 16px;
+
+  .field {
+    min-width: fit-content;
+    max-width: 440px;
+    padding: 8px 16px;
+    word-wrap: break-word;
+
+    .label {
+      color: darken(colors.$menu-background, 10%);
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .value {
+      color: colors.$menu-background;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+    }
+  }
+}
+
+.article-card {
+  display: inline-flex;
+
+  .card {
+    display: inline-flex;
+    flex-wrap: wrap;
+    width: 75%;
+    border-radius: 8px;
+    background-color: colors.$menu-background-contrast-70;
+    margin-bottom: 16px;
+
+    .field {
+      width: max-content;
+      max-width: 250px;
+      padding: 8px 16px;
+
+      .label {
+        color: darken(colors.$menu-background, 10%);
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 0.8rem;
+        font-weight: 700;
+      }
+
+      .value {
+        color: colors.$menu-background;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 1rem;
+        font-weight: 400;
+      }
+    }
+  }
+
+  .image-wrapper {
+    width: calc(25% - 16px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 12px;
+    border-radius: 8px;
+    background-color: colors.$menu-background-contrast-50;
+
+    max-width: 140px;
+    max-height: 140px;
+
+
+    img {
+      max-width: 140px;
+      max-height: 140px;
+      border-radius: 8px;
+    }
+  }
+}
+
+.prices-title {
+  margin: 12px;
+  color: darken(colors.$menu-background, 10%);
+  font-size: 1.6rem;
+  width: min-content;
+  padding: 0 16px;
+
+  // borders for a tab look
+  border-top: 1.5px solid colors.$menu-background-contrast;
+  border-left: 1.5px solid colors.$menu-background-contrast;
+  border-right: 1.5px solid colors.$menu-background-contrast;
+  border-radius: 8px 8px 0 0;
+}
+
+.bottom-space {
+  margin-bottom: 35px;
+}
+
+.price-form {
+  border-radius: 8px;
+  border: 1px solid colors.$menu-background;
+  padding: 8px;
+  padding-right: 16px;
+  width: calc(100% - 32px);
+
+  .article-group {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    top: -20px;
+    margin-bottom: -16px;
+
+    p {
+      background-color: white;
+      color: colors.$menu-background;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-weight: 700;
+      text-align: center;
+      width: max-content;
+      padding: 0 8px;
+    }
+  }
+}
+
+::ng-deep .columns  {
+  max-height: 45dvh;
+
+  // Do  scrollbar to appear
+  overflow: auto;
+}

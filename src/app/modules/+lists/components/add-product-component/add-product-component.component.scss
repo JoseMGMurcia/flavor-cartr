@@ -17,6 +17,25 @@
 
   .section {
     margin-top: 20px;
+
+    .article-group {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      position: relative;
+      top: -24px;
+      margin-bottom: -16px;
+
+      p {
+        background-color: white;
+        color: colors.$menu-background;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: 700;
+        text-align: center;
+        width: max-content;
+        padding: 0 8px;
+      }
+    }
   }
 }
 
@@ -25,7 +44,7 @@ button {
   max-height: 32px;
 }
 
-.articleForm{
+.articleForm {
   border-radius: 8px;
   border: 1px solid colors.$menu-background;
   padding: 12px;

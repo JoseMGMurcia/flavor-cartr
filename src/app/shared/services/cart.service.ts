@@ -131,6 +131,11 @@ export class CartService {
     return this.http.put<Price>(url, price, { headers: this.headers });
   }
 
+  getPricesByArticle(articleId: string): Observable<Price[]> {
+    const url = getApiUrl(API_URLS.PRICE_ARTICLE, { id: articleId });
+    return this.http.get<Price[]>(url, { headers: this.headers });
+  }
+
   // USERS
 
   postUser(user: User): Observable<TokenUser> {

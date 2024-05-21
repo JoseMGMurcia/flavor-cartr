@@ -9,7 +9,7 @@ app-toast, .toast-class {   z-index: 2; }
 html,
 body {
   background-color: colors.$background;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   height: 100%;
   margin: 0;
   display: flex;
@@ -90,9 +90,9 @@ p {
   }
 
   &:disabled {
-    background-color: lighten(colors.$primary, 20%);
-    border-color: lighten(colors.$primary, 20%);
-    color: lighten(colors.$primary, 20%);
+    background-color: colors.$menu-background-contrast-70;
+    border-color: colors.$menu-background-50;
+    color: colors.$menu-background-50;
     cursor: not-allowed;
   }
 }

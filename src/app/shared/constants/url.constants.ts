@@ -12,6 +12,7 @@ export const API_URLS = {
   LIST_USER: '/ListsFirestore/user/{id}',
   PRICE: '/PriceFirestore',
   PRICE_ID: '/PriceFirestore/{id}',
+  PRICE_ARTICLE: '/PriceFirestore/article/{id}',
   USERS: '/UserToken',
   USERS_ID: '/UserToken/{id}',
   VERIFY: '/UserToken/verify',

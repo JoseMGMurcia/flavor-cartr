@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { CartOption } from '@shared/components/select/select.component';
@@ -6,9 +6,15 @@ import { NUMBERS } from '@shared/constants/number.constants';
 import { STRING_EMPTY } from '@shared/constants/string.constants';
 import { Article, Category } from '@shared/models/cart.models';
 import { ModalDataGet } from '@shared/models/modal.model';
+import { CartService } from '@shared/services/cart.service';
+import { LoadingService } from '@shared/services/loading.service';
 import { ModalService } from '@shared/services/modal.service';
 import { StatusService } from '@shared/services/status.service';
+import { stringFrom } from '@shared/utils/string.utils';
 import { maxLength, noSpecialChars, required } from '@shared/utils/validator.utils';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { finalize } from 'rxjs';
+import { TOAST_STATE, ToastService } from '@shared/services/toast.service';
 
 @Component({
   selector: 'app-add-product-component',
@@ -22,18 +28,29 @@ export class AddProductComponentComponent extends ModalDataGet implements OnInit
   categoryOptions: CartOption[] = [];
   addingCategory: boolean = false;
   addingArticle: boolean = false;
+
+  get disableSavingButton(): boolean {
+    const categoryKO = (!this.addingCategory && !this.form.get('category')?.value) || (this.addingCategory && !this.form.valid);
+    const articleKO = (!this.addingArticle && !this._selectedArticleId) || (this.addingArticle && !this.form.valid);
+
+    return articleKO || categoryKO;
+  }
+
   private _articles: Article[] = [];
   private _categories: Category[] = [];
   private _selectedArticleId: string = STRING_EMPTY;
+  private _selectedCategoryId: string = STRING_EMPTY;
+  private _destroyRef = inject(DestroyRef);
 
-  get disableSavingButton(): boolean {
-    return !!this.form.get('category')?.value && !!this._selectedArticleId;
-  }
 
   constructor(
     private modalService: ModalService,
     private statusService: StatusService,
     private translate: TranslateService,
+    private cartService: CartService,
+    private loading: LoadingService,
+    private toast: ToastService,
+
   ) {
     super();
   }
@@ -58,6 +75,7 @@ export class AddProductComponentComponent extends ModalDataGet implements OnInit
   }
 
   changeCategory(id: string): void {
+    this._selectedCategoryId = id;
     this.articleOptions = this._articles.filter((article: Article) => article.categories?.includes(id)).map((article: Article) => {
       return {
         value: article.id,
@@ -71,9 +89,70 @@ export class AddProductComponentComponent extends ModalDataGet implements OnInit
     this._selectedArticleId = id;
   }
 
-  async handleAdd() {
+  handleAdd() {
+    if(this.addingCategory) {
+      this.addCategory();
+      return;
+    }
+
+    if(this.addingArticle) {
+      this.addArticle(this._selectedCategoryId);
+      return;
+    }
+
     this.statusService.setAddedArticle(this._selectedArticleId);
     this.modalService.close();
+  }
+
+  addCategory(): void {
+    const newCategory: Category = {
+      id: STRING_EMPTY,
+      name: stringFrom(this.form.get('newCategory')?.value),
+    };
+    this.loading.show();
+    this.cartService.postCategory(newCategory)
+      .pipe(takeUntilDestroyed(this._destroyRef),
+        finalize(() => this.loading.hide()))
+      .subscribe({
+        next: (category) => {
+          this._categories.push(category);
+          this.statusService.setAddedCategory(category);
+
+          if(this.addingArticle) {
+            this.addArticle(category.id);
+            return;
+          }
+
+          this.statusService.setAddedArticle(this._selectedArticleId);
+          this.modalService.close();
+        },
+        error: () => this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.CREATE_CATEGORY_KO')),
+      });
+  }
+
+  addArticle(categoryId: string): void {
+    const values = this.form.getRawValue();
+    const newArticle: Article = {
+      id: STRING_EMPTY,
+      name: stringFrom(values.newArticle),
+      description: stringFrom(values.newDescription),
+      brand: stringFrom(values.newArticleBrand),
+      imageUrl: stringFrom(values.newArticleURL),
+      averagePrice: NUMBERS.N_0,
+      categories: [categoryId],
+    };
+    this.loading.show();
+    this.cartService.postArticle(newArticle)
+      .pipe(takeUntilDestroyed(this._destroyRef),
+        finalize(() => this.loading.hide()))
+      .subscribe({
+        next: (article) => {
+          this._articles.push(article);
+          this.statusService.setAddedArticle(article.id);
+          this.modalService.close();
+        },
+        error: () => this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.CREATE_ARTICLE_KO')),
+      });
   }
 
   handleCancel(): void {
@@ -102,14 +181,18 @@ export class AddProductComponentComponent extends ModalDataGet implements OnInit
       this.form.get('newArticleBrand')?.setValidators(this.getValidators(max));
       this.form.get('newDescription')?.setValue(STRING_EMPTY);
       this.form.get('newDescription')?.setValidators(this.getValidators(NUMBERS.N_200));
+      this.form.get('newArticleURL')?.setValue(STRING_EMPTY);
+      this.form.get('newArticleURL')?.setValidators(this.getValidators(NUMBERS.N_200, false));
     } else {
       this.form.get('newArticle')?.clearValidators();
       this.form.get('newArticleBrand')?.clearValidators();
       this.form.get('newDescription')?.clearValidators();
+      this.form.get('newArticleURL')?.clearValidators();
     }
     this.form.get('newArticle')?.updateValueAndValidity();
     this.form.get('newArticleBrand')?.updateValueAndValidity();
     this.form.get('newDescription')?.updateValueAndValidity();
+    this.form.get('newArticleURL')?.updateValueAndValidity();
   }
 
   private getForm() {
@@ -120,13 +203,15 @@ export class AddProductComponentComponent extends ModalDataGet implements OnInit
       newArticle: new FormControl({ value: STRING_EMPTY, disabled: false}),
       newArticleBrand: new FormControl({ value: STRING_EMPTY, disabled: false}),
       newDescription: new FormControl({ value: STRING_EMPTY, disabled: false}),
+      newArticleURL: new FormControl({ value: STRING_EMPTY, disabled: false}),
     });
   }
 
-  private getValidators(max: number) {
+  private getValidators(max: number, isRequired = true) {
     const literals = this.translate.instant('VALIDATORS');
+    const validators = isRequired ? [required(literals.REQUIRED)] : [];
     return [
-      required(literals.REQUIRED),
+      ...validators,
       maxLength(this.translate.instant('VALIDATORS.MAX_LENGTH', { max }), max),
       noSpecialChars(literals.SPECIAL_CHARS),
     ];

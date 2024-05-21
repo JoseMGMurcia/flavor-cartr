@@ -57,6 +57,9 @@
       </div>
     } @else {
       <div class="section articleForm">
+        <div class="article-group">
+          <p >{{ "LISTS.NEW_ARTICLE" | translate }}</p>
+        </div>
         <div class="u-width-100">
           <app-input
             class="u-width-100"
@@ -71,6 +74,13 @@
             formControlName="newDescription"
             [control]="form.controls.newDescription"
             label="{{ 'LISTS.NEW_DESCRIPTION' | translate }}"/>
+        </div>
+        <div class="u-width-100 section">
+          <app-input
+            class="u-width-100"
+            formControlName="newArticleURL"
+            [control]="form.controls.newArticleURL"
+            label="{{ 'LISTS.NEW_URL' | translate }}"/>
         </div>
         <div class="u-flex u-width-100 section">
           <div class="u-width-75">
@@ -97,7 +107,7 @@
         <img class="icon icon-sm margin-right" src="assets/icons/trash-can-solid.svg" alt="cart">
         {{ "CANCEL" | translate }}
       </button>
-      <button class="primary-button" (click)="handleAdd()" [disabled]="!disableSavingButton">
+      <button class="primary-button" (click)="handleAdd()" [disabled]="disableSavingButton">
         <img class="icon icon-sm margin-right" src="assets/icons/floppy-disk-solid2.svg" alt="cart">
         {{ "LISTS.ADD_ARTICLE" | translate }}
       </button>

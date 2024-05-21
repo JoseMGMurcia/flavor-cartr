@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, Input, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, Input, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AddListComponent } from '@modules/+lists/components/add-list/add-list.component';
 import { AddProductComponentComponent } from '@modules/+lists/components/add-product-component/add-product-component.component';
+import { ArticleDetailComponent } from '@modules/+lists/components/article-detail/article-detail.component';
 import { PdfContainerComponent } from '@modules/+lists/components/pdf-container/pdf-container.component';
 import { TranslateService } from '@ngx-translate/core';
 import { NUMBERS } from '@shared/constants/number.constants';
@@ -75,12 +76,22 @@ export class ListComponent implements OnInit{
             articleId,
             amount: NUMBERS.N_1,
             unit: STRING_EMPTY, //TODO: Add unit
+            isActive: true,
           };
           this.list?.articleList.push(articleList);
           this.saveList();
           this.updatetable();
         }
       });
+
+      this.statusService.addedCategory$
+        .pipe(takeUntilDestroyed(this._destroyRef))
+        .subscribe((category: Category) => {
+          if (!category.id) {
+            return;
+          }
+          this.categories.push(category);
+        });
   }
 
   handleDeleteList(): void {
@@ -112,6 +123,19 @@ export class ListComponent implements OnInit{
     });
   }
 
+  handleTransforToReceipt(): void {
+    // TODO
+  }
+
+  handleDetail(row: TableRow): void {
+    const article = this.articles.find((a: Article) => a.id === row.id);
+    this.modalService.open(ArticleDetailComponent, {
+      ...DEFAULT_MODAL_OPTIONS,
+      data: { article, categories: this.categories },
+      prevenCloseOutside: true,
+    });
+  }
+
   getTableRow(articleList: ArticleList): TableRow {
     const article = this.articles.find((a: Article) => a.id === articleList.articleId);
 
@@ -119,14 +143,11 @@ export class ListComponent implements OnInit{
       ...article,
       ...articleList,
       category: article ? getCategory(article, this.categories) : STRING_EMPTY,
-      averagePrice: `${formatPrice(article ? article.averagePrice : NUMBERS.N_0)}`,
+      averagePrice: `${formatPrice(article ? (article.averagePrice * articleList.amount) : NUMBERS.N_0)}`,
       id: articleList.articleId,
+      style: articleList.isActive ? STRING_EMPTY : 'text-decoration: line-through',
     };
 
-  }
-
-  handleDeleteArticle(row: TableRow): void {
-    // TODO
   }
 
   handleEditList(): void {
@@ -180,6 +201,10 @@ export class ListComponent implements OnInit{
     // TODO
   }
 
+  getFormattedPrice(): string {
+    return formatPrice(this.list?.totalPrice || NUMBERS.N_0);
+  }
+
   private deleteList(): void {
 
     // Can't delete last list
@@ -219,7 +244,7 @@ export class ListComponent implements OnInit{
           key: 'crossOut',
           label: STRING_EMPTY,
           type: TableColumnTypeEnum.ACTIONS,
-          action: (row: TableRow) => row['style'] = row['style'] ? STRING_EMPTY : 'text-decoration: line-through',
+          action: (row: TableRow) => this.inOutChart(row),
           actionIcon: IconEmum.CART ,
         },
         {
@@ -268,7 +293,7 @@ export class ListComponent implements OnInit{
           key: 'detail',
           label: literals.DETAIL,
           type: TableColumnTypeEnum.ACTIONS,
-          action: (row: TableRow) => row['amount'] = Number(row['amount']) + NUMBERS.N_1,
+          action: (row: TableRow) => this.handleDetail(row),
           actionIcon: IconEmum.DETAIL ,
         },
         {
@@ -280,21 +305,21 @@ export class ListComponent implements OnInit{
         }
       ],
       pagination: {
-        actualPage: NUMBERS.N_1,
-        itemsPerPage: NUMBERS.N_10,
+        actualPage: this.tableConfig ? this.tableConfig.pagination.actualPage : NUMBERS.N_1,
+        itemsPerPage: this.tableConfig ? this.tableConfig.pagination.itemsPerPage : NUMBERS.N_10,
         totalItems: this.tableData.length,
       }
     };
   }
 
-  private inOutChart(row: TableRow): void { //TODO use in table action
+  private inOutChart(row: TableRow): void {
     if (!this.list) {
       return;
     }
     row['style'] = row['style'] ? STRING_EMPTY : 'text-decoration: line-through';
     const articleList = this.list.articleList.find((articleList: ArticleList) => articleList.articleId === row.id);
     if (articleList) {
-      // TODO articleList.inChart = !articleList.inChart;
+      articleList.isActive = !articleList.isActive;
       this.saveList();
       this.updatetable();
     }
@@ -325,6 +350,7 @@ export class ListComponent implements OnInit{
     if (!this.list) {
       return;
     }
+    this.list.totalPrice = this.getListPrice();
     this.tableData = this.list.articleList.map((articleList: ArticleList) => this.getTableRow(articleList));
     this.tableConfig = this.getTableConfig();
   }
@@ -341,5 +367,15 @@ export class ListComponent implements OnInit{
       }
       return NUMBERS.N_0;
     });
+  }
+
+  private getListPrice(): number {
+    if (!this.list) {
+      return NUMBERS.N_0;
+    }
+    return this.list.articleList.reduce((acc: number, articleList: ArticleList) => {
+      const article = this.articles.find((a: Article) => a.id === articleList.articleId);
+      return acc + (article ? (article.averagePrice * articleList.amount) : NUMBERS.N_0);
+    }, NUMBERS.N_0);
   }
 }
