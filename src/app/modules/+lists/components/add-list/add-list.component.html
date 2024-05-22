@@ -1,5 +1,9 @@
 <div class="add-list-wraper u-flex u-flex-column u-flex-center">
-  <p class="add-list-text">{{ 'LISTS.ADD_LIST' | translate }}</p>
+  @if(edditMode){
+    <p class="add-list-text">{{ 'LISTS.EDIT_LIST' | translate }}</p>
+  }@else {
+    <p class="add-list-text">{{ 'LISTS.ADD_LIST' | translate }}</p>
+  }
   <form [formGroup]="form" class="u-width-100" (keydown.enter)="handleSave()">
     <app-input
       class="u-width-100 margin-bottom"

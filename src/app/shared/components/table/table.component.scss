@@ -25,9 +25,14 @@
         color: colors.$table-header-text;
         font-size: 1.2rem;
         font-weight: 500;
-        height: 18px;
+        height: 20px;
         padding: 6px 16px;
         min-width: max-content;
+
+        //Center the text vertically & horizontally
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         &.round-left {
           border-top-left-radius: 4px;

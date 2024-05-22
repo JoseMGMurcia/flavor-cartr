@@ -8,12 +8,12 @@
           class="half-width"
           formControlName="name"
           [control]="form.controls.name"
-          label="{{ 'LISTS.NEW_ARTICLE' | translate }}"/>
+          label="{{ 'ARTICLE.NAME' | translate }}"/>
         <app-input
           class="half-width"
-          formControlName="imageUrl"
-          [control]="form.controls.imageUrl"
-          label="{{ 'LISTS.NEW_URL' | translate }}"/>
+          formControlName="brand"
+          [control]="form.controls.brand"
+          label="{{ 'LISTS.BRAND' | translate }}"/>
       </div>
       <div class="full-width section">
         <app-input
@@ -27,17 +27,18 @@
         <div class="u-width-100">
           <app-input
             class="u-width-100"
-            formControlName="brand"
-            [control]="form.controls.brand"
-            label="{{ 'LISTS.BRAND' | translate }}"/>
+            [area]="true"
+            formControlName="imageUrl"
+            [control]="form.controls.imageUrl"
+            label="{{ 'LISTS.NEW_URL' | translate }}"/>
         </div>
       </div>
     </form>
   } @else {
     <div class="article-card">
       <div class="image-wrapper">
-        <img [src]="article.imageUrl && article.imageUrl !== 'string' ?
-        article.imageUrl : 'assets/images/default-article.jpg'" alt="article">
+        <img [src]="isImageURL(article.imageUrl) ?
+        article.imageUrl : 'assets/images/default-article.jpg'" [alt]="article.name">
       </div>
       <div class="card">
         <div class="field">
@@ -67,60 +68,83 @@
       </div>
     </div>
   }
-  <p class="prices-title">{{ "ARTICLE.PRICES" | translate }}</p>
-  @if(!addPriceMode){
+
+  <div class="u-flex">
+    <p class="tab" [ngClass]="currentTab === 1 ? 'selected' : ''" (click)="setTab(1)">
+      {{ "ARTICLE.PRICES" | translate }}
+    </p>
+    <p class="tab" [ngClass]="currentTab === 2 ? 'selected' : ''" (click)="setTab(2)">
+      {{ "ARTICLE.CATEGORIES" | translate }}
+    </p>
+  </div>
+  @if(currentTab === 1) {
+    @if(!addPriceMode){
+      <div class="bottom-space">
+        <app-table
+          [tableConfig]="pricesTableConfig"
+          [tableData]="pricesTableData"
+        />
+      </div>
+    } @else {
+      <form [formGroup]="priceForm" class="u-width-100 price-form">
+        <div class="article-group">
+          <p >{{ "ARTICLE.NEW_PRICE" | translate }}</p>
+        </div>
+        <div class="u-flex u-width-100">
+          <app-input
+            class="half-width"
+            formControlName="cost"
+            type="number"
+            [control]="priceForm.controls.cost"
+            label="{{ 'ARTICLE.PRICE' | translate }}"/>
+          <app-input
+            class="half-width"
+            formControlName="currency"
+            [control]="priceForm.controls.currency"
+            label="{{ 'ARTICLE.CURRENCY' | translate }}"/>
+        </div>
+        <div class="u-flex full-width">
+          <app-input
+            class="u-width-100"
+            formControlName="shop"
+            [control]="priceForm.controls.shop"
+            label="{{ 'ARTICLE.SHOP' | translate }}"/>
+        </div>
+        <div class="u-flex u-flex-end u-width-100 margin-top">
+          <button class="secondary-button margin-right" (click)="handleAddPrice()">
+            <img class="icon icon-sm margin-right" src="assets/icons/trash-can-solid.svg" alt="cart">
+            {{ "ARTICLE.CANCEL_ADD_PRICE" | translate }}
+          </button>
+          <button class="primary-button" (click)="handleSavePrice()" [disabled]="!priceForm.valid">
+            <img class="icon icon-sm margin-right" src="assets/icons/floppy-disk-solid2.svg" alt="cart">
+            {{ "SAVE" | translate }}
+          </button>
+        </div>
+      </form>
+    }
+  }
+  @if(currentTab === 2) {
     <div class="bottom-space">
       <app-table
-        [tableConfig]="tableConfig"
-        [tableData]="tableData"
+        [tableConfig]="categoriesTableConfig"
+        [tableData]="categoriesTableData"
       />
     </div>
-  } @else {
-    <form [formGroup]="priceForm" class="u-width-100 price-form">
-      <div class="article-group">
-        <p >{{ "ARTICLE.NEW_PRICE" | translate }}</p>
-      </div>
-      <div class="u-flex u-width-100">
-        <app-input
-          class="half-width"
-          formControlName="cost"
-          [control]="priceForm.controls.cost"
-          label="{{ 'ARTICLE.PRICE' | translate }}"/>
-        <app-input
-          class="half-width"
-          formControlName="currency"
-          [control]="priceForm.controls.currency"
-          label="{{ 'ARTICLE.CURRENCY' | translate }}"/>
-      </div>
-      <div class="u-flex full-width">
-        <app-input
-          class="u-width-100"
-          formControlName="shop"
-          [control]="priceForm.controls.shop"
-          label="{{ 'ARTICLE.SHOP' | translate }}"/>
-      </div>
-      <div class="u-flex u-flex-end u-width-100 margin-top">
-        <button class="secondary-button margin-right" (click)="handleAddPrice()">
-          <img class="icon icon-sm margin-right" src="assets/icons/trash-can-solid.svg" alt="cart">
-          {{ "ARTICLE.CANCEL_ADD_PRICE" | translate }}
-        </button>
-        <button class="primary-button" (click)="handleSave()" [disabled]="!priceForm.valid">
-          <img class="icon icon-sm margin-right" src="assets/icons/floppy-disk-solid2.svg" alt="cart">
-          {{ "SAVE" | translate }}
-        </button>
-      </div>
-    </form>
   }
 
   <div class="u-flex u-flex-space-between u-width-100 margin-top">
-    <button class="secondary-button margin-right" (click)="handleAddPrice()" [disabled]="addPriceMode">
-      <img class="icon icon-sm margin-right" src="assets/icons/square-plus-solid.svg" alt="cart">
-      {{ "ARTICLE.ADD_PRICE" | translate }}
-    </button>
+    @if(currentTab === 1) {
+      <button class="secondary-button margin-right" (click)="handleAddPrice()" [disabled]="addPriceMode">
+        <img class="icon icon-sm margin-right" src="assets/icons/square-plus-solid.svg" alt="cart">
+        {{ "ARTICLE.ADD_PRICE" | translate }}
+      </button>
+    } @else {
+      <div></div>
+    }
     <div class="u-flex">
       <button class="secondary-button margin-right" (click)="handleCancel()">
         <img class="icon icon-sm margin-right" src="assets/icons/trash-can-solid.svg" alt="cart">
-        {{ "CANCEL" | translate }}
+        {{ "CLOSE" | translate }}
       </button>
       @if(!edditMode){
         <button class="primary-button" (click)="handleEdit()">
@@ -128,6 +152,10 @@
           {{ "EDIT" | translate }}
         </button>
       } @else {
+        <button class="secondary-button margin-right" (click)="handleEdit()">
+          <img class="icon icon-sm margin-right" src="assets/icons/trash-can-solid.svg" alt="cart">
+          {{ "ARTICLE.CANCEL_EDIT" | translate }}
+        </button>
         <button class="primary-button" (click)="handleSave()" [disabled]="!form.valid">
           <img class="icon icon-sm margin-right" src="assets/icons/floppy-disk-solid2.svg" alt="cart">
           {{ "SAVE" | translate }}

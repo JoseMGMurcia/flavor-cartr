@@ -4,7 +4,7 @@
       @for(column of tableConfig.columns; track column.key; let cIndex = $index) {
         <div class="column">
           <p class="column-header" [ngClass]="getHeaderClass(cIndex)">
-            {{ column.label | translate }}
+            {{ column.label }}
           </p>
           @for(row of currentPageData; track row.id; let rIndex = $index) {
             <div class="column-row" [ngClass]="getRowClass(rIndex, cIndex)">

@@ -24,7 +24,7 @@ import { finalize } from 'rxjs';
 export class AddListComponent extends ModalDataGet implements OnInit{
 
   form = this.getForm();
-  private _edditMode = false;
+  edditMode = false;
   private _userId = STRING_EMPTY;
   private _destroyRef = inject(DestroyRef);
 
@@ -44,7 +44,7 @@ export class AddListComponent extends ModalDataGet implements OnInit{
   }
 
   handleSave(): void {
-    if (this._edditMode) {
+    if (this.edditMode) {
       this.editlist();
       return;
     }
@@ -115,7 +115,7 @@ export class AddListComponent extends ModalDataGet implements OnInit{
     }
 
     if (this.data && this.data['list']) {
-      this._edditMode = true;
+      this.edditMode = true;
       this.form.patchValue({
         name: this.data['list'].name,
         public: this.data['list'].isPublic,
@@ -131,11 +131,11 @@ export class AddListComponent extends ModalDataGet implements OnInit{
  }
 
  private getValidators(max: number) {
-  const literals = this.translate.instant('VALIDATORS');
-  return [
-    required(literals.REQUIRED),
-    maxLength(this.translate.instant('VALIDATORS.MAX_LENGTH', { max }), max),
-    noSpecialChars(literals.SPECIAL_CHARS),
-  ];
-}
+    const literals = this.translate.instant('VALIDATORS');
+    return [
+      required(literals.REQUIRED),
+      maxLength(this.translate.instant('VALIDATORS.MAX_LENGTH', { max }), max),
+      noSpecialChars(literals.SPECIAL_CHARS),
+    ];
+  }
 }

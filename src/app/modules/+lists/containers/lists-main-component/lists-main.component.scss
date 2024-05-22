@@ -26,10 +26,10 @@
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 
     .table-title {
-      color: colors.$text-primary-dark;
+      color: darken(colors.$menu-background, 70%);
       text-shadow: 2px 2px 2px colors.$menu-text-color-fade;
       font-size: 2.2rem;
-      font-weight: 600;
+      // font-weight: 600;
       margin: 16px;
       min-width: max-content;
       text-align: center;
