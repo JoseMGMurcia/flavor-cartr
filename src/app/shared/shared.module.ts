@@ -11,6 +11,8 @@ import { UnknowComponent } from './components/unknow/unknow.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { TableComponent } from './components/table/table.component';
 import { ListComponent } from './components/list/list.component';
+import { ArticleDetailComponent } from './components/article-detail/article-detail.component';
+import { RecipeComponent } from './components/recipe/recipe.component';
 
 const components = [
   InputComponent,
@@ -18,6 +20,8 @@ const components = [
   UnknowComponent,
   TableComponent,
   ListComponent,
+  RecipeComponent,
+  ArticleDetailComponent,
 ];
 
 @NgModule({

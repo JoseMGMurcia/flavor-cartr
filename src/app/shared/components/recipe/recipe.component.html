@@ -1,0 +1,38 @@
+<div class="recipe-wrapper">
+  <p class="recipe-title">{{ recipe?.name }}</p>
+  <p class="recipe-desc">{{ recipe?.description }}</p>
+
+  @if(!!tableData.length){
+    <app-table
+      [tableConfig]="tableConfig"
+      [tableData]="tableData"
+    />
+    <p class="u-width-100 u-text-right total-price">{{ "LISTS.TOTAL_PRICE" | translate: { price: getFormattedPrice() } }}</p>
+  } @else {
+    <p class="recipe-empty">{{ "RECIPES.EMPTY_RECIPE" | translate }}</p>
+  }
+
+  <div class="button-row">
+    <div class="button-group">
+      <button class="secondary-button margin-right" (click)="handleDeleteList()">
+        <img class="icon icon-sm margin-right" src="assets/icons/trash-can-solid.svg" alt="cart">
+        {{ "RECIPES.ACTIONS.DELETE_RECIPE" | translate }}
+      </button>
+    </div>
+    <div class="button-group">
+      <button class="secondary-button margin-right" (click)="handlePdf()">
+        <img class="icon icon-sm margin-right" src="assets/icons/pen-solid.svg" alt="cart">
+        {{ "RECIPES.ACTIONS.PDF" | translate }}
+      </button>
+      <button class="secondary-button margin-right" (click)="handleEditRecipe()">
+        <img class="icon icon-sm margin-right" src="assets/icons/pen-solid.svg" alt="cart">
+        {{ "RECIPES.ACTIONS.EDIT_RECIPE_DETAILS" | translate }}
+      </button>
+      <button class="primary-button margin-right" (click)="handleAddArticle()">
+        <img class="icon icon-sm margin-right" src="assets/icons/square-plus-solid2.svg" alt="cart">
+        {{ "LISTS.ACTIONS.ADD_ARTICLE" | translate }}
+      </button>
+    </div>
+  </div>
+</div>
+

@@ -5,35 +5,37 @@ import { CartService } from '@shared/services/cart.service';
 import { LoadingService } from '@shared/services/loading.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { catchError, finalize, forkJoin, of } from 'rxjs';
-import { Article, Category, List, User } from '@shared/models/cart.models';
+import { Article, Category, List, Recipe, User } from '@shared/models/cart.models';
 import { ModalService } from '@shared/services/modal.service';
 import { DEFAULT_MODAL_OPTIONS } from '@shared/models/modal.model';
 import { AddListComponent } from '@modules/+lists/components/add-list/add-list.component';
-import { getNewList, getNewRecipe } from '@shared/utils/cart.utils';
+import { getNewRecipe } from '@shared/utils/cart.utils';
 import { SocialService } from '@shared/services/social.service';
 import { TOAST_STATE, ToastService } from '@shared/services/toast.service';
 import { CartOption } from '@shared/components/select/select.component';
 import { stringFrom } from '@shared/utils/string.utils';
 import { StatusService } from '@shared/services/status.service';
 import { ListComponent } from '@shared/components/list/list.component';
+import { RecipeComponent } from '@shared/components/recipe/recipe.component';
+import { AddRecipeComponent } from '@modules/+lists/components/add-recipe/add-recipe.component';
 
 @Component({
-  selector: 'app-lists-main-component',
-  templateUrl: './lists-main.component.html',
-  styleUrl: './lists-main.component.scss',
+  selector: 'app-recipes-main-component',
+  templateUrl: './recipes-main.component.html',
+  styleUrl: './recipes-main.component.scss',
 })
-export class ListsMainComponent implements OnInit{
+export class RecipesMainComponent implements OnInit{
 
-  @ViewChild('list', { static: false}) list!: ListComponent;
+  @ViewChild('recipe', { static: false}) recipe!: RecipeComponent;
 
   swLoadingFinished = false;
-  listsOptions: CartOption[] = [];
-  selectedList: List | undefined = undefined;
+  recipesOptions: CartOption[] = [];
+  selectedRecipe: Recipe | undefined = undefined;
   articles: Article[] = [];
   categories: Category[] = [];
   user!: User;
 
-  private _lists: List[] = [];
+  private _recipes: Recipe[] = [];
   private _destroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
@@ -50,20 +52,20 @@ export class ListsMainComponent implements OnInit{
     private statusService: StatusService,
   ) { }
 
-  handleNewList(): void {
-    this.modalService.open(AddListComponent, {
+  handleNewRecipe(): void {
+    this.modalService.open(AddRecipeComponent, {
       ...DEFAULT_MODAL_OPTIONS,
       data: { userId: this.user.id },
       prevenCloseOutside: true,
     });
   }
 
-  handleListChange(listId: string): void {
-    this.selectedList = this._lists.find((list: List) => list.id === listId);
-    if (!this.selectedList) {
+  handleRecipeChange(recipeId: string): void {
+    this.selectedRecipe = this._recipes.find((recipe: Recipe) => recipe.id === recipeId);
+    if (!this.selectedRecipe) {
       return;
     }
-    this.list?.setData(this.selectedList, this.articles, this.categories);
+    this.recipe?.setData(this.selectedRecipe, this.articles, this.categories);
   }
 
   private fetch(): void {
@@ -108,53 +110,53 @@ export class ListsMainComponent implements OnInit{
         .pipe(catchError(() => of([])),
           takeUntilDestroyed(this._destroyRef)
         ),
-      this.cartService.getListsByUser(this.user.id)
+      this.cartService.getRecipesByUser(this.user.id)
         .pipe(catchError(() => of([])),
           takeUntilDestroyed(this._destroyRef)
         ),
     ])
       .pipe(finalize(() => this.loading.hide()))
-      .subscribe(([articles, categories, lists]: [Article[], Category[], List[]]) => {
+      .subscribe(([articles, categories, recipes]: [Article[], Category[], Recipe[]]) => {
         this.articles = articles;
         this.categories = categories;
-        this._lists = lists;
-        this.handleLists(lists);
+        this._recipes = recipes;
+        this.handleRecipes(recipes);
       })
   }
 
-  private handleLists(lists: List[]): void {
-    if (lists.length === NUMBERS.N_0) {
-      this.createInitialList();
+  private handleRecipes(recipes: Recipe[]): void {
+    if (recipes.length === NUMBERS.N_0) {
+      this.createInitialRecipe();
       return;
     }
-        const selectedList = this._lists.find((list: List) => list.id === this.selectedList?.id);
-    this.selectedList = selectedList || lists[NUMBERS.N_0];
-    this.listsOptions = this.getListOptions(lists);
-    this.list?.setData(this.selectedList, this.articles, this.categories);
+    const selectedRecipe = this._recipes.find((recipe: Recipe) => recipe.id === this.selectedRecipe?.id);
+    this.selectedRecipe = selectedRecipe || recipes[NUMBERS.N_0];
+    this.recipesOptions = this.getRecipesOptions(recipes);
+    this.recipe?.setData(this.selectedRecipe, this.articles, this.categories);
   }
 
-  private createInitialList(): void {
-    const list: List = getNewList(this.translate, this.user.id);
+  private createInitialRecipe(): void {
+    const recipe: Recipe = getNewRecipe(this.translate, this.user.id);
     this.loading.show();
-    this.cartService.postList(list)
+    this.cartService.postRecipe(recipe)
       .pipe(takeUntilDestroyed(this._destroyRef),
         finalize(() => this.loading.hide()))
       .subscribe({
         next: () => {
-          this._lists.push(list);
-          this.listsOptions = this.getListOptions(this._lists);
-          this.selectedList = list;
-          this.list?.setData(this.selectedList, this.articles, this.categories);
+          this._recipes.push(recipe);
+          this.recipesOptions = this.getRecipesOptions(this._recipes);
+          this.selectedRecipe = recipe;
+          this.recipe?.setData(this.selectedRecipe, this.articles, this.categories);
         },
-        error: () => this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.CREATE_LIST_KO')),
+        error: () => this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.CREATE_RECIPE_KO')),
       });
   }
 
-  private getListOptions(lists: List[]): CartOption[] {
-    return lists.map((list: List) => ({
-      value: stringFrom(list.id),
-      label: list.name,
-      selected: list.id === this.selectedList?.id,
+  private getRecipesOptions(recipes: Recipe[]): CartOption[] {
+    return recipes.map((recipe: Recipe) => ({
+      value: stringFrom(recipe.id),
+      label: recipe.name,
+      selected: recipe.id === this.selectedRecipe?.id,
     }));
   }
 }

@@ -4,24 +4,24 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { NUMBERS } from '@shared/constants/number.constants';
 import { STRING_EMPTY } from '@shared/constants/string.constants';
-import { List } from '@shared/models/cart.models';
+import { Recipe } from '@shared/models/cart.models';
 import { ModalDataGet } from '@shared/models/modal.model';
 import { CartService } from '@shared/services/cart.service';
 import { LoadingService } from '@shared/services/loading.service';
 import { ModalService } from '@shared/services/modal.service';
 import { StatusService } from '@shared/services/status.service';
 import { TOAST_STATE, ToastService } from '@shared/services/toast.service';
-import { getNewList } from '@shared/utils/cart.utils';
+import { getNewRecipe } from '@shared/utils/cart.utils';
 import { stringFrom } from '@shared/utils/string.utils';
 import { maxLength, noSpecialChars, required } from '@shared/utils/validator.utils';
 import { finalize } from 'rxjs';
 
 @Component({
-  selector: 'app-add-list',
-  templateUrl: './add-list.component.html',
-  styleUrl: './add-list.component.scss'
+  selector: 'app-add-recipe',
+  templateUrl: './add-recipe.component.html',
+  styleUrl: './add-recipe.component.scss'
 })
-export class AddListComponent extends ModalDataGet implements OnInit{
+export class AddRecipeComponent extends ModalDataGet implements OnInit {
 
   form = this.getForm();
   edditMode = false;
@@ -55,22 +55,22 @@ export class AddListComponent extends ModalDataGet implements OnInit{
     this.modalService.close();
   }
 
-  private getList(initialList: List): List {
+  private getList(initialList: Recipe): Recipe {
     const values = this.form.getRawValue();
     return {
       ...initialList,
       name: stringFrom(values.name),
-      isPublic: !!values.public,
+      description: stringFrom(values.description),
     };
   }
 
   private editlist(): void {
-    if (!this.data || !this.data['list']) {
+    if (!this.data || !this.data['recipe']) {
       return;
     }
-    const list = this.getList(this.data['list']);
+    const recipe = this.getList(this.data['recipe']);
     this.loadingService.show();
-    this.cartService.putList(list)
+    this.cartService.putRecipe(recipe)
       .pipe(
         takeUntilDestroyed(this._destroyRef),
         finalize(() => {
@@ -81,17 +81,17 @@ export class AddListComponent extends ModalDataGet implements OnInit{
       .subscribe({
         next: () => {
           this.statusService.setReloadListsPending(true)
-          this.toastService.showToast(TOAST_STATE.SUCCESS, this.translate.instant('TOAST.EDIT_LIST_OK'));
+          this.toastService.showToast(TOAST_STATE.SUCCESS, this.translate.instant('TOAST.EDIT_RECIPE_OK'));
         },
-        error: () => this.toastService.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.EDIT_LIST_KO')),
+        error: () => this.toastService.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.EDIT_RECIPE_KO')),
       });
   }
 
   private savelist(): void {
-    const list = this.getList(getNewList(this.translate, this._userId));
+    const recipe = this.getList(getNewRecipe(this.translate, this._userId));
     this.loadingService.show();
 
-    this.cartService.postList(list)
+    this.cartService.postRecipe(recipe)
       .pipe(
         takeUntilDestroyed(this._destroyRef),
         finalize(() => {
@@ -102,10 +102,10 @@ export class AddListComponent extends ModalDataGet implements OnInit{
       .subscribe({
         next: () => {
           this.statusService.setReloadListsPending(true)
-          this.toastService.showToast(TOAST_STATE.SUCCESS, this.translate.instant('TOAST.CREATE_RECIPE_OK'));
+          this.toastService.showToast(TOAST_STATE.SUCCESS, this.translate.instant('TOAST.CREATE_LIST_OK'));
           this.modalService.close();
         },
-        error: () => this.toastService.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.CREATE_RECIPE_KO')),
+        error: () => this.toastService.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.CREATE_LIST_KO')),
       });
   }
 
@@ -114,11 +114,11 @@ export class AddListComponent extends ModalDataGet implements OnInit{
       this._userId = this.data['userId'];
     }
 
-    if (this.data && this.data['list']) {
+    if (this.data && this.data['recipe']) {
       this.edditMode = true;
       this.form.patchValue({
-        name: this.data['list'].name,
-        public: this.data['list'].isPublic,
+        name: this.data['recipe'].name,
+        description: this.data['recipe'].description,
       });
     }
   }
@@ -126,7 +126,7 @@ export class AddListComponent extends ModalDataGet implements OnInit{
   private getForm() {
     return new FormGroup({
      name: new FormControl({ value: STRING_EMPTY, disabled: false}, this.getValidators(NUMBERS.N_100)),
-     public: new FormControl({ value: false, disabled: false}),
+     description: new FormControl({ value: STRING_EMPTY, disabled: false}, this.getValidators(NUMBERS.N_200)),
    });
  }
 

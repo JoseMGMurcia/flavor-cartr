@@ -1,0 +1,67 @@
+@use '../../../../assets/scss/custom-colors.scss' as colors;
+
+.recipe-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid colors.$menu-background;
+  padding: 12px;
+  background-color: colors.$menu-background-contrast-70;
+
+  .button-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin: 16px 0;
+
+    .button-group {
+      display: flex;
+      flex-direction: row;
+      margin: 16px 0;
+    }
+  }
+
+
+  .recipe-title {
+    color: darken(colors.$menu-background, 10%);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 0 3rem;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .recipe-desc {
+    color: darken(colors.$menu-background, 10%);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1rem;
+    padding: 0 3rem;
+    text-align: left;
+    margin-bottom: 30px;
+    width: 90%;
+  }
+
+
+  .recipe-empty {
+    color: darken(colors.$menu-background, 10%);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.8rem;
+    padding: 0 3rem;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .total-price {
+    color: darken(colors.$menu-background, 10%);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 0 3rem;
+    margin-bottom: 10px;
+    margin-right: 1em;
+  }
+}
+

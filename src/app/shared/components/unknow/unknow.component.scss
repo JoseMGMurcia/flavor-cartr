@@ -9,6 +9,11 @@
   justify-content: center;
   align-items: center;
 
+  background-attachment: fixed;
+  background-image: url('assets/images/not-found.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+
   .logo {
     height: 64px;
     padding: 16px 32px;;

@@ -1,15 +1,11 @@
 import { Component, DestroyRef, inject, Input, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { AddListComponent } from '@modules/+lists/components/add-list/add-list.component';
 import { AddProductComponentComponent } from '@modules/+lists/components/add-product-component/add-product-component.component';
-import { ArticleDetailComponent } from '@shared/components/article-detail/article-detail.component';
-import { PdfContainerComponent } from '@modules/+lists/components/pdf-container/pdf-container.component';
 import { TranslateService } from '@ngx-translate/core';
 import { NUMBERS } from '@shared/constants/number.constants';
 import { STRING_EMPTY } from '@shared/constants/string.constants';
 import { BUTTON_CLASS } from '@shared/constants/style.constants';
-import { Article, ArticleList, Category, List, User } from '@shared/models/cart.models';
-import { IconEmum } from '@shared/models/icon.models';
+import { Article, ArticleList, Category, Recipe, User } from '@shared/models/cart.models';
 import { DEFAULT_MODAL_OPTIONS, DialogOptions } from '@shared/models/modal.model';
 import { TableAlingEnum, TableColumnTypeEnum, TableConfig, TableRow } from '@shared/models/table.models';
 import { CartService } from '@shared/services/cart.service';
@@ -17,30 +13,30 @@ import { LoadingService } from '@shared/services/loading.service';
 import { ModalService } from '@shared/services/modal.service';
 import { StatusService } from '@shared/services/status.service';
 import { TOAST_STATE, ToastService } from '@shared/services/toast.service';
-import { formatPrice, getCategory } from '@shared/utils/cart.utils';
 import { stringFrom } from '@shared/utils/string.utils';
+import { ArticleDetailComponent } from '../article-detail/article-detail.component';
+import { formatPrice, getCategory } from '@shared/utils/cart.utils';
 import { finalize } from 'rxjs';
+import { PdfContainerComponent } from '@modules/+lists/components/pdf-container/pdf-container.component';
+import { IconEmum } from '@shared/models/icon.models';
+import { AddRecipeComponent } from '@modules/+lists/components/add-recipe/add-recipe.component';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrl: './list.component.scss',
+  selector: 'app-recipe',
+  templateUrl: './recipe.component.html',
+  styleUrl: './recipe.component.scss'
 })
-export class ListComponent implements OnInit{
+export class RecipeComponent implements OnInit{
 
   articles!: Article[];
   categories!: Category[];
   @Input({required: true}) user!: User;
-  @Input({required: true}) swLastList!: boolean;
+  @Input({required: true}) swLastRecipe!: boolean;
 
-  list!: List | undefined;
+  recipe!: Recipe | undefined;
 
   tableData: TableRow[] = [];
   tableConfig: TableConfig = this.getTableConfig();
-
-  get listName(): string {
-    return  `${stringFrom(this.list?.name)} (${this.translate.instant(this.list?.isPublic ? 'LISTS.PUBLIC_LIST' : 'LISTS.PRIVATE_LIST')})`;
-  }
 
   private _destroyRef = inject(DestroyRef);
 
@@ -53,10 +49,10 @@ export class ListComponent implements OnInit{
     private toast: ToastService,
   ) {}
 
-  public setData(list: List, articles: Article[], categories: Category[]): void {
+  public setData(recipe: Recipe, articles: Article[], categories: Category[]): void {
     this.articles = articles;
     this.categories = categories;
-    this.list = list;
+    this.recipe = recipe;
     this.updatetable();
   }
 
@@ -69,17 +65,17 @@ export class ListComponent implements OnInit{
     this.statusService.addedarticle$
       .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe((articleId: string) => {
-        const articleAlreadyPresent = this.list?.articleList.some((articleList: ArticleList) => articleList.articleId === articleId)
+        const articleAlreadyPresent = this.recipe?.articleList.some((articleList: ArticleList) => articleList.articleId === articleId)
         const articleIdIsString = typeof articleId === 'string';
         if (!!articleId && !articleAlreadyPresent && articleIdIsString) {
           const articleList: ArticleList = {
             articleId,
             amount: NUMBERS.N_1,
-            unit: STRING_EMPTY, //TODO: Add unit
+            unit: STRING_EMPTY,
             isActive: true,
           };
-          this.list?.articleList.push(articleList);
-          this.saveList();
+          this.recipe?.articleList.push(articleList);
+          this.saveRecipe();
           this.updatetable();
         }
       });
@@ -95,10 +91,10 @@ export class ListComponent implements OnInit{
   }
 
   handleDeleteList(): void {
-    const literals = this.translate.instant('LISTS.DELETE_LIST_DIALOG');
+    const literals = this.translate.instant('RECIPES.DELETE_RECIPE_DIALOG');
     const dialog: DialogOptions = {
       title: literals.TITLE,
-      message: this.translate.instant('LISTS.DELETE_LIST_DIALOG.CONTENT', { name: stringFrom(this.list?.name) }),
+      message: this.translate.instant('RECIPES.DELETE_RECIPE_DIALOG.CONTENT', { name: stringFrom(this.recipe?.name) }),
       buttons: [
         {
           label: literals.CANCEL,
@@ -107,7 +103,7 @@ export class ListComponent implements OnInit{
         },
         {
           label: literals.DELETE,
-          action: () => this.deleteList(),
+          action: () => this.deleteRecipe(),
           className: BUTTON_CLASS.PRIMARY
         }
       ]
@@ -121,27 +117,6 @@ export class ListComponent implements OnInit{
       data: { articles: this.articles, categories: this.categories },
       prevenCloseOutside: true,
     });
-  }
-
-  handleTransforToReceipt(): void {
-    const literals = this.translate.instant('RECIPES.TRANSFORM_TO_RECIPE');
-    const dialog: DialogOptions = {
-      title: literals.TITLE,
-      message: this.translate.instant('RECIPES.TRANSFORM_TO_RECIPE.CONTENT', { name: stringFrom(this.list?.name) }),
-      buttons: [
-        {
-          label: literals.CANCEL,
-          action: () => this.modalService.close(),
-          className: BUTTON_CLASS.SECONDARY
-        },
-        {
-          label: literals.TRASNFORM,
-          action: () => this.deleteList(),
-          className: BUTTON_CLASS.PRIMARY
-        }
-      ]
-    }
-    this.modalService.easyDialog(dialog);
   }
 
   handleDetail(row: TableRow): void {
@@ -162,42 +137,40 @@ export class ListComponent implements OnInit{
       category: article ? getCategory(article, this.categories) : STRING_EMPTY,
       averagePrice: `${formatPrice(article ? (article.averagePrice * articleList.amount) : NUMBERS.N_0)}`,
       id: articleList.articleId,
-      style: articleList.isActive ? STRING_EMPTY : 'text-decoration: line-through',
     };
-
   }
 
-  handleEditList(): void {
-    this.modalService.open(AddListComponent, {
+  handleEditRecipe(): void {
+    this.modalService.open(AddRecipeComponent, {
       ...DEFAULT_MODAL_OPTIONS,
-      data: { userId: this.user.id, list: this.list },
+      data: { userId: this.user.id, recipe: this.recipe },
       prevenCloseOutside: true,
     });
   }
 
-  private saveList(): void {
-    // Can't save a list if there is not list
-    if (!this.list) {
+  private saveRecipe(): void {
+    // Can't save a recipe if there is not recipe
+    if (!this.recipe) {
       return;
     }
-    this.sortList();
+    this.sortRecipe();
     this.loading.show();
-    this.cartService.putList(this.list)
+    this.cartService.putRecipe(this.recipe)
       .pipe(takeUntilDestroyed(this._destroyRef),
         finalize(() => this.loading.hide()))
       .subscribe({
         next: () => {
           this.statusService.setReloadListsPending(true);
-          this.toast.showToast(TOAST_STATE.SUCCESS, this.translate.instant('TOAST.SAVE_LIST_OK'));
+          this.toast.showToast(TOAST_STATE.SUCCESS, this.translate.instant('TOAST.SAVE_RECIPE_OK'));
         },
-        error: () => this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.SAVE_LIST_KO')),
+        error: () => this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.SAVE_RECIPE_KO')),
       });
   }
 
   handlePdf(): void {
     this.loading.show();
-    const id = this.list?.id || STRING_EMPTY;
-    this.cartService.getListPdf(id)
+    const id = this.recipe?.id || STRING_EMPTY;
+    this.cartService.getRecipePdf(id)
     .pipe(takeUntilDestroyed(this._destroyRef),
         finalize(() => this.loading.hide()))
       .subscribe({
@@ -206,7 +179,7 @@ export class ListComponent implements OnInit{
           const file = new Blob([response], { type: 'application/pdf' });
           this.modalService.open(PdfContainerComponent, {
             ...DEFAULT_MODAL_OPTIONS,
-            data: { file, name: this.list?.name },
+            data: { file, name: this.recipe?.name },
             prevenCloseOutside: true,
           });
         },
@@ -214,29 +187,21 @@ export class ListComponent implements OnInit{
       });
   }
 
-  handleImportReceit(): void {
-    // TODO
-  }
-
   getFormattedPrice(): string {
-    return formatPrice(this.list?.totalPrice || NUMBERS.N_0);
+    return formatPrice(this.recipe?.totalPrice || NUMBERS.N_0);
   }
 
-  private toRecipe(): void {
-    // TODO
-  }
+  private deleteRecipe(): void {
 
-  private deleteList(): void {
-
-    // Can't delete last list
-    if (this.swLastList) {
+    // Can't delete last recipe
+    if (this.swLastRecipe) {
       this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.DELETE_LAST_LIST'));
       return;
     }
 
-    // Delete list
+    // Delete recipe
     this.loading.show();
-    this.cartService.deleteList(stringFrom(this.list?.id))
+    this.cartService.deleteRecipe(stringFrom(this.recipe?.id))
       .pipe(takeUntilDestroyed(this._destroyRef),
         finalize(() => {
           this.loading.hide();
@@ -244,15 +209,15 @@ export class ListComponent implements OnInit{
         }))
       .subscribe({
         next: () => {
-          this.toast.showToast(TOAST_STATE.SUCCESS, this.translate.instant('TOAST.DELETE_LIST_OK'));
+          this.toast.showToast(TOAST_STATE.SUCCESS, this.translate.instant('TOAST.DELETE_RECIPE_OK'));
         },
         // Handle error
         error: (error) => {
           if(error.status !== NUMBERS.N_200){
-            this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.DELETE_LIST_KO'));
+            this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.DELETE_RECIPE_KO'));
             return;
           }
-          this.toast.showToast(TOAST_STATE.SUCCESS, this.translate.instant('TOAST.DELETE_LIST_OK'));
+          this.toast.showToast(TOAST_STATE.SUCCESS, this.translate.instant('TOAST.DELETE_RECIPE_OK'));
         },
       });
   }
@@ -261,13 +226,6 @@ export class ListComponent implements OnInit{
     const literals = this.translate.instant('LISTS.HEADERS');
     return {
       columns: [
-        {
-          key: 'crossOut',
-          label: STRING_EMPTY,
-          type: TableColumnTypeEnum.ACTIONS,
-          action: (row: TableRow) => this.inOutChart(row),
-          actionIcon: IconEmum.CART ,
-        },
         {
           key: 'name',
           label: literals.NAME,
@@ -333,54 +291,41 @@ export class ListComponent implements OnInit{
     };
   }
 
-  private inOutChart(row: TableRow): void {
-    if (!this.list) {
-      return;
-    }
-    row['style'] = row['style'] ? STRING_EMPTY : 'text-decoration: line-through';
-    const articleList = this.list.articleList.find((articleList: ArticleList) => articleList.articleId === row.id);
-    if (articleList) {
-      articleList.isActive = !articleList.isActive;
-      this.saveList();
-      this.updatetable();
-    }
-  }
-
   private alterAmount(row: TableRow, amount: number): void {
-    if (!this.list || amount < NUMBERS.N_1) {
+    if (!this.recipe || amount < NUMBERS.N_1) {
       return;
     }
-    const articleList = this.list.articleList.find((articleList: ArticleList) => articleList.articleId === row.id);
+    const articleList = this.recipe.articleList.find((articleList: ArticleList) => articleList.articleId === row.id);
     if (articleList) {
       articleList.amount = amount > NUMBERS.N_0 ? amount : NUMBERS.N_1;
-      this.saveList();
+      this.saveRecipe();
       this.updatetable();
     }
   }
 
   private removeArticleFromList(row: TableRow): void {
-    if (!this.list) {
+    if (!this.recipe) {
       return;
     }
-    this.list.articleList = this.list.articleList.filter((articleList: ArticleList) => articleList.articleId !== row.id);
+    this.recipe.articleList = this.recipe.articleList.filter((articleList: ArticleList) => articleList.articleId !== row.id);
     this.updatetable();
-    this.saveList();
+    this.saveRecipe();
   }
 
   private updatetable(): void{
-    if (!this.list) {
+    if (!this.recipe) {
       return;
     }
-    this.list.totalPrice = this.getListPrice();
-    this.tableData = this.list.articleList.map((articleList: ArticleList) => this.getTableRow(articleList));
+    this.recipe.totalPrice = this.getRecipePrice();
+    this.tableData = this.recipe.articleList.map((articleList: ArticleList) => this.getTableRow(articleList));
     this.tableConfig = this.getTableConfig();
   }
 
-  private sortList(): void {
-    if (!this.list) {
+  private sortRecipe(): void {
+    if (!this.recipe) {
       return;
     }
-    this.list.articleList = this.list.articleList.sort((a: ArticleList, b: ArticleList) => {
+    this.recipe.articleList = this.recipe.articleList.sort((a: ArticleList, b: ArticleList) => {
       const articleA = this.articles.find((article: Article) => article.id === a.articleId);
       const articleB = this.articles.find((article: Article) => article.id === b.articleId);
       if (articleA && articleB) {
@@ -390,11 +335,11 @@ export class ListComponent implements OnInit{
     });
   }
 
-  private getListPrice(): number {
-    if (!this.list) {
+  private getRecipePrice(): number {
+    if (!this.recipe) {
       return NUMBERS.N_0;
     }
-    return this.list.articleList.reduce((acc: number, articleList: ArticleList) => {
+    return this.recipe.articleList.reduce((acc: number, articleList: ArticleList) => {
       const article = this.articles.find((a: Article) => a.id === articleList.articleId);
       return acc + (article ? (article.averagePrice * articleList.amount) : NUMBERS.N_0);
     }, NUMBERS.N_0);

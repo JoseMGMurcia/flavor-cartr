@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { STRING_EMPTY } from '@shared/constants/string.constants';
 import { API_URLS, getApiUrl } from '@shared/constants/url.constants';
-import { Article, Category, List, Price, TokenUser, User } from '@shared/models/cart.models';
+import { Article, Category, List, Price, Recipe, TokenUser, User } from '@shared/models/cart.models';
 import { stringFrom } from '@shared/utils/string.utils';
 import { Observable } from 'rxjs';
 
@@ -84,6 +84,11 @@ export class CartService {
     return this.http.get<List[]>(url, { headers: this.headers });
   }
 
+  getPublicLists(): Observable<List[]> {
+    const url = getApiUrl(API_URLS.LIST_PUBLIC);
+    return this.http.get<List[]>(url, { headers: this.headers });
+  }
+
   postList(list: List): Observable<List> {
     const url = getApiUrl(API_URLS.LISTS);
     return this.http.post<List>(url, list, { headers: this.headers });
@@ -107,6 +112,48 @@ export class CartService {
   deleteList(id: string): Observable<void> {
     const url = getApiUrl(API_URLS.LISTS_ID, { id });
     return this.http.delete<void>(url, { headers: this.headers });
+  }
+
+  putAddRecipeToList(recipeId: string, list: List): Observable<List> {
+    const url = getApiUrl(API_URLS.LISTS_ADD_RECIPE_TO_LIST, { recipeId });
+    return this.http.put<List>(url, list, { headers: this.headers });
+  }
+
+  //RECIPES
+
+  getRecipes(): Observable<Recipe[]> {
+    const url = getApiUrl(API_URLS.RECIPES);
+    return this.http.get<Recipe[]>(url, { headers: this.headers });
+  }
+
+  postRecipe(recipe: Recipe): Observable<Recipe> {
+    const url = getApiUrl(API_URLS.RECIPES);
+    return this.http.post<Recipe>(url, recipe, { headers: this.headers });
+  }
+
+  getRecipeById(id: string): Observable<Recipe> {
+    const url = getApiUrl(API_URLS.RECIPES_ID, { id });
+    return this.http.get<Recipe>(url, { headers: this.headers });
+  }
+
+  putRecipe(recipe: Recipe): Observable<Recipe> {
+    const url = getApiUrl(API_URLS.RECIPES_ID, { id: recipe.id });
+    return this.http.put<Recipe>(url, recipe, { headers: this.headers });
+  }
+
+  deleteRecipe(id: string): Observable<void> {
+    const url = getApiUrl(API_URLS.RECIPES_ID, { id });
+    return this.http.delete<void>(url, { headers: this.headers });
+  }
+
+  postListToRecipe(recipeId: string, listId: string): Observable<void> {
+    const url = getApiUrl(API_URLS.LIST_TO_RECIPE);
+    return this.http.post<void>(url, { recipeId, listId }, { headers: this.headers });
+  }
+
+  getRecipesByUser(userId: string): Observable<Recipe[]> {
+    const url = getApiUrl(API_URLS.RECIPE_USER, { user: userId });
+    return this.http.get<Recipe[]>(url, { headers: this.headers });
   }
 
   // PRICES
@@ -161,7 +208,12 @@ export class CartService {
   // FILES
 
   getListPdf(id: string): Observable<Blob> {
-    const url = getApiUrl(API_URLS.PDF_ID, { id });
+    const url = getApiUrl(API_URLS.LIST_PDF_ID, { id });
+    return this.http.get(url, { headers: this.headers, responseType: 'blob' });
+  }
+
+  getRecipePdf(id: string): Observable<Blob> {
+    const url = getApiUrl(API_URLS.RECIPE_PDF_ID, { id });
     return this.http.get(url, { headers: this.headers, responseType: 'blob' });
   }
 }

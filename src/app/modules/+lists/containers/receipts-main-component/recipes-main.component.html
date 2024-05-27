@@ -1,0 +1,22 @@
+<div class="recipes-main-component">
+  <div class="recipes-main-component__table">
+    <p class="table-title">{{ "RECIPES.TITLE" | translate }}</p>
+    <div class="u-flex u-flex-space-between u-flex-align-center">
+      <app-select
+        class="u-width-50 margin-bottom"
+        label="{{ 'RECIPES.SELECT_RECIPE' | translate }}"
+        [options]="recipesOptions"
+        (valueChanges)="handleRecipeChange($event)"
+      />
+      <button class="primary-button" (click)="handleNewRecipe()">
+        <img class="icon icon-sm margin-right" src="assets/icons/square-plus-solid2.svg" alt="cart">
+        {{ "RECIPES.ADD_RECIPE" | translate }}
+      </button>
+    </div>
+      <app-recipe
+        #recipe
+        [user]="user"
+        [swLastRecipe]="recipesOptions.length === 1"
+      />
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { Article, Category, List } from "@shared/models/cart.models";
+import { Article, Category, List, Recipe } from "@shared/models/cart.models";
 import { stringFrom } from "./string.utils";
 import { NUMBERS } from "@shared/constants/number.constants";
 import { STRING_EMPTY } from "@shared/constants/string.constants";
@@ -21,4 +21,15 @@ export const getNewList = (translate: TranslateService, userId: string): List =>
   userId,
   creationDate: STRING_EMPTY,
   isPublic: false
+});
+
+export const getNewRecipe = (translate: TranslateService, userId: string): Recipe => ({
+  id: STRING_EMPTY,
+  name: translate.instant('RECIPES.NEW_RECIPE'),
+  articleList: [],
+  totalPrice: NUMBERS.N_0,
+  userId,
+  creationDate: STRING_EMPTY,
+  isPublic: false,
+  description: STRING_EMPTY,
 });

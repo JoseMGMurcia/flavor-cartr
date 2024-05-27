@@ -9,8 +9,8 @@ export const ROUTES = {
     filePath: './modules/+lists/lists.module',
   },
   RECIPES: {
-    path: 'recipes',
-    filePath: './modules/+recipes/recipes.module',
+    path: 'lists/recipes',
+    filePath: './modules/+lists/recipes.component',
   },
   COMUNITY: {
     path: 'comunity',

@@ -1,3 +1,5 @@
+import e from "express";
+
 export interface Category {
   id: string;
   name: string;
@@ -35,13 +37,17 @@ export interface ArticleList {
 }
 
 export interface List {
-  id?: string;
+  id: string;
   name: string;
   articleList: ArticleList[];
   totalPrice: number;
   userId: string;
   creationDate?: string;
-  isPublic: boolean;
+  isPublic?: boolean;
+}
+
+export interface Recipe extends List {
+  description: string;
 }
 
 export interface User {

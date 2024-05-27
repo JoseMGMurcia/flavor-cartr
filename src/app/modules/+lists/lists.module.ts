@@ -8,7 +8,9 @@ import { ListsMainComponent } from "./containers/lists-main-component/lists-main
 import { AddListComponent } from './components/add-list/add-list.component';
 import { AddProductComponentComponent } from './components/add-product-component/add-product-component.component';
 import { PdfContainerComponent } from './components/pdf-container/pdf-container.component';
-import { ArticleDetailComponent } from './components/article-detail/article-detail.component';
+import { RecipesMainComponent } from "./containers/receipts-main-component/recipes-main.component";
+import { AddRecipeComponent } from './components/add-recipe/add-recipe.component';
+import { TransformListToRecipeComponent } from './components/transform-list-to-recipe/transform-list-to-recipe.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { ArticleDetailComponent } from './components/article-detail/article-deta
     AddListComponent,
     AddProductComponentComponent,
     PdfContainerComponent,
-    ArticleDetailComponent,
+    RecipesMainComponent,
+    AddRecipeComponent,
+    TransformListToRecipeComponent
   ],
   imports: [
     CommonModule,
