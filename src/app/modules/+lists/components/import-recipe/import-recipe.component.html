@@ -1,0 +1,21 @@
+<div class="import-recipe-wrapper">
+  <p class="import-recipe-title">{{ "RECIPES.ADD_RECIPE_INGREDIENTS" | translate }}</p>
+  <app-select
+    class="u-width-50 margin-bottom"
+    label="{{ 'RECIPES.SELECT_RECIPE' | translate }}"
+    [options]="recipesOptions"
+    (valueChanges)="handleRecipeChange($event)"
+  />
+  <div class="u-flex u-flex-end u-width-100 button-group">
+    <div class="u-flex">
+      <button class="secondary-button margin-right" (click)="handleCancel()">
+        <img class="icon icon-sm margin-right" src="assets/icons/trash-can-solid.svg" alt="cart">
+        {{ "CANCEL" | translate }}
+      </button>
+      <button class="primary-button" (click)="handleSave()">
+        <img class="icon icon-sm margin-right" src="assets/icons/floppy-disk-solid2.svg" alt="cart">
+        {{ "ADD" | translate }}
+      </button>
+    </div>
+  </div>
+</div>

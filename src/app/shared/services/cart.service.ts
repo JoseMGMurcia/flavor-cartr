@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { QUERY_PARAMS } from '@shared/constants/query-params.constants';
 import { STRING_EMPTY } from '@shared/constants/string.constants';
 import { API_URLS, getApiUrl } from '@shared/constants/url.constants';
 import { Article, Category, List, Price, Recipe, TokenUser, User } from '@shared/models/cart.models';
@@ -146,9 +147,9 @@ export class CartService {
     return this.http.delete<void>(url, { headers: this.headers });
   }
 
-  postListToRecipe(recipeId: string, listId: string): Observable<void> {
-    const url = getApiUrl(API_URLS.LIST_TO_RECIPE);
-    return this.http.post<void>(url, { recipeId, listId }, { headers: this.headers });
+  postListToRecipe( list: List, description: string): Observable<Recipe> {
+    const url = `${getApiUrl(API_URLS.LIST_TO_RECIPE)}?${QUERY_PARAMS.DESCRIPTION}=${description}`;
+    return this.http.post<Recipe>(url, list , { headers: this.headers });
   }
 
   getRecipesByUser(userId: string): Observable<Recipe[]> {

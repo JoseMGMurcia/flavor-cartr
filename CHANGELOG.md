@@ -1,5 +1,12 @@
 # Flavort Chart
 
+## 0.0.6 Recipes
+  - Recipes main component.
+  - Recipe management.
+  - Recipes functionality from Lists Main Component:
+    - Recipe Import.
+    - Transform list to recipe.
+
 ## 0.0.5 Article Management
 
   - Article added to list.

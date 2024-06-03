@@ -1,11 +1,11 @@
 @use '../../../../../assets/scss/custom-colors.scss' as colors;
 
-.list-to-recipe-wraper {
+.import-recipe-wrapper {
   padding: 24px;
   min-height: min-content;
   min-width: 380px;
 
-  .list-to-recipe-text {
+  .import-recipe-title {
     color: darken(colors.$menu-background, 10%);
     font-size: 1.6rem;
     padding: 0 3rem;
@@ -13,7 +13,9 @@
     margin-bottom: 30px;
   }
 
-  form {
-    margin-bottom: 35px;
+  .button-group {
+    margin-top: 15px;
+    border-top: 0.2px solid colors.$menu-background-50;
+    padding-top: 10px;
   }
 }

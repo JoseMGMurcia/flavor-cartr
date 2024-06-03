@@ -20,6 +20,8 @@ import { TOAST_STATE, ToastService } from '@shared/services/toast.service';
 import { formatPrice, getCategory } from '@shared/utils/cart.utils';
 import { stringFrom } from '@shared/utils/string.utils';
 import { finalize } from 'rxjs';
+import { TransformListToRecipeComponent } from '@modules/+lists/components/transform-list-to-recipe/transform-list-to-recipe.component';
+import { ImportRecipeComponent } from '@modules/+lists/components/import-recipe/import-recipe.component';
 
 @Component({
   selector: 'app-list',
@@ -124,24 +126,11 @@ export class ListComponent implements OnInit{
   }
 
   handleTransforToReceipt(): void {
-    const literals = this.translate.instant('RECIPES.TRANSFORM_TO_RECIPE');
-    const dialog: DialogOptions = {
-      title: literals.TITLE,
-      message: this.translate.instant('RECIPES.TRANSFORM_TO_RECIPE.CONTENT', { name: stringFrom(this.list?.name) }),
-      buttons: [
-        {
-          label: literals.CANCEL,
-          action: () => this.modalService.close(),
-          className: BUTTON_CLASS.SECONDARY
-        },
-        {
-          label: literals.TRASNFORM,
-          action: () => this.deleteList(),
-          className: BUTTON_CLASS.PRIMARY
-        }
-      ]
-    }
-    this.modalService.easyDialog(dialog);
+    this.modalService.open(TransformListToRecipeComponent, {
+      ...DEFAULT_MODAL_OPTIONS,
+      data: { list: this.list },
+      prevenCloseOutside: true,
+    });
   }
 
   handleDetail(row: TableRow): void {
@@ -215,15 +204,15 @@ export class ListComponent implements OnInit{
   }
 
   handleImportReceit(): void {
-    // TODO
+    this.modalService.open(ImportRecipeComponent, {
+      ...DEFAULT_MODAL_OPTIONS,
+      data: { userId: this.user.id, list: this.list},
+      prevenCloseOutside: true,
+    });
   }
 
   getFormattedPrice(): string {
     return formatPrice(this.list?.totalPrice || NUMBERS.N_0);
-  }
-
-  private toRecipe(): void {
-    // TODO
   }
 
   private deleteList(): void {

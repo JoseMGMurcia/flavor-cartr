@@ -11,6 +11,7 @@ import { PdfContainerComponent } from './components/pdf-container/pdf-container.
 import { RecipesMainComponent } from "./containers/receipts-main-component/recipes-main.component";
 import { AddRecipeComponent } from './components/add-recipe/add-recipe.component';
 import { TransformListToRecipeComponent } from './components/transform-list-to-recipe/transform-list-to-recipe.component';
+import { ImportRecipeComponent } from './components/import-recipe/import-recipe.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TransformListToRecipeComponent } from './components/transform-list-to-r
     PdfContainerComponent,
     RecipesMainComponent,
     AddRecipeComponent,
-    TransformListToRecipeComponent
+    TransformListToRecipeComponent,
+    ImportRecipeComponent
   ],
   imports: [
     CommonModule,

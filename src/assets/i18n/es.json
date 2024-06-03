@@ -4,6 +4,7 @@
   "CLOSE": "Cerrar",
   "EDIT": "Editar",
   "FILTER": "Filtro",
+  "IMPORT": "Importar",
   "DIMISS": "Descartar",
   "NAME": "Nombre",
   "NEW": "Nuevo",
@@ -101,6 +102,7 @@
   },
   "RECIPES": {
     "ADD_RECIPE": "Añadir receta",
+    "ADD_RECIPE_INGREDIENTS": "Añadir ingredientes de la receta",
     "DELETE_RECIPE": "Eliminar receta",
     "DESCRIPTION": "Descripción",
     "EDIT_RECIPE": "Editar receta",
@@ -137,6 +139,8 @@
     "INVALID_URL": "¡Ups! Parece que la página que buscas no existe."
   },
   "TOAST": {
+    "ADD_RECIPE_ARTICLES": "Artículos de la receta añadidos correctamente.",
+    "ADD_RECIPE_ARTICLES_KO": "Error al añadir los artículos de la receta.",
     "ARTICLE_ALREADY_PRESENT": "El artículo ya está en la lista.",
     "ARTICLES_OR_CATEGORIES": "Error al obtener artículos y categorias.",
     "EDIT_ARTICLE_OK": "Artículo editado correctamente.",
@@ -157,17 +161,24 @@
     "DELETE_RECIPE_OK": "Receta eliminada correctamente.",
     "DELETE_RECIPE_KO": "Error al eliminar la receta.",
     "GET_PDF_KO": "Error al obtener el PDF.",
+    "GET_RECIPES_KO": "Error al obtener las recetas.",
+    "GET_LISTS_KO": "Error al obtener las listas.",
+    "IMPORT_RECIPE_KO": "Error al importar la receta.",
+    "IMPORT_RECIPE_OK": "Receta importada correctamente.",
+    "NO_RECIPES": "No hay recetas disponibles.",
     "PRICES_KO": "Error al obtener los precios.",
     "PRICE_KO": "Error al guardar el precio.",
     "PRICE_OK": "Precio guardado correctamente.",
     "SAVE_LIST_OK": "Lista guardada correctamente.",
     "SAVE_LIST_KO": "Error al guardar la lista.",
     "SAVE_RECIPE_OK": "Receta guardada correctamente.",
-    "": "Error al guardar la receta.",
+    "SAVE_RECIPE_KO": "Error al guardar la receta.",
     "USER": "Error al obtener usuario.",
     "USER_TOKEN": "Error al identificar al usuario en la aplicación.",
     "SAVE_USER_KO": "Error al guardar el usuario.",
-    "SAVE_USER_OK": "Usuario guardado correctamente."
+    "SAVE_USER_OK": "Usuario guardado correctamente.",
+    "TRANSFOR_TO_RECIPE_OK": "Lista convertida en receta correctamente.",
+    "TRANSFOR_TO_RECIPE_KO": "Error al convertir la lista en receta."
   },
   "USER": {
     "ADRESS": "Dirección",
