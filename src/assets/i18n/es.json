@@ -1,5 +1,6 @@
 {
   "ADD": "Añadir",
+  "BACK": "Volver",
   "CANCEL": "Cancelar",
   "CLOSE": "Cerrar",
   "EDIT": "Editar",
@@ -14,7 +15,7 @@
   "TITLE": "Carrito de Sabor",
   "ARTICLE": {
     "ADD_PRICE": "Añadir precio",
-    "CANCEL_ADD_PRICE": "Cancelar añadir precio",
+    "CANCEL_ADD_PRICE": "Cancelar",
     "CANCEL_EDIT": "Cancelar edición",
     "DETAIL": "Detalle del artículo",
     "BRAND": "Marca",
@@ -31,6 +32,16 @@
     "QUANTITY": "Cantidad",
     "URL": "URL de la imagen",
     "SHOP": "Tienda"
+  },
+  "COMUNITY": {
+    "TITLE": "Listas Públicas",
+    "OUR_COMMUNITY": "Nuestra comunidad ha creado una serie de listas públicas que puedes consultar. ¡Anímate a echar un vistazo!",
+    "PUBLIC_MODE": "En la sección de listas públicas puedes interactuar con las listas creadas por otros usuarios, pero los cambios no se guardarán. Si quieres guardar tus propias listas, inicia sesión.",
+    "HEADERS": {
+      "NAME": "Nombre",
+      "TOTAL_PRICE": "Coste total de la lista",
+      "CREATION_DATE": "Fecha de creación"
+    }
   },
   "FOOTER": {
     "ALL_RIGHTS_RESERVED": "© Todos los derechos reservados",
@@ -175,6 +186,8 @@
     "SAVE_RECIPE_KO": "Error al guardar la receta.",
     "USER": "Error al obtener usuario.",
     "USER_TOKEN": "Error al identificar al usuario en la aplicación.",
+    "REMOVE_LAST_CATEGORY": "No puedes eliminar la última categoría de un artículo.",
+    "REMOVE_UNSELECTED_CATEGORY": "No puedes eliminar una categoría que no está seleccionada en el artículo.",
     "SAVE_USER_KO": "Error al guardar el usuario.",
     "SAVE_USER_OK": "Usuario guardado correctamente.",
     "TRANSFOR_TO_RECIPE_OK": "Lista convertida en receta correctamente.",

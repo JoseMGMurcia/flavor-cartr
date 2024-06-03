@@ -28,6 +28,7 @@ export class AddProductComponentComponent extends ModalDataGet implements OnInit
   categoryOptions: CartOption[] = [];
   addingCategory: boolean = false;
   addingArticle: boolean = false;
+  publicMode: boolean = false;
 
   get disableSavingButton(): boolean {
     const categoryKO = (!this.addingCategory && !this.form.get('category')?.value) || (this.addingCategory && !this.form.valid);
@@ -57,6 +58,7 @@ export class AddProductComponentComponent extends ModalDataGet implements OnInit
 
   ngOnInit(): void {
     if (this.data) {
+      this.publicMode = !!this.data['publicMode'];
       this._articles = this.data['articles'] ? [...this.data['articles']] : [];
       this._categories = this.data['categories'] ? [...this.data['categories']] : [];
       if (!this._categories.length ) {

@@ -15,6 +15,12 @@ export const ROUTES = {
   COMUNITY: {
     path: 'comunity',
     filePath: './modules/+comunity/comunity.module',
+
+    DETAIL: {
+      path: 'detail/:id',
+      fullPath: 'comunity/detail',
+      filePath: './modules/+comunity/containers/comunity-detail/comunity-detail.component',
+    },
   },
   USER: {
     path: 'user',

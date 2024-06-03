@@ -13,6 +13,7 @@ import { TableComponent } from './components/table/table.component';
 import { ListComponent } from './components/list/list.component';
 import { ArticleDetailComponent } from './components/article-detail/article-detail.component';
 import { RecipeComponent } from './components/recipe/recipe.component';
+import { PublicListComponent } from './components/public-list/public-list.component';
 
 const components = [
   InputComponent,
@@ -22,6 +23,7 @@ const components = [
   ListComponent,
   RecipeComponent,
   ArticleDetailComponent,
+  PublicListComponent,
 ];
 
 @NgModule({

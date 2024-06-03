@@ -9,7 +9,7 @@ import { Article, Category, List, User } from '@shared/models/cart.models';
 import { ModalService } from '@shared/services/modal.service';
 import { DEFAULT_MODAL_OPTIONS } from '@shared/models/modal.model';
 import { AddListComponent } from '@modules/+lists/components/add-list/add-list.component';
-import { getNewList, getNewRecipe } from '@shared/utils/cart.utils';
+import { getNewList } from '@shared/utils/cart.utils';
 import { SocialService } from '@shared/services/social.service';
 import { TOAST_STATE, ToastService } from '@shared/services/toast.service';
 import { CartOption } from '@shared/components/select/select.component';

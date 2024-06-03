@@ -13,7 +13,7 @@
           />
         </div>
         <div class="u-flex u-flex-space-center u-flex-center u-width-25 margin-left">
-          <button class="secondary-button margin-left" (click)="handleAddCategory()">
+          <button class="secondary-button margin-left" (click)="handleAddCategory()" [disabled]="publicMode">
             <img class="icon icon-sm margin-right" src="assets/icons/square-plus-solid.svg" alt="cart">
             {{ "NEW_FEMALE" | translate }}
           </button>
@@ -49,7 +49,7 @@
           />
         </div>
         <div class="u-flex u-flex-space-center u-flex-center u-width-25">
-          <button class="secondary-button margin-left" (click)="handleAddArticle()">
+          <button class="secondary-button margin-left" (click)="handleAddArticle()" [disabled]="publicMode">
             <img class="icon icon-sm margin-right" src="assets/icons/square-plus-solid.svg" alt="cart">
             {{ "NEW" | translate }}
           </button>

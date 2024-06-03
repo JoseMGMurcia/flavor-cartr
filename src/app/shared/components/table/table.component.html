@@ -10,7 +10,7 @@
             <div class="column-row" [ngClass]="getRowClass(rIndex, cIndex)">
               @if(column.type === tableColumnTypeEnum.ACTIONS) {
                 <div class="action-wrapper">
-                  <img class="icon-action" [src]="'assets/icons/' + column.actionIcon" alt="cart" (click)="doAction(row, column)">
+                  <img class="icon-action" [src]="'assets/icons/' + column.actionIcon" alt="cart" (click)="row['class'] === 'disabled' ? null :doAction(row, column)" [ngClass]="row['class']">
                 </div>
               } @else {
                 <p [ngClass]="column['aling']?.toString() || 'left'" [style]="column.type === tableColumnTypeEnum.TEXT ? row['style'] : ''">
@@ -39,25 +39,25 @@
           class="pagination-button"
           [disabled]="tableConfig.pagination.actualPage === NUMBERS.N_1"
           (click)="changePage(NUMBERS.N_1)">
-            {{ "FIRST" | translate }}
+            <img class="icon-action" src="assets/icons/backward-fast-solid3.svg" alt="first" [ngClass]="{'disabled': tableConfig.pagination.actualPage === NUMBERS.N_1}">
         </button>
         <button
           class="pagination-button"
           [disabled]="tableConfig.pagination.actualPage === NUMBERS.N_1"
           (click)="changePage(tableConfig.pagination.actualPage - NUMBERS.N_1)">
-            {{ "PREVIOUS" | translate }}
+            <img class="icon-action" src="assets/icons/backward-solid3.svg" alt="back" [ngClass]="{'disabled': tableConfig.pagination.actualPage === NUMBERS.N_1}">
         </button>
         <button
           class="pagination-button"
           [disabled]="tableConfig.pagination.actualPage === totalPages"
           (click)="changePage(tableConfig.pagination.actualPage + NUMBERS.N_1)">
-            {{ "NEXT" | translate }}
+          <img class="icon-action" src="assets/icons/forward-solid3.svg" alt="next" [ngClass]="{'disabled': tableConfig.pagination.actualPage === totalPages}">
         </button>
         <button
           class="pagination-button"
           [disabled]="tableConfig.pagination.actualPage === totalPages"
           (click)="changePage(totalPages)">
-            {{ "LAST" | translate }}
+            <img class="icon-action" src="assets/icons/forward-fast-solid3.svg" alt="last" [ngClass]="{'disabled': tableConfig.pagination.actualPage === totalPages}">
         </button>
       </div>
     </div>

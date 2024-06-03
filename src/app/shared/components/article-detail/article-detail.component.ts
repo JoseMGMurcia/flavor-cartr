@@ -37,6 +37,7 @@ export class ArticleDetailComponent extends ModalDataGet implements OnInit{
   edditMode = false;
   addPriceMode = false;
   currentTab = TABS.PRICES;
+  publicMode: boolean = false;
 
   pricesTableData: TableRow[] = [];
   categoriesTableData: TableRow[] = [];
@@ -174,6 +175,7 @@ export class ArticleDetailComponent extends ModalDataGet implements OnInit{
   private fetch(){
     if(!this.data) return;
     this.article = this.data['article'];
+    this.publicMode = !!this.data['publicMode'];
     this.categories = this.data['categories'];
     this.form.patchValue(this.article);
     this.getArticlePrices();
@@ -184,6 +186,7 @@ export class ArticleDetailComponent extends ModalDataGet implements OnInit{
     this.categoriesTableData = this.categories.map(category => ({
       ...category,
       style: this.article.categories?.includes(category.id) ? 'font-weight: bold;' : STRING_EMPTY,
+      class: this.publicMode ? 'disabled' : '',
     }));
     this.categoriesTableConfig = this.getCategoriesTableConfig();
   }
@@ -249,7 +252,19 @@ export class ArticleDetailComponent extends ModalDataGet implements OnInit{
   }
 
   private removeCategory(row: TableRow): void{
-    if(!this.article.categories?.includes(row['id'])) return;
+    // If we are trying to remove the last category, we show a toast and interrupt the process
+    if(this.article.categories?.length === NUMBERS.N_1) {
+      this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.REMOVE_LAST_CATEGORY'));
+      return;
+    };
+
+    // If the category is not in the article, we interrupt the process
+    if(!this.article.categories?.includes(row['id'])) {
+      this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.REMOVE_UNSELECTED_CATEGORY'));
+      return
+    };
+
+
     row['style'] = STRING_EMPTY;
     this.article.categories = this.article.categories?.filter(categoryId => categoryId !== row['id']);
     this.save(this.article);

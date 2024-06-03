@@ -73,9 +73,8 @@ export class MenuComponent implements OnInit{
     this.user = {
       id: user.id,
       email: user.email,
-      name: socialUser.firstName,
-      surname: socialUser.lastName,
-      password: STRING_EMPTY,
+      name: socialUser.name,
+      languaje: user.languaje,
       nickname: user.nickname,
     };
     this.socialService.setUser(this.user);
@@ -90,6 +89,7 @@ export class MenuComponent implements OnInit{
   }
 
   signOut(): void {
+    this.cartService.setToken(STRING_EMPTY);
     this.socialService.signOut(this.authService);
     this.user = undefined as unknown as User;
   }

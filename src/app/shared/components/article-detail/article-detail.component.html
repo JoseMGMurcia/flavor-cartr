@@ -134,7 +134,7 @@
 
   <div class="u-flex u-flex-space-between u-width-100 margin-top">
     @if(currentTab === 1) {
-      <button class="secondary-button margin-right" (click)="handleAddPrice()" [disabled]="addPriceMode">
+      <button class="secondary-button margin-right" (click)="handleAddPrice()" [disabled]="addPriceMode || publicMode">
         <img class="icon icon-sm margin-right" src="assets/icons/square-plus-solid.svg" alt="cart">
         {{ "ARTICLE.ADD_PRICE" | translate }}
       </button>
@@ -147,7 +147,7 @@
         {{ "CLOSE" | translate }}
       </button>
       @if(!edditMode){
-        <button class="primary-button" (click)="handleEdit()">
+        <button class="primary-button" (click)="handleEdit()" [disabled]="publicMode">
           <img class="icon icon-sm margin-right" src="assets/icons/pen-solid2.svg" alt="cart">
           {{ "EDIT" | translate }}
         </button>

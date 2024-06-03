@@ -1,5 +1,11 @@
 # Flavort Chart
 
+## 0.1.0
+  - Public Module.
+  - Public list detail component.
+  - Public Mode.
+  - Table Icons.
+
 ## 0.0.6 Recipes
   - Recipes main component.
   - Recipe management.

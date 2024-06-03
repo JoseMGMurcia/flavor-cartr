@@ -1,0 +1,25 @@
+<div class="list-wrapper">
+  <p class="list-title">{{ list?.name }}</p>
+  <p class="list-warning u-text-justify"><b>{{ "COMUNITY.PUBLIC_MODE" | translate }}</b></p>
+  @if(!!tableData.length){
+    <app-table
+      [tableConfig]="tableConfig"
+      [tableData]="tableData"
+    />
+    <p class="u-width-100 u-text-right total-price">{{ "LISTS.TOTAL_PRICE" | translate: { price: getFormattedPrice() } }}</p>
+  } @else {
+    <p class="list-empty">{{ "LISTS.EMPTY_LIST" | translate }}</p>
+  }
+
+  <div class="button-row">
+    <div></div>
+    <div class="button-group">
+      <button class="primary-button margin-right" (click)="handleAddArticle()">
+        <img class="icon icon-sm margin-right" src="assets/icons/square-plus-solid2.svg" alt="cart">
+        {{ "LISTS.ACTIONS.ADD_ARTICLE" | translate }}
+      </button>
+    </div>
+  </div>
+</div>
+
+

@@ -26,9 +26,12 @@ const routes: Routes = [
   {
     path: ROUTES.LISTS.path,
     loadChildren: () => import('./modules/+lists/lists.module').then(m => m.ListModule),
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
-
+  {
+    path: ROUTES.COMUNITY.path,
+    loadChildren: () => import('./modules/+comunity/comunity.module').then(m => m.ComunityModule),
+  },
   { path: '**', redirectTo: ROUTES.UNKNOW.path }
 ];
 

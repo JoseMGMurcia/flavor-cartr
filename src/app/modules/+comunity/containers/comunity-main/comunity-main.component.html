@@ -1,0 +1,13 @@
+<div class="comunity-wrapper">
+  <div class="comunity__card">
+    <p class="comunity-title">{{ "COMUNITY.TITLE" | translate }}</p>
+    <div class="comunity__table">
+      <p class="comunity-explanation u-text-justify"><b>{{ "COMUNITY.OUR_COMMUNITY" | translate }}</b></p>
+      <app-table
+        [tableConfig]="tableConfig"
+        [tableData]="tableData"
+      />
+    </div>
+
+  </div>
+</div>
