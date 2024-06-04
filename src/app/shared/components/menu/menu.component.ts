@@ -74,10 +74,10 @@ export class MenuComponent implements OnInit{
       id: user.id,
       email: user.email,
       name: socialUser.name,
-      languaje: user.languaje,
+      language: user.language,
       nickname: user.nickname,
     };
-    this.translate.use(user.languaje.toLowerCase());
+    this.translate.use(user.language.toLowerCase());
     this.socialService.setUser(this.user);
   }
 

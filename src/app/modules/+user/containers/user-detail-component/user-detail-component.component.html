@@ -6,8 +6,8 @@
         [control]="form.controls.name"
         label="{{ 'USER.NAME' | translate }}"/>
       <app-select
-        formControlName="languaje"
-        [control]="form.controls.languaje"
+        formControlName="language"
+        [control]="form.controls.language"
         [options]="languageOptions"
         label="{{ 'USER.LANGUAGE' | translate }}"
         (valueChanges)="changeLanguaje($event)"/>

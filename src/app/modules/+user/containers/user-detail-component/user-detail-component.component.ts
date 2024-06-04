@@ -41,7 +41,7 @@ export class UserDetailComponentComponent implements OnInit {
       .subscribe((user: User) => {
         this._user = user;
         this.form.patchValue(user);
-        this._selecteLanguage = user.languaje;
+        this._selecteLanguage = user.language;
       });
   }
 
@@ -51,16 +51,16 @@ export class UserDetailComponentComponent implements OnInit {
 
   editionMode() {
     this.form.controls.nickname.enable();
-    this.form.controls.languaje.enable();
+    this.form.controls.language.enable();
   }
 
   saveUser() {
     if (this.form.controls.nickname.valid) {
       this._user.nickname = this.form.controls.nickname.value!;
-      this._user.languaje = this._selecteLanguage;
+      this._user.language = this._selecteLanguage;
       this.socialService.setUser(this._user);
       this.form.controls.nickname.disable();
-      this.form.controls.languaje.disable();
+      this.form.controls.language.disable();
       this.loadingService.show();
       this.cartService.putUser(this._user)
         .pipe(takeUntilDestroyed(this._destroyRef),
@@ -78,7 +78,7 @@ export class UserDetailComponentComponent implements OnInit {
   private getForm() {
      return new FormGroup({
       name: new FormControl({ value: STRING_EMPTY, disabled: true}, this.getValidators(NUMBERS.N_30)),
-      languaje: new FormControl({ value: STRING_EMPTY, disabled: true}),
+      language: new FormControl({ value: STRING_EMPTY, disabled: true}),
       nickname: new FormControl({ value: STRING_EMPTY, disabled: true}, this.getValidators(NUMBERS.N_20)),
       email: new FormControl({ value: STRING_EMPTY, disabled: true}, this.getValidators(NUMBERS.N_80, true)),
     });

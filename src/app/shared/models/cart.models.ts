@@ -55,7 +55,7 @@ export interface User {
   name: string;
   nickname: string;
   email: string;
-  languaje: string;
+  language: string;
 }
 
 export interface TokenUser {
