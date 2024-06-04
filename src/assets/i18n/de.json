@@ -34,6 +34,8 @@
     "SHOP": "Geschäft"
   },
   "COMUNITY": {
+    "COPY_LIST": "Liste kopieren",
+    "COPY_LIST_MESSAGE": "Wenn Sie fortfahren, wird eine Kopie der Liste zu Ihren privaten Listen hinzugefügt. Sind Sie sicher, dass Sie fortfahren möchten?",
     "TITLE": "Öffentliche Listen",
     "OUR_COMMUNITY": "Unsere Community hat eine Reihe von öffentlichen Listen erstellt, die Sie sich ansehen können. Schauen Sie doch mal rein!",
     "PUBLIC_MODE": "In der öffentlichen Listen-Sektion können Sie mit den von anderen Benutzern erstellten Listen interagieren, aber Ihre Änderungen werden nicht gespeichert. Wenn Sie Ihre eigenen Listen speichern möchten, melden Sie sich bitte an.",
@@ -163,6 +165,8 @@
     "ARTICLES_OR_CATEGORIES": "Fehler beim Abrufen von Artikeln und Kategorien.",
     "EDIT_ARTICLE_OK": "Artikel erfolgreich bearbeitet.",
     "EDIT_ARTICLE_KO": "Fehler beim Bearbeiten des Artikels.",
+    "COPY_LIST_OK": "Liste erfolgreich kopiert.",
+    "COPY_LIST_KO": "Fehler beim Kopieren der Liste.",
     "CREATE_ARTICLE_KO": "Fehler beim Erstellen des Artikels.",
     "CREATE_CATEGORY_KO": "Fehler beim Erstellen der Kategorie.",
     "CREATE_LIST_OK": "Liste erfolgreich erstellt.",

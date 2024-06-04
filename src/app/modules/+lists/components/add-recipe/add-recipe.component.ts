@@ -4,7 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { NUMBERS } from '@shared/constants/number.constants';
 import { STRING_EMPTY } from '@shared/constants/string.constants';
-import { Recipe } from '@shared/models/cart.models';
+import { Recipe, RECIPE_DESCRIPTION_MAX_LENGTH } from '@shared/models/cart.models';
 import { ModalDataGet } from '@shared/models/modal.model';
 import { CartService } from '@shared/services/cart.service';
 import { LoadingService } from '@shared/services/loading.service';
@@ -126,7 +126,7 @@ export class AddRecipeComponent extends ModalDataGet implements OnInit {
   private getForm() {
     return new FormGroup({
      name: new FormControl({ value: STRING_EMPTY, disabled: false}, this.getValidators(NUMBERS.N_100)),
-     description: new FormControl({ value: STRING_EMPTY, disabled: false}, this.getValidators(NUMBERS.N_200)),
+     description: new FormControl({ value: STRING_EMPTY, disabled: false}, this.getValidators(RECIPE_DESCRIPTION_MAX_LENGTH)),
    });
  }
 

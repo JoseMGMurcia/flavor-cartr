@@ -256,20 +256,18 @@ export class ArticleDetailComponent extends ModalDataGet implements OnInit{
     if(this.article.categories?.length === NUMBERS.N_1) {
       this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.REMOVE_LAST_CATEGORY'));
       return;
-    };
+    }
 
     // If the category is not in the article, we interrupt the process
     if(!this.article.categories?.includes(row['id'])) {
       this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.REMOVE_UNSELECTED_CATEGORY'));
       return
-    };
-
+    }
 
     row['style'] = STRING_EMPTY;
     this.article.categories = this.article.categories?.filter(categoryId => categoryId !== row['id']);
     this.save(this.article);
     this.statusService.setReloadListsPending(true);
-
   }
 
   private getCategoriesTableConfig(): TableConfig {

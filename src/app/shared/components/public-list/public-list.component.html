@@ -14,6 +14,10 @@
   <div class="button-row">
     <div></div>
     <div class="button-group">
+      <button class="secondary-button margin-right" (click)="handleCopyList()" [disabled]="!user">
+        <img class="icon icon-sm margin-right" src="assets/icons/Capa 3.png" alt="cart">
+        {{ "COMUNITY.COPY_LIST" | translate }}
+      </button>
       <button class="primary-button margin-right" (click)="handleAddArticle()">
         <img class="icon icon-sm margin-right" src="assets/icons/square-plus-solid2.svg" alt="cart">
         {{ "LISTS.ACTIONS.ADD_ARTICLE" | translate }}

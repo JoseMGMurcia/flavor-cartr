@@ -1,15 +1,11 @@
 import { Component, DestroyRef, inject, OnInit, ViewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 import { PublicListComponent } from '@shared/components/public-list/public-list.component';
 import { ROUTES } from '@shared/constants/routes.constants';
 import { Article, Category, List } from '@shared/models/cart.models';
 import { CartService } from '@shared/services/cart.service';
 import { LoadingService } from '@shared/services/loading.service';
-import { ModalService } from '@shared/services/modal.service';
-import { StatusService } from '@shared/services/status.service';
-import { ToastService } from '@shared/services/toast.service';
 import { catchError, finalize, forkJoin, of } from 'rxjs';
 
 @Component({

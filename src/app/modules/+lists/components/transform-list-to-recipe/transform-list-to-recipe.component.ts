@@ -2,9 +2,8 @@ import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { NUMBERS } from '@shared/constants/number.constants';
 import { STRING_EMPTY } from '@shared/constants/string.constants';
-import { List } from '@shared/models/cart.models';
+import { List, RECIPE_DESCRIPTION_MAX_LENGTH } from '@shared/models/cart.models';
 import { ModalDataGet } from '@shared/models/modal.model';
 import { CartService } from '@shared/services/cart.service';
 import { LoadingService } from '@shared/services/loading.service';
@@ -80,7 +79,7 @@ export class TransformListToRecipeComponent extends ModalDataGet implements OnIn
 
   private getForm() {
     return new FormGroup({
-     description: new FormControl({ value: STRING_EMPTY, disabled: false}, this.getValidators(NUMBERS.N_200)),
+     description: new FormControl({ value: STRING_EMPTY, disabled: false}, this.getValidators(RECIPE_DESCRIPTION_MAX_LENGTH)),
    });
  }
 

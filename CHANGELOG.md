@@ -1,7 +1,8 @@
 # Flavort Chart
 
 ## 0.1.1
-  - Languaje added to user.
+  - Language added to user.
+  - Copy public list functionality.
 
 ## 0.1.0
   - Public Module.

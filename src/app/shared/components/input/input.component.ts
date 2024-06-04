@@ -1,7 +1,7 @@
 import { Component, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { NUMBERS } from '@shared/constants/number.constants';
 import { STRING_EMPTY } from '@shared/constants/string.constants';
+import { RECIPE_DESCRIPTION_MAX_LENGTH } from '@shared/models/cart.models';
 
 @Component({
   selector: 'app-input',
@@ -21,7 +21,7 @@ export class InputComponent implements ControlValueAccessor {
   @Input() public placeholder = STRING_EMPTY;
   @Input() public value = STRING_EMPTY;
   @Input() public area = false;
-  @Input() public maxTexAreaLength = NUMBERS.N_200;
+  @Input() public maxTexAreaLength = RECIPE_DESCRIPTION_MAX_LENGTH;
   @Input({required: true}) public control!: FormControl;
 
   // ControlValueAccessor interface methods

@@ -42,7 +42,7 @@ export class UserDetailComponentComponent implements OnInit {
       .subscribe((user: User) => {
         this._user = user;
         this.form.patchValue(user);
-        this._selecteLanguage = user.language;
+        this._selecteLanguage = user.language ?? this.translate.currentLang;
       });
   }
 

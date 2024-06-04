@@ -85,7 +85,7 @@ export class AddProductComponentComponent extends ModalDataGet implements OnInit
         label: article.name,
       };
     });
-    this._selectedArticleId = !!this.articleOptions.length ? this.articleOptions[NUMBERS.N_0].value : STRING_EMPTY;
+    this._selectedArticleId = this.articleOptions.length ? this.articleOptions[NUMBERS.N_0].value : STRING_EMPTY;
   }
 
   changeArticle(id: string): void {

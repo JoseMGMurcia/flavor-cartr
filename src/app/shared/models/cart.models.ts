@@ -1,4 +1,3 @@
-import e from "express";
 
 export interface Category {
   id: string;
@@ -62,3 +61,5 @@ export interface TokenUser {
   id: string;
   email: string;
 }
+
+export const RECIPE_DESCRIPTION_MAX_LENGTH = 4000;

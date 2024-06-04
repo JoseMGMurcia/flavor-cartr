@@ -1,24 +1,24 @@
 import { Component, DestroyRef, inject, Input, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AddProductComponentComponent } from '@modules/+lists/components/add-product-component/add-product-component.component';
-import { TransformListToRecipeComponent } from '@modules/+lists/components/transform-list-to-recipe/transform-list-to-recipe.component';
 import { TranslateService } from '@ngx-translate/core';
 import { STRING_EMPTY } from '@shared/constants/string.constants';
-import { Article, ArticleList, Category, List } from '@shared/models/cart.models';
-import { DEFAULT_MODAL_OPTIONS } from '@shared/models/modal.model';
+import { Article, ArticleList, Category, List, User } from '@shared/models/cart.models';
+import { DEFAULT_MODAL_OPTIONS, DialogOptions } from '@shared/models/modal.model';
 import { TableAlingEnum, TableColumnTypeEnum, TableConfig, TableRow } from '@shared/models/table.models';
 import { CartService } from '@shared/services/cart.service';
 import { LoadingService } from '@shared/services/loading.service';
 import { ModalService } from '@shared/services/modal.service';
 import { StatusService } from '@shared/services/status.service';
 import { TOAST_STATE, ToastService } from '@shared/services/toast.service';
-import { stringFrom } from '@shared/utils/string.utils';
 import { ArticleDetailComponent } from '../article-detail/article-detail.component';
 import { NUMBERS } from '@shared/constants/number.constants';
 import { IconEmum } from '@shared/models/icon.models';
 import { formatPrice, getCategory } from '@shared/utils/cart.utils';
 import { finalize } from 'rxjs';
-import { PdfContainerComponent } from '@modules/+lists/components/pdf-container/pdf-container.component';
+import { BUTTON_CLASS } from '@shared/constants/style.constants';
+import { SocialService } from '@shared/services/social.service';
+import { stringFrom } from '@shared/utils/string.utils';
 
 @Component({
   selector: 'app-public-list',
@@ -33,19 +33,19 @@ export class PublicListComponent implements OnInit {
 
   tableData: TableRow[] = [];
   tableConfig: TableConfig = this.getTableConfig();
+  user: User | undefined = undefined;
 
   private _destroyRef = inject(DestroyRef);
 
   constructor(
     private translate: TranslateService,
     private statusService: StatusService,
+    private socialService: SocialService,
     private modalService: ModalService,
+    private loading: LoadingService,
+    private service: CartService,
+    private toast: ToastService,
   ) {}
-
-  ngOnInit(): void {
-    this.assingEvents();
-    this.updatetable();
-  }
 
   public updatetable(): void{
     if (!this.list) {
@@ -54,6 +54,37 @@ export class PublicListComponent implements OnInit {
     this.list.totalPrice = this.getListPrice();
     this.tableData = this.list.articleList.map((articleList: ArticleList) => this.getTableRow(articleList));
     this.tableConfig = this.getTableConfig();
+  }
+
+  ngOnInit(): void {
+    this.fetch();
+  }
+
+  fetch(): void {
+    this.assingEvents();
+    this.updatetable();
+    this.getUser();
+  }
+
+  handleCopyList(): void {
+    const literals = this.translate.instant('COMUNITY');
+    const dialog: DialogOptions = {
+      title: literals.COPY_LIST,
+      message: literals.COPY_LIST_MESSAGE,
+      buttons: [
+        {
+          label: this.translate.instant('CANCEL'),
+          action: () => this.modalService.close(),
+          className: BUTTON_CLASS.SECONDARY
+        },
+        {
+          label: literals.COPY_LIST,
+          action: () => this.copyList(),
+          className: BUTTON_CLASS.PRIMARY
+        }
+      ]
+    }
+    this.modalService.easyDialog(dialog);
   }
 
   assingEvents(): void {
@@ -112,7 +143,6 @@ export class PublicListComponent implements OnInit {
       id: articleList.articleId,
       style: articleList.isActive ? STRING_EMPTY : 'text-decoration: line-through',
     };
-
   }
 
   getFormattedPrice(): string {
@@ -193,6 +223,26 @@ export class PublicListComponent implements OnInit {
         totalItems: this.tableData.length,
       }
     };
+  }
+
+  private copyList(): void {
+    if (!this.list || !this.user) return;
+        this.loading.show();
+    this.service.postList({...this.list, userId: stringFrom(this.user?.id), isPublic: false})
+      .pipe(takeUntilDestroyed(this._destroyRef),
+        finalize(() => this.loading.hide()))
+      .subscribe({
+        next: () => {
+          this.toast.showToast(TOAST_STATE.SUCCESS, this.translate.instant('TOAST.COPY_LIST_OK'));
+        },
+        error: () => this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.COPY_LIST_KO')),
+      });
+  }
+
+  private getUser(): void {
+    this.socialService.user$
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe((user: User) => this.user = user);
   }
 
   private inOutChart(row: TableRow): void {

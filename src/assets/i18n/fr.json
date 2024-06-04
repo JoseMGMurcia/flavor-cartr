@@ -34,6 +34,8 @@
     "SHOP": "Magasin"
   },
   "COMUNITY": {
+    "COPY_LIST": "Copier la liste",
+    "COPY_LIST_MESSAGE": "Si vous continuez, une copie de la liste sera ajoutée à vos listes privées. Êtes-vous sûr de vouloir continuer ?",
     "TITLE": "Listes publiques",
     "OUR_COMMUNITY": "Notre communauté a créé une série de listes publiques que vous pouvez consulter. N'hésitez pas à jeter un coup d'œil !",
     "PUBLIC_MODE": "Dans la section des listes publiques, vous pouvez interagir avec les listes créées par d'autres utilisateurs, mais les modifications ne seront pas enregistrées. Si vous souhaitez enregistrer vos propres listes, veuillez vous connecter.",
@@ -163,6 +165,8 @@
     "ARTICLES_OR_CATEGORIES": "Erreur lors de la récupération des articles et des catégories.",
     "EDIT_ARTICLE_OK": "Article modifié avec succès.",
     "EDIT_ARTICLE_KO": "Erreur lors de la modification de l'article.",
+    "COPY_LIST_OK": "Liste copiée avec succès.",
+    "COPY_LIST_KO": "Erreur lors de la copie de la liste.",
     "CREATE_ARTICLE_KO": "Erreur lors de la création de l'article.",
     "CREATE_CATEGORY_KO": "Erreur lors de la création de la catégorie.",
     "CREATE_LIST_OK": "Liste créée avec succès.",

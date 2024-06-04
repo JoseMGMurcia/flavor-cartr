@@ -33,7 +33,9 @@
     "URL": "Image URL",
     "SHOP": "Shop"
   },
-    "COMUNITY": {
+  "COMUNITY": {
+    "COPY_LIST": "Copy list",
+    "COPY_LIST_MESSAGE": "If you continue, a copy of the list will be added to your private lists. Are you sure you want to continue?",
     "TITLE": "Public Lists",
     "OUR_COMMUNITY": "Our community has created a series of public lists that you can check out. Feel free to take a look!",
     "PUBLIC_MODE": "In the public lists section, you can interact with lists created by other users, but the changes will not be saved. If you want to save your own lists, please log in.",
@@ -163,6 +165,8 @@
     "ARTICLES_OR_CATEGORIES": "Error getting articles and categories.",
     "EDIT_ARTICLE_OK": "Article edited successfully.",
     "EDIT_ARTICLE_KO": "Error editing the article.",
+    "COPY_LIST_OK": "List copied successfully.",
+    "COPY_LIST_KO": "Error copying the list.",
     "CREATE_ARTICLE_KO": "Error creating the article.",
     "CREATE_CATEGORY_KO": "Error creating the category.",
     "CREATE_LIST_OK": "List created successfully.",

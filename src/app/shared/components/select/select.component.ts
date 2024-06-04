@@ -24,6 +24,9 @@ export class SelectComponent implements ControlValueAccessor{
 
   writeValue(obj: any): void {
     this.value = obj;
+    this.options.forEach((option) => {
+      option.selected = option.value === obj;
+    });
   }
 
   registerOnChange(fn: any): void {
@@ -38,13 +41,13 @@ export class SelectComponent implements ControlValueAccessor{
   propagateTouched = () => {};
 
   onchange(event: any): void {
+
     this.valueChanges.emit(event.target.value);
   }
 
   getLabelClass(): string {
     return this.label === STRING_EMPTY ? 'no-label' : STRING_EMPTY;
   }
-
 }
 
 export class CartOption {
