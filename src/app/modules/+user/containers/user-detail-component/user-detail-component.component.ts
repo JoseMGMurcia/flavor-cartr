@@ -13,6 +13,7 @@ import { finalize } from 'rxjs';
 import { TOAST_STATE, ToastService } from '@shared/services/toast.service';
 import { CartOption } from '@shared/components/select/select.component';
 import { getLanguageOption } from '@shared/utils/cart.utils';
+import { LanguageEnum } from '@shared/models/language.models';
 
 @Component({
   selector: 'app-user-detail-component',
@@ -57,7 +58,7 @@ export class UserDetailComponentComponent implements OnInit {
   saveUser() {
     if (this.form.controls.nickname.valid) {
       this._user.nickname = this.form.controls.nickname.value!;
-      this._user.language = this._selecteLanguage;
+      this._user.language = this._selecteLanguage ?? LanguageEnum.SPANISH;
       this.socialService.setUser(this._user);
       this.form.controls.nickname.disable();
       this.form.controls.language.disable();

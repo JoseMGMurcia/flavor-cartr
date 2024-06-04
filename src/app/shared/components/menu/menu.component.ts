@@ -2,7 +2,7 @@ import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ROUTES } from '@shared/constants/routes.constants';
-import { DEFAULT_MODAL_OPTIONS, ModalOptions } from '@shared/models/modal.model';
+import { DEFAULT_MODAL_OPTIONS } from '@shared/models/modal.model';
 import { ModalService } from '@shared/services/modal.service';
 import { SocialService } from '@shared/services/social.service';
 import { LoggerComponent } from '../logger/logger.component';
@@ -14,7 +14,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { finalize } from 'rxjs';
 import { TOAST_STATE, ToastService } from '@shared/services/toast.service';
 import { TranslateService } from '@ngx-translate/core';
-import { NUMBERS } from '@shared/constants/number.constants';
 
 @Component({
   selector: 'app-menu',
@@ -77,7 +76,7 @@ export class MenuComponent implements OnInit{
       language: user.language,
       nickname: user.nickname,
     };
-    this.translate.use(user.language.toLowerCase());
+    this.translate.use(user.language?.toLowerCase() ?? this.translate.getDefaultLang());
     this.socialService.setUser(this.user);
   }
 
