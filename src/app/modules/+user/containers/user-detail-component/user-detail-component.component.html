@@ -5,10 +5,12 @@
         formControlName="name"
         [control]="form.controls.name"
         label="{{ 'USER.NAME' | translate }}"/>
-      <app-input
-        formControlName="surname"
-        [control]="form.controls.surname"
-        label="{{ 'USER.SURNAME' | translate }}"/>
+      <app-select
+        formControlName="languaje"
+        [control]="form.controls.languaje"
+        [options]="languageOptions"
+        label="{{ 'USER.LANGUAGE' | translate }}"
+        (valueChanges)="changeLanguaje($event)"/>
     </div>
     <div>
       <app-input
@@ -17,27 +19,27 @@
         [control]="form.controls.email"
         label="{{ 'USER.MAIL' | translate }}"/>
     </div>
-    <div>
-      <app-input
-        class="u-width-75"
-        formControlName="nickname"
-        [control]="form.controls.nickname"
-        label="{{ 'USER.NICKNAME' | translate }}"/>
-
+    <div class="u-width-100">
+      <div class="u-width-66">
+        <app-input
+          formControlName="nickname"
+          [control]="form.controls.nickname"
+          label="{{ 'USER.NICKNAME' | translate }}"/>
+      </div>
+      <div class="u-width-33 u-flex u-flex-space-center u-flex-center">
         @if (form.controls.nickname.disabled) {
-          <button
-            (click)="editionMode()"
-            class="primary-button">
-              <img class="menu-icon" src="assets/icons/pen-solid2.svg" alt="cart">
+          <button class="primary-button" (click)="editionMode()">
+            <img class="icon icon-sm margin-right but-img" src="assets/icons/pen-solid2.svg" alt="edit">
+            {{ "EDIT" | translate }}
           </button>
         } @else {
-          <button
-            (click)="saveNickname()"
-            class="primary-button"
-            [disabled]="form.controls.nickname.invalid">
-              <img class="menu-icon" src="assets/icons/floppy-disk-solid2.svg" alt="user">
+          <button class="primary-button" (click)="saveUser()">
+            <img class="icon icon-sm margin-right but-img" src="assets/icons/floppy-disk-solid2.svg" alt="save">
+            {{ "SAVE" | translate }}
           </button>
         }
+      </div>
     </div>
+
   </form>
 </div>

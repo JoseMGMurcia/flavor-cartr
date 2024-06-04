@@ -56,6 +56,13 @@
   "HOME": {
     "EXPLANATION": "Carrito de Sabor es una aplicación web que te permite buscar recetas de cocina y añadir los ingredientes necesarios a una lista de la compra. Además, podrás compartir tus recetas con el resto de la comunidad."
   },
+  "LANGUAGES": {
+    "EN": "Inglés",
+    "ES": "Español",
+    "DE": "Alemán",
+    "FR": "Francés",
+    "IT": "Italiano"
+  },
   "LISTS": {
     "ADD_ARTICLE": "Añadir artículo",
     "ADD_LIST": "Añadir lista",
@@ -196,8 +203,8 @@
   "USER": {
     "ADRESS": "Dirección",
     "NAME": "Nombre",
+    "LANGUAGE": "Idioma",
     "PHONE": "Teléfono",
-    "SURNAME": "Apellidos",
     "MAIL": "Correo",
     "NICKNAME": "Nombre de usuario",
     "ZIP": "Código Postal"

@@ -18,6 +18,7 @@ import { StatusService } from '@shared/services/status.service';
 import { ListComponent } from '@shared/components/list/list.component';
 import { RecipeComponent } from '@shared/components/recipe/recipe.component';
 import { AddRecipeComponent } from '@modules/+lists/components/add-recipe/add-recipe.component';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-recipes-main-component',
@@ -34,6 +35,7 @@ export class RecipesMainComponent implements OnInit{
   articles: Article[] = [];
   categories: Category[] = [];
   user!: User;
+  control = new FormControl();
 
   private _recipes: Recipe[] = [];
   private _destroyRef = inject(DestroyRef);

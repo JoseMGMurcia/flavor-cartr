@@ -4,6 +4,7 @@
     class="u-width-50 margin-bottom"
     label="{{ 'RECIPES.SELECT_RECIPE' | translate }}"
     [options]="recipesOptions"
+    [control]="control"
     (valueChanges)="handleRecipeChange($event)"
   />
   <div class="u-flex u-flex-end u-width-100 button-group">

@@ -37,18 +37,10 @@
       *:not(:last-child) {
         margin-right: 8px;
       }
-
-      button {
-        margin-top: 8px;
-      }
     }
-  }
-
-  img{
-    padding: 12px 0;
-    height: 20px;
-    width: 20px;
   }
 }
 
-
+.but-img {
+  margin-right: 8px !important;
+}

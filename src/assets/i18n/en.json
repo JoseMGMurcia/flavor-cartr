@@ -1,4 +1,219 @@
 {
-  "TITLE": "Flavor Cartr"
-
+  "ADD": "Add",
+  "BACK": "Back",
+  "CANCEL": "Cancel",
+  "CLOSE": "Close",
+  "EDIT": "Edit",
+  "FILTER": "Filter",
+  "IMPORT": "Import",
+  "DIMISS": "Dimiss",
+  "NAME": "Name",
+  "NEW": "New",
+  "NEW_FEMALE": "New",
+  "REMOVE": "Remove",
+  "SAVE": "Save",
+  "TITLE": "Flavor Cartr",
+  "ARTICLE": {
+    "ADD_PRICE": "Add price",
+    "CANCEL_ADD_PRICE": "Cancel",
+    "CANCEL_EDIT": "Cancel edit",
+    "DETAIL": "Article detail",
+    "BRAND": "Brand",
+    "CATEGORY": "Category",
+    "CATEGORIES": "Categories",
+    "CURRENCY": "Currency",
+    "DATE": "Date",
+    "DESCRIPTION": "Description",
+    "NAME": "Name",
+    "NEW_PRICE": "New price",
+    "PRICE": "Price",
+    "PRICES": "Prices",
+    "AVERAGE_PRICE": "Average price",
+    "QUANTITY": "Quantity",
+    "URL": "Image URL",
+    "SHOP": "Shop"
+  },
+    "COMUNITY": {
+    "TITLE": "Public Lists",
+    "OUR_COMMUNITY": "Our community has created a series of public lists that you can check out. Feel free to take a look!",
+    "PUBLIC_MODE": "In the public lists section, you can interact with lists created by other users, but the changes will not be saved. If you want to save your own lists, please log in.",
+    "HEADERS": {
+      "NAME": "Name",
+      "TOTAL_PRICE": "Total List Cost",
+      "CREATION_DATE": "Creation Date"
+    }
+  },
+    "FOOTER": {
+    "ALL_RIGHTS_RESERVED": "© All rights reserved",
+    "AUTHOR1": "Estíbaliz Echeverría Aristu",
+    "AUTHOR2": "María Giménez Requiel",
+    "AUTHOR3": "José Martínez García",
+    "HIGH_SCHOOL": "IES José Planes"
+  },
+    "FORBIDDEN": {
+    "UNAUTHORIZED": "You must log in to access this page."
+  },
+    "HOME": {
+    "EXPLANATION": "Flavor Cart is a web application that allows you to search for recipes and add the necessary ingredients to a shopping list. You can also share your recipes with the community."
+  },
+    "LANGUAGES": {
+    "EN": "English",
+    "ES": "Spanish",
+    "DE": "German",
+    "FR": "French",
+    "IT": "Italian"
+  },
+    "LISTS": {
+    "ADD_ARTICLE": "Add Article",
+    "ADD_LIST": "Add List",
+    "BRAND": "Brand",
+    "EDIT_LIST": "Edit List",
+    "EMPTY_LIST": "There are no items in the list yet.",
+    "NEW_ARTICLE": "New Article",
+    "NEW_CATEGORY": "New Category",
+    "NEW_DESCRIPTION": "Article Description",
+    "NEW_LIST": "New List",
+    "NEW_URL": "Image URL",
+    "PUBLIC_LIST": "Public List",
+    "PRIVATE_LIST": "Private List",
+    "RECICE": "Recipe",
+    "SAVE_LIST": "Save List",
+    "SELECT_ARTICLE": "Select an article",
+    "SELECT_CATEGORY": "Select a category",
+    "SELECT_LIST": "Select a list",
+    "TITLE": "My Lists",
+    "TOTAL_PRICE": "Total Price: {{price}}",
+    "ACTIONS": {
+      "ADD_ARTICLE": "Add Article",
+      "DELETE_LIST": "Delete List",
+      "TRANSFOR_TO_RECIPE": "Convert to Recipe",
+      "EDIT_LIST_DETAILS": "Edit List",
+      "PDF": "Download PDF",
+      "RECEIPTS": "Add Recipe"
+    },
+    "DELETE_LIST_DIALOG": {
+      "TITLE": "Delete List",
+      "CONTENT": "Are you sure you want to delete the list: {{name}}?. If you proceed, the changes cannot be undone.",
+      "CANCEL": "Cancel",
+      "DELETE": "Delete"
+    },
+    "HEADERS": {
+      "AVERAGE_PRICE": "Average Price",
+      "NAME": "Name",
+      "BRAND": "Brand",
+      "CATEGORY": "Category",
+      "DESCRIPTION": "Description",
+      "QUANTITY": "Quantity",
+      "PRICE": "Price",
+      "DETAIL": "Detail",
+      "DELETE": "Delete"
+    }
+  },
+    "LOGGER": {
+    "LOG_IN": "Log In"
+  },
+    "MENU": {
+    "LISTS": "Lists",
+    "RECIPES": "Recipes",
+    "COMUNITY": "Community",
+    "LOG_IN": "Log In"
+  },
+    "RECIPES": {
+    "ADD_RECIPE": "Add Recipe",
+    "ADD_RECIPE_INGREDIENTS": "Add Recipe Ingredients",
+    "DELETE_RECIPE": "Delete Recipe",
+    "DESCRIPTION": "Description",
+    "EDIT_RECIPE": "Edit Recipe",
+    "EMPTY_RECIPE": "There are no items in the recipe yet.",
+    "NEW_RECIPE": "New Recipe",
+    "SAVE_RECIPE": "Save Recipe",
+    "SELECT_RECIPE": "Select a recipe",
+    "TITLE": "My Recipes",
+    "ACTIONS": {
+      "DELETE_RECIPE": "Delete Recipe",
+      "EDIT_RECIPE_DETAILS": "Edit Recipe",
+      "PDF": "Download PDF",
+      "RECEIPTS": "Add Recipe"
+    },
+    "DELETE_RECIPE_DIALOG": {
+      "TITLE": "Delete Recipe",
+      "CONTENT": "Are you sure you want to delete the recipe: {{name}}?. If you proceed, the changes cannot be undone.",
+      "CANCEL": "Cancel",
+      "DELETE": "Delete"
+    },
+    "TRANSFORM_TO_RECIPE": {
+      "TITLE": "Convert to Recipe",
+      "CONTENT": "Are you sure you want to convert the list: {{name}} into a recipe?. If you proceed, the changes cannot be undone.",
+      "CANCEL": "Cancel",
+      "TRASNFORM": "Transform"
+    }
+  },
+    "TABLE": {
+    "NO_DATA": "No data to display",
+    "PAGE_OF": "Page {{page}} of {{pages}}",
+    "PAGE_SIZE": "Page Size:"
+  },
+    "UNKNOW": {
+    "INVALID_URL": "Oops! It seems like the page you are looking for does not exist."
+  },
+    "TOAST": {
+    "ADD_RECIPE_ARTICLES": "Recipe articles added successfully.",
+    "ADD_RECIPE_ARTICLES_KO": "Error adding recipe articles.",
+    "ARTICLE_ALREADY_PRESENT": "The article is already in the list.",
+    "ARTICLES_OR_CATEGORIES": "Error getting articles and categories.",
+    "EDIT_ARTICLE_OK": "Article edited successfully.",
+    "EDIT_ARTICLE_KO": "Error editing the article.",
+    "CREATE_ARTICLE_KO": "Error creating the article.",
+    "CREATE_CATEGORY_KO": "Error creating the category.",
+    "CREATE_LIST_OK": "List created successfully.",
+    "CREATE_LIST_KO": "Error creating the list.",
+    "CREATE_RECIPE_OK": "Recipe created successfully.",
+    "CREATE_RECIPE_KO": "Error creating the recipe.",
+    "DELETE_LAST_LIST": "You cannot delete your last list.",
+    "EDIT_LIST_OK": "List edited successfully.",
+    "EDIT_LIST_KO": "Error editing the list.",
+    "EDIT_RECIPE_OK": "Recipe edited successfully.",
+    "EDIT_RECIPE_KO": "Error editing the recipe.",
+    "DELETE_LIST_OK": "List deleted successfully.",
+    "DELETE_LIST_KO": "Error deleting the list.",
+    "DELETE_RECIPE_OK": "Recipe deleted successfully.",
+    "DELETE_RECIPE_KO": "Error deleting the recipe.",
+    "GET_PDF_KO": "Error getting the PDF.",
+    "GET_RECIPES_KO": "Error getting the recipes.",
+    "GET_LISTS_KO": "Error getting the lists.",
+    "IMPORT_RECIPE_KO": "Error importing the recipe.",
+    "IMPORT_RECIPE_OK": "Recipe imported successfully.",
+    "NO_RECIPES": "No recipes available.",
+    "PRICES_KO": "Error getting the prices.",
+    "PRICE_KO": "Error saving the price.",
+    "PRICE_OK": "Price saved successfully.",
+    "SAVE_LIST_OK": "List saved successfully.",
+    "SAVE_LIST_KO": "Error saving the list.",
+    "SAVE_RECIPE_OK": "Recipe saved successfully.",
+    "SAVE_RECIPE_KO": "Error saving the recipe.",
+    "USER": "Error getting the user.",
+    "USER_TOKEN": "Error identifying the user in the application.",
+    "REMOVE_LAST_CATEGORY": "You cannot remove the last category of an article.",
+    "REMOVE_UNSELECTED_CATEGORY": "You cannot remove a category that is not selected in the article.",
+    "SAVE_USER_KO": "Error saving the user.",
+    "SAVE_USER_OK": "User saved successfully.",
+    "TRANSFOR_TO_RECIPE_OK": "List converted to recipe successfully.",
+    "TRANSFOR_TO_RECIPE_KO": "Error converting the list to recipe."
+  },
+    "USER": {
+    "ADRESS": "Address",
+    "NAME": "Name",
+    "LANGUAGE": "Language",
+    "PHONE": "Phone",
+    "MAIL": "Email",
+    "NICKNAME": "Username",
+    "ZIP": "Zip Code"
+  },
+    "VALIDATORS": {
+    "REQUIRED": "* Field is required.",
+    "IS_MAIL": "* Invalid email.",
+    "MAX_LENGTH": "* Maximum allowed characters: {{max}}.",
+    "MIN_LENGTH": "* Minimum allowed characters: {{min}}.",
+    "SPECIAL_CHARS": "* Special characters are not allowed."
+  }
 }

@@ -3,6 +3,8 @@ import { stringFrom } from "./string.utils";
 import { NUMBERS } from "@shared/constants/number.constants";
 import { STRING_EMPTY } from "@shared/constants/string.constants";
 import { TranslateService } from "@ngx-translate/core";
+import { CartOption } from "@shared/components/select/select.component";
+import { LanguageEnum } from "@shared/models/language.models";
 
 export const getCategory = (article: Article, categories: Category[]): string => {
   const category = categories.find((c: Category) => article.categories?.includes(c.id));
@@ -33,3 +35,14 @@ export const getNewRecipe = (translate: TranslateService, userId: string): Recip
   isPublic: false,
   description: STRING_EMPTY,
 });
+
+export const getLanguageOption = (translate: TranslateService): CartOption[] => {
+  const literals = translate.instant('LANGUAGES');
+  return [
+    { value: LanguageEnum.SPANISH, label: literals.ES },
+    { value: LanguageEnum.ENGLISH, label: literals.EN },
+    { value: LanguageEnum.FRENCH, label: literals.FR},
+    { value: LanguageEnum.GERMAN, label: literals.DE},
+    { value: LanguageEnum.ITALIAN, label: literals.IT},
+  ];
+};

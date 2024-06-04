@@ -1,0 +1,219 @@
+{
+  "ADD": "Hinzufügen",
+  "BACK": "Zurück",
+  "CANCEL": "Abbrechen",
+  "CLOSE": "Schließen",
+  "EDIT": "Bearbeiten",
+  "FILTER": "Filtern",
+  "IMPORT": "Importieren",
+  "DIMISS": "Verwerfen",
+  "NAME": "Name",
+  "NEW": "Neu",
+  "NEW_FEMALE": "Neue",
+  "REMOVE": "Entfernen",
+  "SAVE": "Speichern",
+  "TITLE": "Carrito de Sabor",
+  "ARTICLE": {
+    "ADD_PRICE": "Preis hinzufügen",
+    "CANCEL_ADD_PRICE": "Abbrechen",
+    "CANCEL_EDIT": "Bearbeitung abbrechen",
+    "DETAIL": "Artikeldetail",
+    "BRAND": "Marke",
+    "CATEGORY": "Kategorie",
+    "CATEGORIES": "Kategorien",
+    "CURRENCY": "Währung",
+    "DATE": "Datum",
+    "DESCRIPTION": "Beschreibung",
+    "NAME": "Name",
+    "NEW_PRICE": "Neuer Preis",
+    "PRICE": "Preis",
+    "PRICES": "Preise",
+    "AVERAGE_PRICE": "Durchschnittspreis",
+    "QUANTITY": "Menge",
+    "URL": "Bild-URL",
+    "SHOP": "Geschäft"
+  },
+  "COMUNITY": {
+    "TITLE": "Öffentliche Listen",
+    "OUR_COMMUNITY": "Unsere Community hat eine Reihe von öffentlichen Listen erstellt, die Sie sich ansehen können. Schauen Sie doch mal rein!",
+    "PUBLIC_MODE": "In der öffentlichen Listen-Sektion können Sie mit den von anderen Benutzern erstellten Listen interagieren, aber Ihre Änderungen werden nicht gespeichert. Wenn Sie Ihre eigenen Listen speichern möchten, melden Sie sich bitte an.",
+    "HEADERS": {
+      "NAME": "Name",
+      "TOTAL_PRICE": "Gesamtpreis der Liste",
+      "CREATION_DATE": "Erstellungsdatum"
+    }
+  },
+  "FOOTER": {
+    "ALL_RIGHTS_RESERVED": "© Alle Rechte vorbehalten",
+    "AUTHOR1": "Estíbaliz Echeverría Aristu",
+    "AUTHOR2": "María Giménez Requiel",
+    "AUTHOR3": "José Martínez García",
+    "HIGH_SCHOOL": "IES José Planes"
+  },
+  "FORBIDDEN": {
+    "UNAUTHORIZED": "Sie müssen sich anmelden, um auf diese Seite zugreifen zu können."
+  },
+  "HOME": {
+    "EXPLANATION": "Carrito de Sabor ist eine Webanwendung, mit der Sie nach Kochrezepten suchen und die benötigten Zutaten zu einer Einkaufsliste hinzufügen können. Außerdem können Sie Ihre Rezepte mit der Community teilen."
+  },
+  "LANGUAGES": {
+    "EN": "Englisch",
+    "ES": "Spanisch",
+    "DE": "Deutsch",
+    "FR": "Französisch",
+    "IT": "Italienisch"
+  },
+  "LISTS": {
+    "ADD_ARTICLE": "Artikel hinzufügen",
+    "ADD_LIST": "Liste hinzufügen",
+    "BRAND": "Marke",
+    "EDIT_LIST": "Liste bearbeiten",
+    "EMPTY_LIST": "Es sind noch keine Artikel in der Liste.",
+    "NEW_ARTICLE": "Neuer Artikel",
+    "NEW_CATEGORY": "Neue Kategorie",
+    "NEW_DESCRIPTION": "Artikelbeschreibung",
+    "NEW_LIST": "Neue Liste",
+    "NEW_URL": "Bild-URL",
+    "PUBLIC_LIST": "Öffentliche Liste",
+    "PRIVATE_LIST": "Private Liste",
+    "RECICE": "Rezept",
+    "SAVE_LIST": "Liste speichern",
+    "SELECT_ARTICLE": "Artikel auswählen",
+    "SELECT_CATEGORY": "Kategorie auswählen",
+    "SELECT_LIST": "Liste auswählen",
+    "TITLE": "Meine Listen",
+    "TOTAL_PRICE": "Gesamtpreis: {{price}}",
+    "ACTIONS": {
+      "ADD_ARTICLE": "Artikel hinzufügen",
+      "DELETE_LIST": "Liste löschen",
+      "TRANSFOR_TO_RECIPE": "In Rezept umwandeln",
+      "EDIT_LIST_DETAILS": "Liste bearbeiten",
+      "PDF": "PDF herunterladen",
+      "RECEIPTS": "Rezept hinzufügen"
+    },
+    "DELETE_LIST_DIALOG": {
+      "TITLE": "Liste löschen",
+      "CONTENT": "Sind Sie sicher, dass Sie die Liste: {{name}} löschen möchten? Wenn Sie fortfahren, können Sie die Änderungen nicht rückgängig machen.",
+      "CANCEL": "Abbrechen",
+      "DELETE": "Löschen"
+    },
+    "HEADERS": {
+      "AVERAGE_PRICE": "Durchschnittspreis",
+      "NAME": "Name",
+      "BRAND": "Marke",
+      "CATEGORY": "Kategorie",
+      "DESCRIPTION": "Beschreibung",
+      "QUANTITY": "Menge",
+      "PRICE": "Preis",
+      "DETAIL": "Detail",
+      "DELETE": "Löschen"
+    }
+  },
+  "LOGGER": {
+    "LOG_IN": "Anmelden"
+  },
+  "MENU": {
+    "LISTS": "Listen",
+    "RECIPES": "Rezepte",
+    "COMUNITY": "Community",
+    "LOG_IN": "Anmelden"
+  },
+  "RECIPES": {
+    "ADD_RECIPE": "Rezept hinzufügen",
+    "ADD_RECIPE_INGREDIENTS": "Zutaten zum Rezept hinzufügen",
+    "DELETE_RECIPE": "Rezept löschen",
+    "DESCRIPTION": "Beschreibung",
+    "EDIT_RECIPE": "Rezept bearbeiten",
+    "EMPTY_RECIPE": "Es sind noch keine Artikel im Rezept.",
+    "NEW_RECIPE": "Neues Rezept",
+    "SAVE_RECIPE": "Rezept speichern",
+    "SELECT_RECIPE": "Rezept auswählen",
+    "TITLE": "Meine Rezepte",
+    "ACTIONS": {
+      "DELETE_RECIPE": "Rezept löschen",
+      "EDIT_RECIPE_DETAILS": "Rezept bearbeiten",
+      "PDF": "PDF herunterladen",
+      "RECEIPTS": "Rezept hinzufügen"
+    },
+    "DELETE_RECIPE_DIALOG": {
+      "TITLE": "Rezept löschen",
+      "CONTENT": "Sind Sie sicher, dass Sie das Rezept: {{name}} löschen möchten? Wenn Sie fortfahren, können Sie die Änderungen nicht rückgängig machen.",
+      "CANCEL": "Abbrechen",
+      "DELETE": "Löschen"
+    },
+    "TRANSFORM_TO_RECIPE": {
+      "TITLE": "In Rezept umwandeln",
+      "CONTENT": "Sind Sie sicher, dass Sie die Liste: {{name}} in ein Rezept umwandeln möchten? Wenn Sie fortfahren, können Sie die Änderungen nicht rückgängig machen.",
+      "CANCEL": "Abbrechen",
+      "TRASNFORM": "Umwandeln"
+    }
+  },
+  "TABLE": {
+    "NO_DATA": "Keine Daten vorhanden",
+    "PAGE_OF": "Seite {{page}} von {{pages}}",
+    "PAGE_SIZE": "Seitengröße:"
+  },
+  "UNKNOW": {
+    "INVALID_URL": "Ups! Die von Ihnen gesuchte Seite existiert nicht."
+  },
+  "TOAST": {
+    "ADD_RECIPE_ARTICLES": "Rezeptartikel erfolgreich hinzugefügt.",
+    "ADD_RECIPE_ARTICLES_KO": "Fehler beim Hinzufügen der Rezeptartikel.",
+    "ARTICLE_ALREADY_PRESENT": "Der Artikel ist bereits in der Liste vorhanden.",
+    "ARTICLES_OR_CATEGORIES": "Fehler beim Abrufen von Artikeln und Kategorien.",
+    "EDIT_ARTICLE_OK": "Artikel erfolgreich bearbeitet.",
+    "EDIT_ARTICLE_KO": "Fehler beim Bearbeiten des Artikels.",
+    "CREATE_ARTICLE_KO": "Fehler beim Erstellen des Artikels.",
+    "CREATE_CATEGORY_KO": "Fehler beim Erstellen der Kategorie.",
+    "CREATE_LIST_OK": "Liste erfolgreich erstellt.",
+    "CREATE_LIST_KO": "Fehler beim Erstellen der Liste.",
+    "CREATE_RECIPE_OK": "Rezept erfolgreich erstellt.",
+    "CREATE_RECIPE_KO": "Fehler beim Erstellen des Rezepts.",
+    "DELETE_LAST_LIST": "Sie können die letzte Liste nicht löschen.",
+    "EDIT_LIST_OK": "Liste erfolgreich bearbeitet.",
+    "EDIT_LIST_KO": "Fehler beim Bearbeiten der Liste.",
+    "EDIT_RECIPE_OK": "Rezept erfolgreich bearbeitet.",
+    "EDIT_RECIPE_KO": "Fehler beim Bearbeiten des Rezepts.",
+    "DELETE_LIST_OK": "Liste erfolgreich gelöscht.",
+    "DELETE_LIST_KO": "Fehler beim Löschen der Liste.",
+    "DELETE_RECIPE_OK": "Rezept erfolgreich gelöscht.",
+    "DELETE_RECIPE_KO": "Fehler beim Löschen des Rezepts.",
+    "GET_PDF_KO": "Fehler beim Abrufen des PDFs.",
+    "GET_RECIPES_KO": "Fehler beim Abrufen der Rezepte.",
+    "GET_LISTS_KO": "Fehler beim Abrufen der Listen.",
+    "IMPORT_RECIPE_KO": "Fehler beim Importieren des Rezepts.",
+    "IMPORT_RECIPE_OK": "Rezept erfolgreich importiert.",
+    "NO_RECIPES": "Keine Rezepte verfügbar.",
+    "PRICES_KO": "Fehler beim Abrufen der Preise.",
+    "PRICE_KO": "Fehler beim Speichern des Preises.",
+    "PRICE_OK": "Preis erfolgreich gespeichert.",
+    "SAVE_LIST_OK": "Liste erfolgreich gespeichert.",
+    "SAVE_LIST_KO": "Fehler beim Speichern der Liste.",
+    "SAVE_RECIPE_OK": "Rezept erfolgreich gespeichert.",
+    "SAVE_RECIPE_KO": "Fehler beim Speichern des Rezepts.",
+    "USER": "Fehler beim Abrufen des Benutzers.",
+    "USER_TOKEN": "Fehler beim Identifizieren des Benutzers in der Anwendung.",
+    "REMOVE_LAST_CATEGORY": "Sie können die letzte Kategorie eines Artikels nicht entfernen.",
+    "REMOVE_UNSELECTED_CATEGORY": "Sie können keine nicht ausgewählte Kategorie entfernen.",
+    "SAVE_USER_KO": "Fehler beim Speichern des Benutzers.",
+    "SAVE_USER_OK": "Benutzer erfolgreich gespeichert.",
+    "TRANSFOR_TO_RECIPE_OK": "Liste erfolgreich in Rezept umgewandelt.",
+    "TRANSFOR_TO_RECIPE_KO": "Fehler beim Umwandeln der Liste in ein Rezept."
+  },
+  "USER": {
+    "ADRESS": "Adresse",
+    "NAME": "Name",
+    "LANGUAGE": "Sprache",
+    "PHONE": "Telefon",
+    "MAIL": "E-Mail",
+    "NICKNAME": "Benutzername",
+    "ZIP": "Postleitzahl"
+  },
+  "VALIDATORS": {
+    "REQUIRED": "* Feld erforderlich.",
+    "IS_MAIL": "* Ungültige E-Mail.",
+    "MAX_LENGTH": "* Maximal zulässige Zeichen: {{max}}.",
+    "MIN_LENGTH": "* Mindestens erforderliche Zeichen: {{min}}.",
+    "SPECIAL_CHARS": "* Ungültige Zeichen vorhanden."
+  }
+}

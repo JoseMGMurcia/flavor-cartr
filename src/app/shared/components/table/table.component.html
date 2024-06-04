@@ -29,6 +29,7 @@
           <p class="margin-left u-text-wide">{{ "TABLE.PAGE_SIZE" | translate }}</p>
           <app-select
             [options]="sizeOptions"
+            [control]="control"
             (valueChanges)="changePageSize($event)"
           />
         </div>

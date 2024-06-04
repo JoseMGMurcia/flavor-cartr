@@ -1,0 +1,219 @@
+{
+  "ADD": "Aggiungi",
+  "BACK": "Indietro",
+  "CANCEL": "Annulla",
+  "CLOSE": "Chiudi",
+  "EDIT": "Modifica",
+  "FILTER": "Filtro",
+  "IMPORT": "Importa",
+  "DIMISS": "Ignora",
+  "NAME": "Nome",
+  "NEW": "Nuovo",
+  "NEW_FEMALE": "Nuova",
+  "REMOVE": "Rimuovi",
+  "SAVE": "Salva",
+  "TITLE": "Carrello del Gusto",
+  "ARTICLE": {
+    "ADD_PRICE": "Aggiungi prezzo",
+    "CANCEL_ADD_PRICE": "Annulla",
+    "CANCEL_EDIT": "Annulla modifica",
+    "DETAIL": "Dettaglio articolo",
+    "BRAND": "Marca",
+    "CATEGORY": "Categoria",
+    "CATEGORIES": "Categorie",
+    "CURRENCY": "Valuta",
+    "DATE": "Data",
+    "DESCRIPTION": "Descrizione",
+    "NAME": "Nome",
+    "NEW_PRICE": "Nuovo prezzo",
+    "PRICE": "Prezzo",
+    "PRICES": "Prezzi",
+    "AVERAGE_PRICE": "Prezzo medio",
+    "QUANTITY": "Quantità",
+    "URL": "URL immagine",
+    "SHOP": "Negozio"
+  },
+  "COMUNITY": {
+    "TITLE": "Liste Pubbliche",
+    "OUR_COMMUNITY": "La nostra comunità ha creato una serie di liste pubbliche che puoi consultare. Dai un'occhiata!",
+    "PUBLIC_MODE": "Nella sezione delle liste pubbliche puoi interagire con le liste create dagli altri utenti, ma le modifiche non verranno salvate. Se vuoi salvare le tue liste personali, effettua l'accesso.",
+    "HEADERS": {
+      "NAME": "Nome",
+      "TOTAL_PRICE": "Costo totale della lista",
+      "CREATION_DATE": "Data di creazione"
+    }
+  },
+  "FOOTER": {
+    "ALL_RIGHTS_RESERVED": "© Tutti i diritti riservati",
+    "AUTHOR1": "Estíbaliz Echeverría Aristu",
+    "AUTHOR2": "María Giménez Requiel",
+    "AUTHOR3": "José Martínez García",
+    "HIGH_SCHOOL": "IES José Planes"
+  },
+  "FORBIDDEN": {
+    "UNAUTHORIZED": "Devi effettuare l'accesso per accedere a questa pagina."
+  },
+  "HOME": {
+    "EXPLANATION": "Carrello del Gusto è un'applicazione web che ti permette di cercare ricette di cucina e aggiungere gli ingredienti necessari a una lista della spesa. Inoltre, puoi condividere le tue ricette con il resto della comunità."
+  },
+  "LANGUAGES": {
+    "EN": "Inglese",
+    "ES": "Spagnolo",
+    "DE": "Tedesco",
+    "FR": "Francese",
+    "IT": "Italiano"
+  },
+  "LISTS": {
+    "ADD_ARTICLE": "Aggiungi articolo",
+    "ADD_LIST": "Aggiungi lista",
+    "BRAND": "Marca",
+    "EDIT_LIST": "Modifica lista",
+    "EMPTY_LIST": "Non ci sono ancora articoli nella lista.",
+    "NEW_ARTICLE": "Nuovo articolo",
+    "NEW_CATEGORY": "Nuova categoria",
+    "NEW_DESCRIPTION": "Descrizione articolo",
+    "NEW_LIST": "Nuova lista",
+    "NEW_URL": "URL immagine",
+    "PUBLIC_LIST": "Lista pubblica",
+    "PRIVATE_LIST": "Lista privata",
+    "RECICE": "Ricetta",
+    "SAVE_LIST": "Salva lista",
+    "SELECT_ARTICLE": "Seleziona un articolo",
+    "SELECT_CATEGORY": "Seleziona una categoria",
+    "SELECT_LIST": "Seleziona una lista",
+    "TITLE": "Le Mie Liste",
+    "TOTAL_PRICE": "Prezzo totale: {{price}}",
+    "ACTIONS": {
+      "ADD_ARTICLE": "Aggiungi articolo",
+      "DELETE_LIST": "Elimina lista",
+      "TRANSFOR_TO_RECIPE": "Converti in ricetta",
+      "EDIT_LIST_DETAILS": "Modifica lista",
+      "PDF": "Scarica PDF",
+      "RECEIPTS": "Aggiungi ricetta"
+    },
+    "DELETE_LIST_DIALOG": {
+      "TITLE": "Elimina lista",
+      "CONTENT": "Sei sicuro di voler eliminare la lista: {{name}}?. Se procedi, non potrai annullare le modifiche.",
+      "CANCEL": "Annulla",
+      "DELETE": "Elimina"
+    },
+    "HEADERS": {
+      "AVERAGE_PRICE": "Prezzo medio",
+      "NAME": "Nome",
+      "BRAND": "Marca",
+      "CATEGORY": "Categoria",
+      "DESCRIPTION": "Descrizione",
+      "QUANTITY": "Quantità",
+      "PRICE": "Prezzo",
+      "DETAIL": "Dettaglio",
+      "DELETE": "Elimina"
+    }
+  },
+  "LOGGER": {
+    "LOG_IN": "Accedi"
+  },
+  "MENU": {
+    "LISTS": "Liste",
+    "RECIPES": "Ricette",
+    "COMUNITY": "Comunità",
+    "LOG_IN": "Accedi"
+  },
+  "RECIPES": {
+    "ADD_RECIPE": "Aggiungi ricetta",
+    "ADD_RECIPE_INGREDIENTS": "Aggiungi ingredienti della ricetta",
+    "DELETE_RECIPE": "Elimina ricetta",
+    "DESCRIPTION": "Descrizione",
+    "EDIT_RECIPE": "Modifica ricetta",
+    "EMPTY_RECIPE": "Non ci sono ancora articoli nella ricetta.",
+    "NEW_RECIPE": "Nuova ricetta",
+    "SAVE_RECIPE": "Salva ricetta",
+    "SELECT_RECIPE": "Seleziona una ricetta",
+    "TITLE": "Le Mie Ricette",
+    "ACTIONS": {
+      "DELETE_RECIPE": "Elimina ricetta",
+      "EDIT_RECIPE_DETAILS": "Modifica ricetta",
+      "PDF": "Scarica PDF",
+      "RECEIPTS": "Aggiungi ricetta"
+    },
+    "DELETE_RECIPE_DIALOG": {
+      "TITLE": "Elimina ricetta",
+      "CONTENT": "Sei sicuro di voler eliminare la ricetta: {{name}}?. Se procedi, non potrai annullare le modifiche.",
+      "CANCEL": "Annulla",
+      "DELETE": "Elimina"
+    },
+    "TRANSFORM_TO_RECIPE": {
+      "TITLE": "Converti in ricetta",
+      "CONTENT": "Sei sicuro di voler convertire la lista: {{name}} in una ricetta?. Se procedi, non potrai annullare le modifiche.",
+      "CANCEL": "Annulla",
+      "TRASNFORM": "Trasforma"
+    }
+  },
+  "TABLE": {
+    "NO_DATA": "Nessun dato da mostrare",
+    "PAGE_OF": "Pagina {{page}} di {{pages}}",
+    "PAGE_SIZE": "Dimensione pagina:"
+  },
+  "UNKNOW": {
+    "INVALID_URL": "Ops! Sembra che la pagina che stai cercando non esista."
+  },
+  "TOAST": {
+    "ADD_RECIPE_ARTICLES": "Articoli della ricetta aggiunti correttamente.",
+    "ADD_RECIPE_ARTICLES_KO": "Errore durante l'aggiunta degli articoli della ricetta.",
+    "ARTICLE_ALREADY_PRESENT": "L'articolo è già presente nella lista.",
+    "ARTICLES_OR_CATEGORIES": "Errore durante il recupero degli articoli e delle categorie.",
+    "EDIT_ARTICLE_OK": "Articolo modificato correttamente.",
+    "EDIT_ARTICLE_KO": "Errore durante la modifica dell'articolo.",
+    "CREATE_ARTICLE_KO": "Errore durante la creazione dell'articolo.",
+    "CREATE_CATEGORY_KO": "Errore durante la creazione della categoria.",
+    "CREATE_LIST_OK": "Lista creata correttamente.",
+    "CREATE_LIST_KO": "Errore durante la creazione della lista.",
+    "CREATE_RECIPE_OK": "Ricetta creata correttamente.",
+    "CREATE_RECIPE_KO": "Errore durante la creazione della ricetta.",
+    "DELETE_LAST_LIST": "Non puoi eliminare l'ultima lista che possiedi.",
+    "EDIT_LIST_OK": "Lista modificata correttamente.",
+    "EDIT_LIST_KO": "Errore durante la modifica della lista.",
+    "EDIT_RECIPE_OK": "Ricetta modificata correttamente.",
+    "EDIT_RECIPE_KO": "Errore durante la modifica della ricetta.",
+    "DELETE_LIST_OK": "Lista eliminata correttamente.",
+    "DELETE_LIST_KO": "Errore durante l'eliminazione della lista.",
+    "DELETE_RECIPE_OK": "Ricetta eliminata correttamente.",
+    "DELETE_RECIPE_KO": "Errore durante l'eliminazione della ricetta.",
+    "GET_PDF_KO": "Errore durante il recupero del PDF.",
+    "GET_RECIPES_KO": "Errore durante il recupero delle ricette.",
+    "GET_LISTS_KO": "Errore durante il recupero delle liste.",
+    "IMPORT_RECIPE_KO": "Errore durante l'importazione della ricetta.",
+    "IMPORT_RECIPE_OK": "Ricetta importata correttamente.",
+    "NO_RECIPES": "Nessuna ricetta disponibile.",
+    "PRICES_KO": "Errore durante il recupero dei prezzi.",
+    "PRICE_KO": "Errore durante il salvataggio del prezzo.",
+    "PRICE_OK": "Prezzo salvato correttamente.",
+    "SAVE_LIST_OK": "Lista salvata correttamente.",
+    "SAVE_LIST_KO": "Errore durante il salvataggio della lista.",
+    "SAVE_RECIPE_OK": "Ricetta salvata correttamente.",
+    "SAVE_RECIPE_KO": "Errore durante il salvataggio della ricetta.",
+    "USER": "Errore durante il recupero dell'utente.",
+    "USER_TOKEN": "Errore durante l'identificazione dell'utente nell'applicazione.",
+    "REMOVE_LAST_CATEGORY": "Non puoi eliminare l'ultima categoria di un articolo.",
+    "REMOVE_UNSELECTED_CATEGORY": "Non puoi eliminare una categoria non selezionata nell'articolo.",
+    "SAVE_USER_KO": "Errore durante il salvataggio dell'utente.",
+    "SAVE_USER_OK": "Utente salvato correttamente.",
+    "TRANSFOR_TO_RECIPE_OK": "Lista convertita in ricetta correttamente.",
+    "TRANSFOR_TO_RECIPE_KO": "Errore durante la conversione della lista in ricetta."
+  },
+  "USER": {
+    "ADRESS": "Indirizzo",
+    "NAME": "Nome",
+    "LANGUAGE": "Lingua",
+    "PHONE": "Telefono",
+    "MAIL": "Email",
+    "NICKNAME": "Nome utente",
+    "ZIP": "CAP"
+  },
+  "VALIDATORS": {
+    "REQUIRED": "* Campo obbligatorio.",
+    "IS_MAIL": "* Email non valida.",
+    "MAX_LENGTH": "* Massimo caratteri consentiti: {{max}}.",
+    "MIN_LENGTH": "* Minimo caratteri consentiti: {{min}}.",
+    "SPECIAL_CHARS": "* Sono presenti caratteri non consentiti."
+  }
+}

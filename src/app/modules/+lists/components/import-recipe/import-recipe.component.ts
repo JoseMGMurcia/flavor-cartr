@@ -1,5 +1,6 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { CartOption } from '@shared/components/select/select.component';
 import { NUMBERS } from '@shared/constants/number.constants';
@@ -21,6 +22,7 @@ import { finalize } from 'rxjs';
 export class ImportRecipeComponent extends ModalDataGet implements OnInit {
   recipesOptions: CartOption[] = [];
   selectedRecipeId = STRING_EMPTY;
+  control = new FormControl();
 
   private _destroyRef = inject(DestroyRef);
   private _userId = STRING_EMPTY;

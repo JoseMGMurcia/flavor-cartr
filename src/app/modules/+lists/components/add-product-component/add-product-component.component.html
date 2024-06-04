@@ -9,6 +9,7 @@
             class="u-width-100 margin-bottom"
             label="{{ 'LISTS.SELECT_CATEGORY' | translate }}"
             [options]="categoryOptions"
+            [control]="form.controls.category"
             (valueChanges)="changeCategory($event)"
           />
         </div>
@@ -45,6 +46,7 @@
             class="u-width-75 margin-bottom"
             label="{{ 'LISTS.SELECT_ARTICLE' | translate }}"
             [options]="articleOptions"
+            [control]="control"
             (valueChanges)="changeArticle($event)"
           />
         </div>

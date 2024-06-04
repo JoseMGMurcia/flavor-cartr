@@ -11,6 +11,8 @@ import { SocialService } from '@shared/services/social.service';
 import { LoadingService } from '@shared/services/loading.service';
 import { finalize } from 'rxjs';
 import { TOAST_STATE, ToastService } from '@shared/services/toast.service';
+import { CartOption } from '@shared/components/select/select.component';
+import { getLanguageOption } from '@shared/utils/cart.utils';
 
 @Component({
   selector: 'app-user-detail-component',
@@ -20,8 +22,10 @@ import { TOAST_STATE, ToastService } from '@shared/services/toast.service';
 export class UserDetailComponentComponent implements OnInit {
 
   form = this.getForm();
+  languageOptions: CartOption[] = getLanguageOption(this.translate);
   private _destroyRef = inject(DestroyRef);
   private _user!: User;
+  private _selecteLanguage!: string;
 
   constructor(
     private cartService: CartService,
@@ -29,7 +33,6 @@ export class UserDetailComponentComponent implements OnInit {
     private socialService: SocialService,
     private loadingService: LoadingService,
     private toast: ToastService,
-
   ) { }
 
   ngOnInit() {
@@ -38,36 +41,44 @@ export class UserDetailComponentComponent implements OnInit {
       .subscribe((user: User) => {
         this._user = user;
         this.form.patchValue(user);
+        this._selecteLanguage = user.languaje;
       });
+  }
+
+  changeLanguaje(language: string) {
+    this._selecteLanguage = language;
   }
 
   editionMode() {
     this.form.controls.nickname.enable();
+    this.form.controls.languaje.enable();
   }
 
-  saveNickname() {
+  saveUser() {
     if (this.form.controls.nickname.valid) {
       this._user.nickname = this.form.controls.nickname.value!;
+      this._user.languaje = this._selecteLanguage;
       this.socialService.setUser(this._user);
       this.form.controls.nickname.disable();
-
+      this.form.controls.languaje.disable();
       this.loadingService.show();
       this.cartService.putUser(this._user)
         .pipe(takeUntilDestroyed(this._destroyRef),
           finalize(() => this.loadingService.hide()))
         .subscribe({
-          next: () => this.toast.showToast(TOAST_STATE.SUCCESS, this.translate.instant('TOAST.SAVE_USER_OK')),
+          next: () =>{
+            this.toast.showToast(TOAST_STATE.SUCCESS, this.translate.instant('TOAST.SAVE_USER_OK'));
+            this.translate.use(this._selecteLanguage);
+          },
           error: () => this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.SAVE_USER_KO')),
-
         });
-
     }
   }
 
   private getForm() {
      return new FormGroup({
       name: new FormControl({ value: STRING_EMPTY, disabled: true}, this.getValidators(NUMBERS.N_30)),
-      surname: new FormControl({ value: STRING_EMPTY, disabled: true}, this.getValidators(NUMBERS.N_30)),
+      languaje: new FormControl({ value: STRING_EMPTY, disabled: true}),
       nickname: new FormControl({ value: STRING_EMPTY, disabled: true}, this.getValidators(NUMBERS.N_20)),
       email: new FormControl({ value: STRING_EMPTY, disabled: true}, this.getValidators(NUMBERS.N_80, true)),
     });

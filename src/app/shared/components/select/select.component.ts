@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { STRING_EMPTY } from '@shared/constants/string.constants';
 
 @Component({
@@ -18,6 +18,7 @@ export class SelectComponent implements ControlValueAccessor{
   @Input() public label = STRING_EMPTY;
   @Input() public options: CartOption[] = [];
   @Input() public value = STRING_EMPTY;
+  @Input({required: true}) public control!: FormControl;
 
   @Output() public valueChanges = new EventEmitter<string>();
 

@@ -29,6 +29,7 @@ export class AddProductComponentComponent extends ModalDataGet implements OnInit
   addingCategory: boolean = false;
   addingArticle: boolean = false;
   publicMode: boolean = false;
+  control = new FormControl();
 
   get disableSavingButton(): boolean {
     const categoryKO = (!this.addingCategory && !this.form.get('category')?.value) || (this.addingCategory && !this.form.valid);

@@ -16,6 +16,7 @@ import { CartOption } from '@shared/components/select/select.component';
 import { stringFrom } from '@shared/utils/string.utils';
 import { StatusService } from '@shared/services/status.service';
 import { ListComponent } from '@shared/components/list/list.component';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-lists-main-component',
@@ -32,6 +33,7 @@ export class ListsMainComponent implements OnInit{
   articles: Article[] = [];
   categories: Category[] = [];
   user!: User;
+  control = new FormControl();
 
   private _lists: List[] = [];
   private _destroyRef = inject(DestroyRef);

@@ -1,0 +1,219 @@
+{
+  "ADD": "Ajouter",
+  "BACK": "Retour",
+  "CANCEL": "Annuler",
+  "CLOSE": "Fermer",
+  "EDIT": "Modifier",
+  "FILTER": "Filtrer",
+  "IMPORT": "Importer",
+  "DIMISS": "Rejeter",
+  "NAME": "Nom",
+  "NEW": "Nouveau",
+  "NEW_FEMALE": "Nouvelle",
+  "REMOVE": "Supprimer",
+  "SAVE": "Enregistrer",
+  "TITLE": "Panier de saveurs",
+  "ARTICLE": {
+    "ADD_PRICE": "Ajouter un prix",
+    "CANCEL_ADD_PRICE": "Annuler",
+    "CANCEL_EDIT": "Annuler l'édition",
+    "DETAIL": "Détail de l'article",
+    "BRAND": "Marque",
+    "CATEGORY": "Catégorie",
+    "CATEGORIES": "Catégories",
+    "CURRENCY": "Devise",
+    "DATE": "Date",
+    "DESCRIPTION": "Description",
+    "NAME": "Nom",
+    "NEW_PRICE": "Nouveau prix",
+    "PRICE": "Prix",
+    "PRICES": "Prix",
+    "AVERAGE_PRICE": "Prix moyen",
+    "QUANTITY": "Quantité",
+    "URL": "URL de l'image",
+    "SHOP": "Magasin"
+  },
+  "COMUNITY": {
+    "TITLE": "Listes publiques",
+    "OUR_COMMUNITY": "Notre communauté a créé une série de listes publiques que vous pouvez consulter. N'hésitez pas à jeter un coup d'œil !",
+    "PUBLIC_MODE": "Dans la section des listes publiques, vous pouvez interagir avec les listes créées par d'autres utilisateurs, mais les modifications ne seront pas enregistrées. Si vous souhaitez enregistrer vos propres listes, veuillez vous connecter.",
+    "HEADERS": {
+      "NAME": "Nom",
+      "TOTAL_PRICE": "Coût total de la liste",
+      "CREATION_DATE": "Date de création"
+    }
+  },
+  "FOOTER": {
+    "ALL_RIGHTS_RESERVED": "© Tous droits réservés",
+    "AUTHOR1": "Estíbaliz Echeverría Aristu",
+    "AUTHOR2": "María Giménez Requiel",
+    "AUTHOR3": "José Martínez García",
+    "HIGH_SCHOOL": "IES José Planes"
+  },
+  "FORBIDDEN": {
+    "UNAUTHORIZED": "Vous devez vous connecter pour accéder à cette page."
+  },
+  "HOME": {
+    "EXPLANATION": "Le Panier de saveurs est une application web qui vous permet de rechercher des recettes de cuisine et d'ajouter les ingrédients nécessaires à une liste de courses. De plus, vous pouvez partager vos recettes avec le reste de la communauté."
+  },
+  "LANGUAGES": {
+    "EN": "Anglais",
+    "ES": "Espagnol",
+    "DE": "Allemand",
+    "FR": "Français",
+    "IT": "Italien"
+  },
+  "LISTS": {
+    "ADD_ARTICLE": "Ajouter un article",
+    "ADD_LIST": "Ajouter une liste",
+    "BRAND": "Marque",
+    "EDIT_LIST": "Modifier la liste",
+    "EMPTY_LIST": "Il n'y a pas encore d'articles dans la liste.",
+    "NEW_ARTICLE": "Nouvel article",
+    "NEW_CATEGORY": "Nouvelle catégorie",
+    "NEW_DESCRIPTION": "Description de l'article",
+    "NEW_LIST": "Nouvelle liste",
+    "NEW_URL": "URL de l'image",
+    "PUBLIC_LIST": "Liste publique",
+    "PRIVATE_LIST": "Liste privée",
+    "RECICE": "Recette",
+    "SAVE_LIST": "Enregistrer la liste",
+    "SELECT_ARTICLE": "Sélectionnez un article",
+    "SELECT_CATEGORY": "Sélectionnez une catégorie",
+    "SELECT_LIST": "Sélectionnez une liste",
+    "TITLE": "Mes listes",
+    "TOTAL_PRICE": "Prix total : {{price}}",
+    "ACTIONS": {
+      "ADD_ARTICLE": "Ajouter un article",
+      "DELETE_LIST": "Supprimer la liste",
+      "TRANSFOR_TO_RECIPE": "Convertir en recette",
+      "EDIT_LIST_DETAILS": "Modifier la liste",
+      "PDF": "Télécharger le PDF",
+      "RECEIPTS": "Ajouter une recette"
+    },
+    "DELETE_LIST_DIALOG": {
+      "TITLE": "Supprimer la liste",
+      "CONTENT": "Êtes-vous sûr de vouloir supprimer la liste : {{name}} ? Si vous continuez, vous ne pourrez pas annuler les modifications.",
+      "CANCEL": "Annuler",
+      "DELETE": "Supprimer"
+    },
+    "HEADERS": {
+      "AVERAGE_PRICE": "Prix moyen",
+      "NAME": "Nom",
+      "BRAND": "Marque",
+      "CATEGORY": "Catégorie",
+      "DESCRIPTION": "Description",
+      "QUANTITY": "Quantité",
+      "PRICE": "Prix",
+      "DETAIL": "Détail",
+      "DELETE": "Supprimer"
+    }
+  },
+  "LOGGER": {
+    "LOG_IN": "Se connecter"
+  },
+  "MENU": {
+    "LISTS": "Listes",
+    "RECIPES": "Recettes",
+    "COMUNITY": "Communauté",
+    "LOG_IN": "Se connecter"
+  },
+  "RECIPES": {
+    "ADD_RECIPE": "Ajouter une recette",
+    "ADD_RECIPE_INGREDIENTS": "Ajouter les ingrédients de la recette",
+    "DELETE_RECIPE": "Supprimer la recette",
+    "DESCRIPTION": "Description",
+    "EDIT_RECIPE": "Modifier la recette",
+    "EMPTY_RECIPE": "Il n'y a pas encore d'articles dans la recette.",
+    "NEW_RECIPE": "Nouvelle recette",
+    "SAVE_RECIPE": "Enregistrer la recette",
+    "SELECT_RECIPE": "Sélectionnez une recette",
+    "TITLE": "Mes recettes",
+    "ACTIONS": {
+      "DELETE_RECIPE": "Supprimer la recette",
+      "EDIT_RECIPE_DETAILS": "Modifier la recette",
+      "PDF": "Télécharger le PDF",
+      "RECEIPTS": "Ajouter une recette"
+    },
+    "DELETE_RECIPE_DIALOG": {
+      "TITLE": "Supprimer la recette",
+      "CONTENT": "Êtes-vous sûr de vouloir supprimer la recette : {{name}} ? Si vous continuez, vous ne pourrez pas annuler les modifications.",
+      "CANCEL": "Annuler",
+      "DELETE": "Supprimer"
+    },
+    "TRANSFORM_TO_RECIPE": {
+      "TITLE": "Convertir en recette",
+      "CONTENT": "Êtes-vous sûr de vouloir convertir la liste : {{name}} en recette ? Si vous continuez, vous ne pourrez pas annuler les modifications.",
+      "CANCEL": "Annuler",
+      "TRASNFORM": "Transformer"
+    }
+  },
+  "TABLE": {
+    "NO_DATA": "Aucune donnée à afficher",
+    "PAGE_OF": "Page {{page}} sur {{pages}}",
+    "PAGE_SIZE": "Taille de la page :"
+  },
+  "UNKNOW": {
+    "INVALID_URL": "Oups ! Il semble que la page que vous recherchez n'existe pas."
+  },
+  "TOAST": {
+    "ADD_RECIPE_ARTICLES": "Ingrédients de la recette ajoutés avec succès.",
+    "ADD_RECIPE_ARTICLES_KO": "Erreur lors de l'ajout des ingrédients de la recette.",
+    "ARTICLE_ALREADY_PRESENT": "L'article est déjà dans la liste.",
+    "ARTICLES_OR_CATEGORIES": "Erreur lors de la récupération des articles et des catégories.",
+    "EDIT_ARTICLE_OK": "Article modifié avec succès.",
+    "EDIT_ARTICLE_KO": "Erreur lors de la modification de l'article.",
+    "CREATE_ARTICLE_KO": "Erreur lors de la création de l'article.",
+    "CREATE_CATEGORY_KO": "Erreur lors de la création de la catégorie.",
+    "CREATE_LIST_OK": "Liste créée avec succès.",
+    "CREATE_LIST_KO": "Erreur lors de la création de la liste.",
+    "CREATE_RECIPE_OK": "Recette créée avec succès.",
+    "CREATE_RECIPE_KO": "Erreur lors de la création de la recette.",
+    "DELETE_LAST_LIST": "Vous ne pouvez pas supprimer votre dernière liste.",
+    "EDIT_LIST_OK": "Liste modifiée avec succès.",
+    "EDIT_LIST_KO": "Erreur lors de la modification de la liste.",
+    "EDIT_RECIPE_OK": "Recette modifiée avec succès.",
+    "EDIT_RECIPE_KO": "Erreur lors de la modification de la recette.",
+    "DELETE_LIST_OK": "Liste supprimée avec succès.",
+    "DELETE_LIST_KO": "Erreur lors de la suppression de la liste.",
+    "DELETE_RECIPE_OK": "Recette supprimée avec succès.",
+    "DELETE_RECIPE_KO": "Erreur lors de la suppression de la recette.",
+    "GET_PDF_KO": "Erreur lors de l'obtention du PDF.",
+    "GET_RECIPES_KO": "Erreur lors de l'obtention des recettes.",
+    "GET_LISTS_KO": "Erreur lors de l'obtention des listes.",
+    "IMPORT_RECIPE_KO": "Erreur lors de l'importation de la recette.",
+    "IMPORT_RECIPE_OK": "Recette importée avec succès.",
+    "NO_RECIPES": "Aucune recette disponible.",
+    "PRICES_KO": "Erreur lors de l'obtention des prix.",
+    "PRICE_KO": "Erreur lors de l'enregistrement du prix.",
+    "PRICE_OK": "Prix enregistré avec succès.",
+    "SAVE_LIST_OK": "Liste enregistrée avec succès.",
+    "SAVE_LIST_KO": "Erreur lors de l'enregistrement de la liste.",
+    "SAVE_RECIPE_OK": "Recette enregistrée avec succès.",
+    "SAVE_RECIPE_KO": "Erreur lors de l'enregistrement de la recette.",
+    "USER": "Erreur lors de l'obtention de l'utilisateur.",
+    "USER_TOKEN": "Erreur lors de l'identification de l'utilisateur dans l'application.",
+    "REMOVE_LAST_CATEGORY": "Vous ne pouvez pas supprimer la dernière catégorie d'un article.",
+    "REMOVE_UNSELECTED_CATEGORY": "Vous ne pouvez pas supprimer une catégorie qui n'est pas sélectionnée dans l'article.",
+    "SAVE_USER_KO": "Erreur lors de l'enregistrement de l'utilisateur.",
+    "SAVE_USER_OK": "Utilisateur enregistré avec succès.",
+    "TRANSFOR_TO_RECIPE_OK": "Liste convertie en recette avec succès.",
+    "TRANSFOR_TO_RECIPE_KO": "Erreur lors de la conversion de la liste en recette."
+  },
+  "USER": {
+    "ADRESS": "Adresse",
+    "NAME": "Nom",
+    "LANGUAGE": "Langue",
+    "PHONE": "Téléphone",
+    "MAIL": "Courrier",
+    "NICKNAME": "Nom d'utilisateur",
+    "ZIP": "Code postal"
+  },
+  "VALIDATORS": {
+    "REQUIRED": "* Champ requis.",
+    "IS_MAIL": "* Adresse e-mail invalide.",
+    "MAX_LENGTH": "* Nombre maximum de caractères autorisés : {{max}}.",
+    "MIN_LENGTH": "* Nombre minimum de caractères autorisés : {{min}}.",
+    "SPECIAL_CHARS": "* Caractères non autorisés présents."
+  }
+}

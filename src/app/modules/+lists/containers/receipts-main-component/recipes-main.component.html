@@ -5,6 +5,7 @@
       <app-select
         class="u-width-50 margin-bottom"
         label="{{ 'RECIPES.SELECT_RECIPE' | translate }}"
+        [control]="control"
         [options]="recipesOptions"
         (valueChanges)="handleRecipeChange($event)"
       />

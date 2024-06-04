@@ -6,6 +6,7 @@
         class="u-width-50 margin-bottom"
         label="{{ 'LISTS.SELECT_LIST' | translate }}"
         [options]="listsOptions"
+        [control]="control"
         (valueChanges)="handleListChange($event)"
       />
       <button class="primary-button" (click)="handleNewList()">

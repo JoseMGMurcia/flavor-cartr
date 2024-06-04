@@ -4,6 +4,7 @@ import { STRING_EMPTY } from '@shared/constants/string.constants';
 import { TableAlingEnum, TableColumn, TableColumnTypeEnum, TableConfig, TablePageSizesEnum, TableRow } from '@shared/models/table.models';
 import { cutString } from '@shared/utils/string.utils';
 import { CartOption } from '../select/select.component';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-table',
@@ -25,6 +26,7 @@ export class TableComponent implements OnInit, OnChanges{
 
   tableAling = TableAlingEnum;
   tableColumnTypeEnum = TableColumnTypeEnum;
+  control = new FormControl();
 
   get totalPages(): number {
     return Math.ceil(this.tableConfig.pagination.totalItems / this.tableConfig.pagination.itemsPerPage);
