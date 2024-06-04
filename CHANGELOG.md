@@ -1,5 +1,8 @@
 # Flavort Chart
 
+## 0.1.1
+  - Languaje added to user.
+
 ## 0.1.0
   - Public Module.
   - Public list detail component.
