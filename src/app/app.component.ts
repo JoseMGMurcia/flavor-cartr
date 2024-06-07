@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, DestroyRef, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -20,7 +20,7 @@ import { MenuComponent } from 'app/components/menu/menu.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   public loading = true;
   private _destroyRef = inject(DestroyRef);
 

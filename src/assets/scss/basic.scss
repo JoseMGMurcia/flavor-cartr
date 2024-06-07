@@ -201,12 +201,10 @@
   }
 }
 
-
 .icon {
-
   &-action {
-    height: 14px;
     cursor: pointer;
+    height: 14px;
     transition: all 0.3s;
 
     &:hover {
@@ -221,7 +219,6 @@
         transform: scale(1);
       }
     }
-
   }
 
   &-small {

@@ -5,19 +5,19 @@
 
   .dialog-title {
     color: colors.$primary;
-    width: 100%;
-    text-align: center;
     font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 8px;
+    text-align: center;
+    width: 100%;
   }
 
   .dialog-message {
-    width: max-content;
-    text-align: justify;
-    max-width: 450px;
     font-size: 1rem;
     font-weight: 400;
     margin-bottom: 24px;
+    max-width: 450px;
+    text-align: justify;
+    width: max-content;
   }
 }

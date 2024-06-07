@@ -2,6 +2,7 @@
   from {
     transform: translate(-50%, -60%);
   }
+
   to {
     transform: translate(-50%, -50%);
   }
@@ -11,6 +12,7 @@
   from {
     transform: scale(0.3) translate(-50%, -50%);
   }
+
   to {
     transform: scale(1) translate(-50%, -50%);
   }
@@ -20,6 +22,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -29,6 +32,7 @@
   from {
     opacity: 1;
   }
+
   to {
     opacity: 0;
   }
@@ -38,9 +42,10 @@
   from {
     opacity: 1;
   }
+
   to {
     opacity: 0;
-    z-index: 0;
     position: static;
+    z-index: 0;
   }
 }

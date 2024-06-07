@@ -1,5 +1,5 @@
 import { Params } from "@angular/router";
-import { BACK_LOCAL_URL, BACK_PROD_URL } from "./enviroment.constants";
+import { BACK_LOCAL_URL } from "./enviroment.constants";
 
 export const API_URLS = {
   ARTICLES: '/ArticleFirestore',

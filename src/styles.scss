@@ -1,26 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
-/* You can add global styles to this file, and also import other style files */
+
 @use 'assets/scss/custom-colors.scss' as colors;
+
 @import 'assets/scss/basic.scss';
 @import 'assets/scss/aminations/modal.animations.scss';
 
-app-root {   z-index: 1; }
-app-toast, .toast-class {   z-index: 2; }
+app-root { z-index: 1; }
+
+app-toast,
+.toast-class { z-index: 2; }
 
 html,
 body {
   background-color: colors.$background;
+  display: flex;
+  flex-direction: column;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   height: 100%;
   margin: 0;
-  display: flex;
-  flex-direction: column;
   min-width: max-content;
 }
 
 .app-content {
-  flex: 1;
   display: flex;
+  flex: 1;
   flex-direction: column;
 }
 
@@ -29,8 +32,8 @@ body {
 }
 
 p {
-  margin: 0;
   color: colors.$text-primary;
+  margin: 0;
 
   &.center {
     text-align: center;
@@ -58,9 +61,9 @@ p {
   display: flex;
   font-size: 12px;
   font-weight: 500;
+  min-width: max-content;
   outline: none;
   padding: 8px 12px;
-  min-width: max-content;
 
   &:hover {
     background-color: darken(colors.$primary, 10%);
@@ -81,9 +84,9 @@ p {
   display: flex;
   font-size: 12px;
   font-weight: 600;
+  min-width: max-content;
   outline: none;
   padding: 8px 12px;
-  min-width: max-content;
 
   &:hover {
     background-color: darken(colors.$menu-background-contrast-50, 1%);
@@ -122,7 +125,6 @@ p {
     color: darken(colors.$primary, 20%);
     scale: 1.2;
   }
-
 }
 
 .icon-button {
@@ -132,71 +134,70 @@ p {
   outline: none;
   padding: 0;
 
-  &:hover {
-    img {
-      margin: 5px;
-      height: 42px;
-      width: 42px;
-    }
-
-    &.sm {
-      img {
-        margin: 2px;
-        height: 28px;
-        width: 28px;
-      }
-    }
-
-    &.xs {
-      img {
-        margin: 1px;
-        height: 20px;
-        width: 20px;
-      }
-    }
-
-    &.xxs {
-      img {
-        margin: 0;
-        height: 16px;
-        width: 16px;
-      }
-
-    }
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-  }
-
   img {
-    margin: 8px;
     height: 36px;
+    margin: 8px;
     width: 36px;
   }
 
   &.sm {
     img {
-      margin: 4px;
       height: 24px;
+      margin: 4px;
       width: 24px;
     }
   }
 
   &.xs {
     img {
-      margin: 3px;
       height: 16px;
+      margin: 3px;
       width: 16px;
     }
   }
 
   &.xxs {
     img {
-      margin: 2px;
       height: 12px;
+      margin: 2px;
       width: 12px;
     }
+  }
+
+  &:hover {
+    img {
+      height: 42px;
+      margin: 5px;
+      width: 42px;
+    }
+
+    &.sm {
+      img {
+        height: 28px;
+        margin: 2px;
+        width: 28px;
+      }
+    }
+
+    &.xs {
+      img {
+        height: 20px;
+        margin: 1px;
+        width: 20px;
+      }
+    }
+
+    &.xxs {
+      img {
+        height: 16px;
+        margin: 0;
+        width: 16px;
+      }
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
   }
 }
 
@@ -207,19 +208,19 @@ p {
   outline: none;
 
   img {
-    margin: 2px;
-    height: 12px;
-    width: 12px;
     border-radius: 6px;
     box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 0.2);
-    }
+    height: 12px;
+    margin: 2px;
+    width: 12px;
+  }
 
   &:hover {
     img {
-      margin: 0;
-      height: 16px;
-      width: 16px;
       border-radius: 8px;
+      height: 16px;
+      margin: 0;
+      width: 16px;
     }
   }
 }
@@ -236,6 +237,6 @@ p {
 
 .group {
   background-color: colors.$blue-gray-50;
-  border-radius: 8px;
   border: 1px solid colors.$white-50;
+  border-radius: 8px;
 }

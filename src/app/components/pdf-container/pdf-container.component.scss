@@ -1,18 +1,18 @@
 @use 'assets/scss/custom-colors.scss' as colors;
 
 .pdf-wrapper {
-  padding: 24px;
+  max-height: 70dvh;
   min-height: min-content;
   min-width: 60dvw;
-  max-height: 70dvh;
+  padding: 24px;
 
   .title {
     color: colors.$menu-background;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 1.5rem;
     font-weight: 700;
+    margin-bottom: 30px;
     padding: 0 3rem;
     text-align: center;
-    margin-bottom: 30px;
   }
 }

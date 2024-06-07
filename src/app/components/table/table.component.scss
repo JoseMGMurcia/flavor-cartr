@@ -3,9 +3,27 @@
 .table-wraper {
   display: flex;
   flex-direction: column;
+  max-height: calc(100% - 8px);
   min-width: min-content;
   width: 100%;
-  max-height: calc(100% - 8px);
+
+  .pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 4px 8px;
+    min-width: max-content;
+
+    p {
+      font-size: 0.8rem;
+    }
+
+    .pagination-buttons .pagination-button {
+      background-color: transparent;
+      border: 0 solid transparent;
+      margin-left: 1px;
+    }
+  }
 
   .columns {
     border-radius: 4px;
@@ -21,18 +39,16 @@
       width: 100%;
 
       .column-header {
+        align-items: center;
         background-color: colors.$table-header;
         color: colors.$table-header-text;
+        display: flex;
         font-size: 1.2rem;
         font-weight: 500;
         height: 20px;
-        padding: 6px 16px;
-        min-width: max-content;
-
-        //Center the text vertically & horizontally
-        display: flex;
-        align-items: center;
         justify-content: center;
+        min-width: max-content;
+        padding: 6px 16px;
 
         &.round-left {
           border-top-left-radius: 4px;
@@ -43,21 +59,21 @@
         }
       }
 
-      .column-row  {
+      .column-row {
         background-color: colors.$table-background;
         font-size: 1rem;
-        padding: 2px 8px;
-        min-width: max-content;
-        max-height: 18px;
         height: 18px;
+        max-height: 18px;
+        min-width: max-content;
+        padding: 2px 8px;
 
         &.even {
           background-color: colors.$table-background-even;
         }
 
         p {
-          width: 100%;
           text-align: left;
+          width: 100%;
 
           &.center {
             text-align: center;
@@ -82,31 +98,12 @@
       }
 
       .action-wrapper {
-        display: flex;
-        justify-content: center;
         align-items: center;
-        height: 18px ;
+        display: flex;
+        height: 18px;
+        justify-content: center;
         width: 100%;
       }
-    }
-  }
-
-  .pagination {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 4px 8px;
-    min-width: max-content;
-
-    p {
-      font-size: 0.8rem;
-    }
-
-    .pagination-buttons .pagination-button {
-      margin-left: 1px;
-      background-color: transparent;
-      border: 0px solid transparent;
-
     }
   }
 

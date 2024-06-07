@@ -15,21 +15,22 @@
     width: 100%;
 
     .label {
-      color: colors.$white-200;
       background-color: colors.$primary;
       border-radius: 4px 4px 0 0;
+      color: colors.$white-200;
       font-size: 0.9rem;
       font-weight: 500;
-      padding-left: 16px;
       margin-bottom: 0.1rem;
+      padding-left: 16px;
     }
 
-    input, textarea {
+    input,
+    textarea {
+      background-color: colors.$menu-background-contrast;
+      border-radius: 0 0 4px 4px;
+      color: colors.$text-primary;
       font-family: Verdana, Geneva, Tahoma, sans-serif;
       font-size: 1rem;
-      border-radius: 0 0 4px 4px;
-      background-color: colors.$menu-background-contrast;
-      color: colors.$text-primary;
 
       &:focus {
         outline: 1.5px solid colors.$primary;
@@ -56,5 +57,4 @@
     margin-top: 0.2rem;
     width: max-content;
   }
-
 }

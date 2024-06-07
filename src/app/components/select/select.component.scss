@@ -8,35 +8,24 @@
   margin: 4px;
   width: 100%;
 
-  label {
-    color: colors.$white-200;
-    background-color: colors.$primary;
-    border-radius: 4px 4px 0 0;
-    font-size: 0.9rem;
-    font-weight: 500;
-    padding: 0 16px;
-    margin-bottom: 0.1rem;
-    min-width: max-content;
+  &:focus {
+    outline: 1.5px solid colors.$secondary;
   }
 
   select {
-    font-size: 1rem;
-    border-radius: 0 0 4px 4px;
-    background-color: colors.$menu-background-contrast;
-    color: colors.$text-primary;
-
     &.no-label {
       border-radius: 4px;
     }
 
-    option {
-      width: 100%;
-      text-align: center;
-    }
-  }
+    background-color: colors.$menu-background-contrast;
+    border-radius: 0 0 4px 4px;
+    color: colors.$text-primary;
+    font-size: 1rem;
 
-  &:focus {
-    outline: 1.5px solid colors.$secondary;
+    option {
+      text-align: center;
+      width: 100%;
+    }
   }
 
   &.disabled {
@@ -45,5 +34,16 @@
     select {
       color: colors.$text-primary-disabled;
     }
+  }
+
+  label {
+    background-color: colors.$primary;
+    border-radius: 4px 4px 0 0;
+    color: colors.$white-200;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.1rem;
+    min-width: max-content;
+    padding: 0 16px;
   }
 }

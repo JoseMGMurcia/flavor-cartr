@@ -1,16 +1,16 @@
 @use 'assets/scss/custom-colors.scss' as colors;
 
 .add-article-wrapper {
-  padding: 24px;
   min-height: min-content;
   min-width: 480px;
+  padding: 24px;
 
   .add-list-text {
     color: darken(colors.$menu-background, 10%);
     font-size: 1.6rem;
+    margin-bottom: 30px;
     padding: 0 3rem;
     text-align: center;
-    margin-bottom: 30px;
   }
 
   .section {
@@ -19,19 +19,19 @@
     .article-group {
       display: flex;
       justify-content: center;
-      width: 100%;
+      margin-bottom: -16px;
       position: relative;
       top: -24px;
-      margin-bottom: -16px;
+      width: 100%;
 
       p {
         background-color: white;
         color: colors.$menu-background;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         font-weight: 700;
+        padding: 0 8px;
         text-align: center;
         width: max-content;
-        padding: 0 8px;
       }
     }
   }
@@ -43,8 +43,8 @@ button {
 }
 
 .articleForm {
-  border-radius: 8px;
   border: 1px solid colors.$menu-background;
+  border-radius: 8px;
   padding: 12px;
   padding-right: 20px;
   width: calc(100% - 32px);

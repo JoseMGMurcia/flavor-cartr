@@ -9,24 +9,25 @@
   width: 100%;
 
   .menu-title {
-    font-size: 1.6rem;
     color: colors.$menu-text-color;
-    padding: 0 3rem;
+    font-size: 1.6rem;
     min-width: max-content;
+    padding: 0 3rem;
   }
 
   .menu-divider {
     height: 50px;
   }
+
   .menu-options {
     .menu-option {
-      height: 100%;
       color: colors.$menu-text-color;
       cursor: pointer;
+      height: 100%;
       padding: 0 1rem;
 
       &:hover {
-       text-shadow: 0 0 5px colors.$menu-text-color;
+        text-shadow: 0 0 5px colors.$menu-text-color;
       }
     }
   }
@@ -50,8 +51,8 @@
       .user-img {
         border-radius: 15px;
         height: 30px;
-        width: 30px;
         margin-right: 8px;
+        width: 30px;
       }
 
       p {
@@ -61,26 +62,25 @@
       }
 
       .log-out-icon {
-        cursor: pointer;
-        height: 20px;
-        width: 20px;
         border-radius: 10px;
         font-size: 1.5rem;
-        margin-left: 8px;
+        height: 20px;
         margin-bottom: 8px;
+        margin-left: 8px;
+        width: 20px;
       }
 
       .login-button {
+        align-items: center;
         background-color: colors.$menu-background-secondary;
         border: none;
         color: colors.$menu-text-color;
         cursor: pointer;
+        display: flex;
         font-size: 1.3rem;
+        min-width: max-content !important;
         padding: 0 16px 0 6px;
         text-transform: unset;
-        min-width: max-content !important;
-        display: flex;
-        align-items: center;
 
         &:hover {
           text-shadow: 0 0 5px colors.$menu-text-color;
@@ -93,24 +93,24 @@
     }
   }
 
-  .menu-icon{
+  .menu-icon {
     border-radius: 4px;
-    height: 24px;
-    width: 24px;
-    margin-right: 24px;
     cursor: pointer;
+    height: 24px;
+    margin-right: 24px;
+    width: 24px;
 
     &:hover {
-      filter: drop-shadow(0 0 5px colors.$menu-text-color)
+      filter: drop-shadow(0 0 5px colors.$menu-text-color);
     }
 
     &-mini {
       height: 20px;
-      width: 20px;
       margin: 0 4px;
+      width: 20px;
 
       &:hover {
-        filter: drop-shadow(0 0 5px colors.$menu-text-color)
+        filter: drop-shadow(0 0 5px colors.$menu-text-color);
       }
     }
   }
