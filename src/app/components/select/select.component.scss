@@ -1,0 +1,49 @@
+@use 'assets/scss/custom-colors.scss' as colors;
+
+.select-wraper {
+  border: 1px solid colors.$white-50;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  margin: 4px;
+  width: 100%;
+
+  label {
+    color: colors.$white-200;
+    background-color: colors.$primary;
+    border-radius: 4px 4px 0 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0 16px;
+    margin-bottom: 0.1rem;
+    min-width: max-content;
+  }
+
+  select {
+    font-size: 1rem;
+    border-radius: 0 0 4px 4px;
+    background-color: colors.$menu-background-contrast;
+    color: colors.$text-primary;
+
+    &.no-label {
+      border-radius: 4px;
+    }
+
+    option {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  &:focus {
+    outline: 1.5px solid colors.$secondary;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+
+    select {
+      color: colors.$text-primary-disabled;
+    }
+  }
+}

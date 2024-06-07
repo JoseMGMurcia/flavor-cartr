@@ -1,0 +1,60 @@
+@use 'assets/scss/custom-colors.scss' as colors;
+
+.input-wraper {
+  display: flex;
+  flex-direction: column;
+  margin: 4px;
+  min-width: min-content;
+  width: 100%;
+
+  .input-body {
+    border: 1px solid colors.$white-50;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .label {
+      color: colors.$white-200;
+      background-color: colors.$primary;
+      border-radius: 4px 4px 0 0;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding-left: 16px;
+      margin-bottom: 0.1rem;
+    }
+
+    input, textarea {
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-size: 1rem;
+      border-radius: 0 0 4px 4px;
+      background-color: colors.$menu-background-contrast;
+      color: colors.$text-primary;
+
+      &:focus {
+        outline: 1.5px solid colors.$primary;
+      }
+
+      &:disabled {
+        color: colors.$text-primary-disabled;
+
+        &:hover {
+          cursor: not-allowed;
+        }
+      }
+    }
+
+    textarea {
+      resize: none;
+    }
+  }
+
+  .error {
+    color: colors.$error-red;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 0.2rem;
+    width: max-content;
+  }
+
+}

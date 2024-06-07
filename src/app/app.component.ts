@@ -1,24 +1,33 @@
-import { ChangeDetectorRef, Component, DestroyRef, OnInit, inject } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { LoadingService } from '@shared/services/loading.service';
+import { ChangeDetectorRef, Component, DestroyRef, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import { LoadingService } from 'app/services/loading.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { LanguageEnum } from '@shared/models/language.models';
+import { FooterComponent } from 'app/components/footer/footer.component';
+import { MenuComponent } from 'app/components/menu/menu.component';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    TranslateModule,
+    FooterComponent,
+    MenuComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit{
-  title = 'carrito';
+export class AppComponent {
   public loading = true;
   private _destroyRef = inject(DestroyRef);
 
   constructor(
-    private translate: TranslateService,
     private loadingService: LoadingService,
     private changeDetectorRef: ChangeDetectorRef,
-  ) { }
+  ) {}
 
   async ngOnInit() {
     this.fetch();
@@ -33,13 +42,7 @@ export class AppComponent implements OnInit{
     });
   }
 
-  private setTranslationsLanguage(language: string): void {
-    this.translate.setDefaultLang(language);
-    this.translate.use(language);
-  }
-
   private async fetch() {
-    this.setTranslationsLanguage(LanguageEnum.SPANISH);
     this.setLoagingStatus();
   }
 }

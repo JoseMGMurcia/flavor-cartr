@@ -1,0 +1,184 @@
+@use 'assets/scss/custom-colors.scss' as colors;
+
+.article-detail-wrapper {
+  padding: 24px;
+  min-height: min-content;
+  max-height: 90dvh;
+  min-width: 690px;
+  width: calc(100% - 48px);
+  max-width: 690px;
+
+  // Do scrollbar to appear, but all inside of border radius.
+  overflow: auto;
+
+  .title {
+    color: darken(colors.$menu-background, 10%);
+    font-size: 1.6rem;
+    padding: 0 3rem;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+}
+
+.half-width {
+  width: calc(50% - 16px);
+  margin: 8px;
+}
+
+.full-width {
+  width: calc(100% - 16px);
+  margin: 8px;
+}
+
+.card {
+  display: inline-flex;
+  flex-wrap: wrap;
+  min-width: 75%;
+  border-radius: 8px;
+  background-color: colors.$menu-background-contrast-70;
+  margin-bottom: 16px;
+
+  .field {
+    min-width: fit-content;
+    max-width: 460px;
+    padding: 8px 16px;
+
+    word-wrap: break-word;
+    //asert text is not wider than the card
+
+    .label {
+      color: darken(colors.$menu-background, 10%);
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      max-width: 460px;
+    }
+
+    .value {
+      color: colors.$menu-background;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      max-width: 460px;
+    }
+  }
+}
+
+.article-card {
+  display: inline-flex;
+
+  .card {
+    display: inline-flex;
+    flex-wrap: wrap;
+    width: 75%;
+    border-radius: 8px;
+    background-color: colors.$menu-background-contrast-70;
+    margin-bottom: 16px;
+
+    .field {
+      width: max-content;
+      max-width: 250px;
+      padding: 8px 16px;
+
+      .label {
+        color: darken(colors.$menu-background, 10%);
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 0.8rem;
+        font-weight: 700;
+      }
+
+      .value {
+        color: colors.$menu-background;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 1rem;
+        font-weight: 400;
+      }
+    }
+  }
+
+  .image-wrapper {
+    width: calc(25% - 16px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 12px;
+    border-radius: 8px;
+
+    max-width: 155px;
+    max-height: 155px;
+
+
+    img {
+      width: 155px;
+      height: 155px;
+      border-radius: 8px;
+
+      // make the image fit the container in its shortest side
+      object-fit: cover;
+    }
+  }
+}
+
+.tab {
+  margin: 12px;
+  color: darken(colors.$menu-background, 10%);
+  font-size: 1.5rem;
+  width: min-content;
+  padding: 0 16px;
+  cursor: pointer;
+
+  // borders for a tab look
+  border-top: 1.5px solid colors.$menu-background-50;
+  border-left: 1.5px solid colors.$menu-background-50;
+  border-right: 1.5px solid colors.$menu-background-50;
+  border-radius: 8px 8px 0 0;
+
+  &.selected {
+    background-color: colors.$menu-background-contrast-70;
+    border-bottom: 1.5px solid colors.$menu-background-contrast;
+  }
+
+  &:hover {
+    background-color: colors.$menu-background-contrast-50;
+    color: darken(colors.$menu-background, 50%);
+  }
+}
+
+.bottom-space {
+  margin-bottom: 35px;
+
+  ::ng-deep .columns  {
+    max-height: 40dvh;
+
+    // Do  scrollbar to appear
+    overflow: auto;
+  }
+}
+
+.price-form {
+  border-radius: 8px;
+  border: 1px solid colors.$menu-background;
+  padding: 8px;
+  padding-right: 16px;
+  width: calc(100% - 32px);
+  margin-bottom: 30px;
+
+  .article-group {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    top: -20px;
+    margin-bottom: -16px;
+
+    p {
+      background-color: white;
+      color: colors.$menu-background;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-weight: 700;
+      text-align: center;
+      width: max-content;
+      padding: 0 8px;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+@use 'assets/scss/custom-colors.scss' as colors;
+
+.unknow-container {
+  padding: 16px;
+  height: calc(100dvh - (75px + 32px));
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-attachment: fixed;
+  background-image: url('assets/images/not-found.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .logo {
+    height: 64px;
+    padding: 16px 32px;;
+  }
+
+  .card {
+    background-color: colors.$menu-background-50;
+    backdrop-filter: blur(8px);
+    border-radius: 10px;
+    padding: 24px;
+    width: min-content;
+    height: fit-content;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  }
+}

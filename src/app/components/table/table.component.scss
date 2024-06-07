@@ -1,0 +1,119 @@
+@use 'assets/scss/custom-colors.scss' as colors;
+
+.table-wraper {
+  display: flex;
+  flex-direction: column;
+  min-width: min-content;
+  width: 100%;
+  max-height: calc(100% - 8px);
+
+  .columns {
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+
+      .column-header {
+        background-color: colors.$table-header;
+        color: colors.$table-header-text;
+        font-size: 1.2rem;
+        font-weight: 500;
+        height: 20px;
+        padding: 6px 16px;
+        min-width: max-content;
+
+        //Center the text vertically & horizontally
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &.round-left {
+          border-top-left-radius: 4px;
+        }
+
+        &.round-right {
+          border-top-right-radius: 4px;
+        }
+      }
+
+      .column-row  {
+        background-color: colors.$table-background;
+        font-size: 1rem;
+        padding: 2px 8px;
+        min-width: max-content;
+        max-height: 18px;
+        height: 18px;
+
+        &.even {
+          background-color: colors.$table-background-even;
+        }
+
+        p {
+          width: 100%;
+          text-align: left;
+
+          &.center {
+            text-align: center;
+          }
+
+          &.right {
+            text-align: right;
+          }
+
+          &.left {
+            text-align: left;
+          }
+        }
+
+        &.round-left {
+          border-bottom-left-radius: 4px;
+        }
+
+        &.round-right {
+          border-bottom-right-radius: 4px;
+        }
+      }
+
+      .action-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 18px ;
+        width: 100%;
+      }
+    }
+  }
+
+  .pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 4px 8px;
+    min-width: max-content;
+
+    p {
+      font-size: 0.8rem;
+    }
+
+    .pagination-buttons .pagination-button {
+      margin-left: 1px;
+      background-color: transparent;
+      border: 0px solid transparent;
+
+    }
+  }
+
+  .no-data {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 16px;
+    min-width: max-content;
+  }
+}
