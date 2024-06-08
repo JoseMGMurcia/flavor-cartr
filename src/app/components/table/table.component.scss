@@ -41,7 +41,6 @@
       .column-header {
         align-items: center;
         background-color: colors.$table-header;
-        color: colors.$table-header-text;
         display: flex;
         font-size: 1.2rem;
         font-weight: 500;
@@ -56,6 +55,10 @@
 
         &.round-right {
           border-top-right-radius: 4px;
+        }
+
+        p {
+          color: colors.$table-header-text;
         }
       }
 
@@ -112,5 +115,47 @@
     font-weight: 500;
     margin: 16px;
     min-width: max-content;
+  }
+}
+
+@media (max-width: 600px) {
+  .table-wraper .columns {
+    .column {
+      .column-header {
+        font-size: 1rem !important;
+      }
+
+      .column-row {
+        font-size: 0.8rem !important;
+      }
+    }
+
+    .not-medium {
+      display: none !important;
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .table-wraper .columns .column {
+    .column-header {
+      font-size: 0.9rem !important;
+    }
+
+    .column-row {
+      font-size: 0.7rem !important;
+    }
+
+    .not-small {
+      height: 20px;
+      p {
+        display: none;
+      }
+    }
+    .column-header {
+      .not-small {
+        display: none;
+      }
+    }
   }
 }

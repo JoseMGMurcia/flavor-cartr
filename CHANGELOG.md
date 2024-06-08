@@ -1,10 +1,16 @@
 # Flavort Chart
 
-## 0.1.1
+## 1.1.0 Mobile
+  -Mobile responsive display.
+
+## 1.0.0 Stand ALone
+  - Stand alone component migration.
+
+## 0.1.1 Languages
   - Language added to user.
   - Copy public list functionality.
 
-## 0.1.0
+## 0.1.0 Public Data
   - Public Module.
   - Public list detail component.
   - Public Mode.

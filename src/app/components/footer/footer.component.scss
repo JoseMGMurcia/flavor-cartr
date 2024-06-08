@@ -18,3 +18,16 @@
     padding: 0 0.8rem;
   }
 }
+
+// Mobile phone configuration
+@media (max-width: 600px) {
+  .author {
+    display: none;
+  }
+}
+
+@media (max-width: 450px) {
+  .footer-wraper {
+    display: none;
+  }
+}

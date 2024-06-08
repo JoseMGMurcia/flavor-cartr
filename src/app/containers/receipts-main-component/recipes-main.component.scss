@@ -32,4 +32,24 @@
       text-shadow: 2px 2px 2px colors.$menu-text-color-fade;
     }
   }
+
+}
+@media (max-width: 600px) {
+  .recipes-main-component {
+    padding: 8px;
+
+    &__table {
+      padding: 16px 12px;
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .recipes-main-component {
+    padding: 8px 0;
+
+    &__table {
+      padding: 12px 0px;
+    }
+  }
 }

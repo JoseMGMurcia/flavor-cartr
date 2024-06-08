@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { NUMBERS } from 'app/constants/number.constants';
 import { STRING_EMPTY } from 'app/constants/string.constants';
-import { TableAlingEnum, TableColumn, TableColumnTypeEnum, TableConfig, TablePageSizesEnum, TableRow } from 'app/models/table.models';
+import { NotDisplayColumnsType, TableAlingEnum, TableColumn, TableColumnType, TableColumnTypeEnum, TableConfig, TablePageSizesEnum, TableRow } from 'app/models/table.models';
 import { cutString } from 'app/utils/string.utils';
 import { CartOption, SelectComponent } from '../select/select.component';
 import { FormControl } from '@angular/forms';
@@ -75,9 +75,10 @@ export class TableComponent implements OnInit, OnChanges{
     this.changePage(NUMBERS.N_1);
   }
 
-  getHeaderClass(columnIndex: number): string {
+  getHeaderClass(columnIndex: number, type: TableColumnType, notDisplayHeader: NotDisplayColumnsType |undefined  ): string {
     const roundRight = columnIndex === this.tableConfig.columns.length - NUMBERS.N_1 ? 'round-right' : STRING_EMPTY;
-    return columnIndex === NUMBERS.N_0 ? 'round-left' : roundRight;
+    const positionClass =  columnIndex === NUMBERS.N_0 ? 'round-left' : roundRight;
+    return `${positionClass} ${notDisplayHeader ?? STRING_EMPTY} ${type === TableColumnTypeEnum.ACTIONS ? 'not-small' : STRING_EMPTY}`;
   }
 
   getRowClass(rowIndex: number, columnIndex: number): string {

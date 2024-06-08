@@ -34,3 +34,29 @@
     text-align: justify;
   }
 }
+
+@media (max-width: 600px) {
+  .home-container {
+    .menu-logo {
+      height: 54px;
+      padding: 14px 28px;
+    }
+
+    .explanation {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .home-container {
+    .menu-logo {
+      height: 48px;
+      padding: 12px 24px;
+    }
+
+    .explanation {
+      font-size: 1rem;
+    }
+  }
+}

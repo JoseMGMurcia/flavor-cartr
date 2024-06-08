@@ -2,11 +2,17 @@
 
 .menu-wraper {
   background-color: colors.$menu-background;
+  display: flex;
+  align-items: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 1.5rem;
   font-weight: 500;
   min-height: 50px;
   width: 100%;
+
+  .logo .logo-icons {
+    display: none;
+  }
 
   .menu-title {
     color: colors.$menu-text-color;
@@ -111,6 +117,108 @@
 
       &:hover {
         filter: drop-shadow(0 0 5px colors.$menu-text-color);
+      }
+    }
+  }
+}
+
+// Mobile phone configuration
+@media (max-width: 600px) {
+  .menu-wraper {
+    display: block;
+    max-width: 100%;
+
+    .logo {
+      .menu-logo {
+        cursor: pointer;
+        height: 40px;
+        padding: 0 1rem;
+        width: auto;
+      }
+
+      .logo-icons {
+        display: flex;
+      }
+    }
+
+    .menu-divider{
+      .menu-right {
+       display: none;
+      }
+
+      .menu-options {
+        font-size: 1.5rem;
+        justify-content: space-around;
+        width: 100%;
+      }
+    }
+
+    .menu-social {
+      color: colors.$menu-text-color;
+      height: 100%;
+
+      .user-img {
+        border-radius: 15px;
+        height: 30px;
+        margin-right: 8px;
+        width: 30px;
+      }
+
+      p {
+        color: colors.$menu-text-color;
+        font-size: 0.9rem;
+        font-weight: 700;
+      }
+
+      .log-out-icon {
+        border-radius: 10px;
+        font-size: 1.5rem;
+        height: 20px;
+        margin-bottom: 8px;
+        margin-left: 8px;
+        width: 20px;
+      }
+
+      .login-button {
+        align-items: center;
+        background-color: colors.$menu-background;
+        border: none;
+        color: colors.$menu-text-color;
+        cursor: pointer;
+        display: flex;
+        font-size: 1.1rem;
+        min-width: max-content !important;
+        padding: 0 16px 0 6px;
+        text-transform: unset;
+
+        &:hover {
+          text-shadow: 0 0 5px colors.$menu-text-color;
+
+          .menu-icon {
+            filter: drop-shadow(0 0 15px colors.$menu-text-color);
+          }
+        }
+      }
+    }
+  }
+
+
+}
+
+// Small Mobile phone configuration
+@media (max-width: 450px) {
+  .menu-wraper {
+    .logo {
+      padding: 1rem 0 0 1rem;
+
+      .menu-logo {
+        display: none;
+      }
+    }
+
+    .menu-divider{
+      .menu-options {
+        font-size: 1rem;
       }
     }
   }

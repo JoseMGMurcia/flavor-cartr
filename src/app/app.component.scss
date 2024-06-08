@@ -23,3 +23,10 @@ app-footer {
   width: 100%;
   z-index: 9999;
 }
+
+// Mobile phone configuration
+@media (max-width: 600px) {
+  router-outlet {
+    max-width: 100%;
+  }
+}

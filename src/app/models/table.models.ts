@@ -33,6 +33,8 @@ export interface TableColumn {
   action?: (row: TableRow) => void;
   actionIcon?: IconType;
   maxChars?: number;
+  notDisplay?: NotDisplayColumnsType;
+  notDisplayHeader?: NotDisplayColumnsType;
 }
 
 export interface TablePagination {
@@ -71,3 +73,12 @@ export enum TablePageSizesEnum {
   T20 = 20,
   T50 = 50,
 }
+
+export enum NotDisplayColumnsEnum {
+  MEDIUM = 'not-medium',
+  SMALL = 'not-small',
+}
+
+export type NotDisplayColumnsType =
+  NotDisplayColumnsEnum.MEDIUM |
+  NotDisplayColumnsEnum.SMALL;

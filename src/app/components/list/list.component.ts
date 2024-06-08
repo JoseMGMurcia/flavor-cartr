@@ -11,7 +11,7 @@ import { BUTTON_CLASS } from 'app/constants/style.constants';
 import { Article, ArticleList, Category, List, User } from "app/models/cart.models";
 import { IconEmum } from 'app/models/icon.models';
 import { DEFAULT_MODAL_OPTIONS, DialogOptions } from 'app/models/modal.model';
-import { TableAlingEnum, TableColumnTypeEnum, TableConfig, TableRow } from 'app/models/table.models';
+import { NotDisplayColumnsEnum, TableAlingEnum, TableColumnTypeEnum, TableConfig, TableRow } from 'app/models/table.models';
 import { CartService } from 'app/services/cart.service';
 import { LoadingService } from 'app/services/loading.service';
 import { ModalService } from 'app/services/modal.service';
@@ -272,18 +272,21 @@ export class ListComponent implements OnInit{
           key: 'category',
           label: literals.CATEGORY,
           type: TableColumnTypeEnum.TEXT,
+          notDisplay: NotDisplayColumnsEnum.MEDIUM,
         },
         {
           key: 'brand',
           label: literals.BRAND,
           type: TableColumnTypeEnum.TEXT,
           aling: TableAlingEnum.CENTER,
+          notDisplay: NotDisplayColumnsEnum.MEDIUM,
         },
         {
           key: 'amount',
           label: literals.QUANTITY,
           type: TableColumnTypeEnum.NUMBER,
           aling: TableAlingEnum.CENTER,
+          notDisplayHeader: NotDisplayColumnsEnum.SMALL
         },
         {
           key: 'detail',

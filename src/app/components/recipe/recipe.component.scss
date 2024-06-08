@@ -62,3 +62,36 @@
   }
 }
 
+@media (max-width: 600px) {
+  .recipe-wrapper {
+    padding: 12px 6px;
+    .button-row {
+      display: block;
+    }
+
+    .total-price {
+      padding: 0 1rem;
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .recipe-wrapper {
+    padding: 12px 0;
+    .button-row {
+      .button-group {
+        display: block;
+        margin: 8px 0;
+        button {
+          width: 90%;
+          margin: 8px 5%;
+        }
+      }
+    }
+
+    .total-price {
+      padding: 0;
+    }
+  }
+}
+

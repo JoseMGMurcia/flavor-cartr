@@ -2,10 +2,13 @@
   @if(tableData.length) {
     <div class="columns">
       @for(column of tableConfig.columns; track column.key; let cIndex = $index) {
-        <div class="column">
-          <p class="column-header" [ngClass]="getHeaderClass(cIndex)">
-            {{ column.label }}
-          </p>
+        <div class="column" [ngClass]="column.notDisplay">
+          <div class="column-header" [ngClass]="getHeaderClass(cIndex, column.type, undefined)">
+            <p [ngClass]="getHeaderClass(cIndex, column.type, column.notDisplayHeader)">
+              {{ column.label }}
+            </p>
+          </div>
+
           @for(row of currentPageData; track row.id; let rIndex = $index) {
             <div class="column-row" [ngClass]="getRowClass(rIndex, cIndex)">
               @if(column.type === tableColumnTypeEnum.ACTIONS) {
