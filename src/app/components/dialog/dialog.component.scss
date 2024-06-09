@@ -21,3 +21,15 @@
     width: max-content;
   }
 }
+
+@media (max-width: 600px) {
+  .dialog-wrapper .dialog-message {
+    max-width: 420px;
+  }
+}
+
+@media (max-width: 450px) {
+  .dialog-wrapper .dialog-message {
+    max-width: 400px;
+  }
+}

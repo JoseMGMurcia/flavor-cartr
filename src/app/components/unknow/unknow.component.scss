@@ -27,3 +27,25 @@
     width: min-content;
   }
 }
+
+// Small Mobile phone configuration
+@media (max-width: 600px) {
+  .unknow-container {
+    padding: 8px;
+
+    .card {
+      padding: 18px 12px;
+    }
+  }
+}
+
+// Small Mobile phone configuration
+@media (max-width: 450px) {
+  .unknow-container {
+    padding: 4px;
+
+    .card {
+      padding: 12px 4px;
+    }
+  }
+}

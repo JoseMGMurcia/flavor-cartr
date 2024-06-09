@@ -64,13 +64,15 @@
 }
 
 .article-card {
+  display: flex;
+
   .card {
     background-color: colors.$menu-background-contrast-70;
     border-radius: 8px;
     display: inline-flex;
     flex-wrap: wrap;
     margin-bottom: 16px;
-    width: 75%;
+    width: 70%;
 
     .field {
       max-width: 250px;
@@ -171,5 +173,84 @@
       text-align: center;
       width: max-content;
     }
+  }
+}
+
+@media (max-width: 600px) {
+  .article-detail-wrapper {
+    max-width: 552px;
+    min-width: 450px;
+
+    .article-card {
+      display: block;
+
+      .card {
+        max-width: 520px;
+        width: 100%;
+
+
+      }
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .article-detail-wrapper {
+    max-width: 402px;
+    min-width: 402px;
+
+    .article-card {
+      display: block;
+      .image-wrapper {
+        padding-left: 35%;
+      }
+
+      .card {
+        max-width: 402px;
+        width: 100%;
+
+        .field {
+          .label {
+            max-width: 370px;
+          }
+
+          .value {
+            max-width: 370px;
+          }
+        }
+      }
+    }
+
+    .buttons {
+      display: block;
+      min-width: 100%;
+
+      button{
+        width: 100%;
+        margin: 0 0 8px 0;
+      }
+
+      div {
+        display: block;
+        min-width: 100%;
+
+        button{
+          width: 100%;
+          margin: 0 0 8px 0;
+        }
+       }
+    }
+
+  }
+
+  .fexible {
+    flex-wrap: wrap;
+    width: 100%;
+
+      .half-width {
+        width: calc(100% - 16px);
+      }
+
+
   }
 }

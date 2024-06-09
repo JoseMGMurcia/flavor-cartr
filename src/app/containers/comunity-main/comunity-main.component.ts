@@ -6,7 +6,7 @@ import { NUMBERS } from 'app/constants/number.constants';
 import { STRING_EMPTY } from 'app/constants/string.constants';
 import { List } from "app/models/cart.models";
 import { IconEmum } from 'app/models/icon.models';
-import { TableAlingEnum, TableColumnTypeEnum, TableConfig, TableRow } from 'app/models/table.models';
+import { NotDisplayColumnsEnum, TableAlingEnum, TableColumnTypeEnum, TableConfig, TableRow } from 'app/models/table.models';
 import { CartService } from 'app/services/cart.service';
 import { LoadingService } from 'app/services/loading.service';
 import { TOAST_STATE, ToastService } from 'app/services/toast.service';
@@ -71,7 +71,6 @@ export class ComunityMainComponent implements OnInit{
       ...list,
       totalPrice: formatPrice(list.totalPrice),
       creationDate: list.creationDate?.substring(NUMBERS.N_0, NUMBERS.N_10),
-      style: 'min-width: 350px',
     };
   }
 
@@ -92,9 +91,16 @@ export class ComunityMainComponent implements OnInit{
           type: TableColumnTypeEnum.TEXT,
         },
         {
+          key: 'spacer',
+          label: STRING_EMPTY,
+          type: TableColumnTypeEnum.TEXT,
+          notDisplay: NotDisplayColumnsEnum.MEDIUM
+        },
+        {
           key: 'creationDate',
           label: literals.CREATION_DATE,
           type: TableColumnTypeEnum.NUMBER,
+          notDisplay: NotDisplayColumnsEnum.MEDIUM
         },
         {
           key: 'totalPrice',

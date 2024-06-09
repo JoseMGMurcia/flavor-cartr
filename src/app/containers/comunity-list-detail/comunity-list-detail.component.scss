@@ -24,3 +24,25 @@
     width: min-content;
   }
 }
+
+// Small Mobile phone configuration
+@media (max-width: 600px) {
+  .comunity-detail-wrapper {
+    padding: 8px;
+
+    .comunity-detail-card {
+      padding: 18px 8px;
+    }
+  }
+}
+
+// Small Mobile phone configuration
+@media (max-width: 450px) {
+  .comunity-detail-wrapper {
+    padding: 4px;
+
+    .comunity-detail-card {
+      padding: 12px 0px;
+    }
+  }
+}

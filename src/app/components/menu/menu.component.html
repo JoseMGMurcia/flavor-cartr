@@ -3,12 +3,11 @@
     <div class="u-flex u-flex-align-center">
       <img class="menu-logo" src="assets/images/logo.png" alt="Logo" (click)="goSection(ROUTES.HOME.path)">
       <div class="logo-icons">
-        <img class="menu-icon" src="assets/icons/cart-shopping-solid2.svg" alt="cart" (click)="goSection(ROUTES.LISTS.path)">
-        <img class="menu-icon" src="assets/icons/user-solid2.svg" alt="user" (click)="goSection(ROUTES.USER.path)">
+        <img class="menu-icon" src="assets/icons/user-solid2.png" alt="user" (click)="goSection(ROUTES.USER.path)">
         <div class="menu-social u-flex u-flex-align-center">
           @if (!user) {
             <button class="login-button" (click)="logIn()">
-              <img class="menu-icon-mini" src="assets/icons/circle-user-solid2.svg" alt="user" (click)="goSection(ROUTES.USER.path)">
+              <img class="menu-icon-mini" src="assets/icons/circle-user-solid2.png" alt="user" (click)="goSection(ROUTES.USER.path)">
               {{ 'MENU.LOG_IN' | translate }}
             </button>
           } @else {
@@ -20,7 +19,7 @@
             <p>{{ user.nickname }}</p>
             <img
               class="menu-icon-mini"
-              src="assets/icons/logOff-circle2.svg"
+              src="assets/icons/logOff-circle2.png"
               alt="Log out"
               (click)="signOut()">
           }
@@ -37,13 +36,13 @@
     </div>
     <div class="menu-right u-flex u-flex-align-center">
       <div class="u-flex u-flex-align-center">
-        <img class="menu-icon" src="assets/icons/cart-shopping-solid2.svg" alt="cart" (click)="goSection(ROUTES.LISTS.path)">
-        <img class="menu-icon" src="assets/icons/user-solid2.svg" alt="user" (click)="goSection(ROUTES.USER.path)">
+        <img class="menu-icon" src="assets/icons/cart-shopping-solid2.png" alt="cart" (click)="goSection(ROUTES.LISTS.path)">
+        <img class="menu-icon" src="assets/icons/user-solid2.png" alt="user" (click)="goSection(ROUTES.USER.path)">
       </div>
       <div class="menu-social u-flex u-flex-align-center">
         @if (!user) {
           <button class="login-button" (click)="logIn()">
-            <img class="menu-icon-mini" src="assets/icons/circle-user-solid2.svg" alt="user" (click)="goSection(ROUTES.USER.path)">
+            <img class="menu-icon-mini" src="assets/icons/circle-user-solid2.png" alt="user" (click)="goSection(ROUTES.USER.path)">
             {{ 'MENU.LOG_IN' | translate }}
           </button>
         } @else {
@@ -55,7 +54,7 @@
           <p>{{ user.nickname }}</p>
           <img
             class="menu-icon-mini"
-            src="assets/icons/logOff-circle2.svg"
+            src="assets/icons/logOff-circle2.png"
             alt="Log out"
             (click)="signOut()">
         }

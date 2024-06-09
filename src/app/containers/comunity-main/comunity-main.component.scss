@@ -50,3 +50,32 @@
     }
   }
 }
+
+@media (max-width: 600px) {
+  .comunity-wrapper {
+    padding: 16px 8px;
+
+    .comunity__card {
+      padding: 24px 12px;
+
+      .comunity__table {
+        padding: 16px;
+
+      }
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .comunity-wrapper {
+    padding: 12px 4px;
+
+    .comunity__card {
+      padding: 16px 4px;
+
+      .comunity__table {
+        padding: 12px 4px;
+      }
+    }
+  }
+}

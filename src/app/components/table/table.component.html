@@ -43,25 +43,25 @@
           class="pagination-button"
           [disabled]="tableConfig.pagination.actualPage === NUMBERS.N_1"
           (click)="changePage(NUMBERS.N_1)">
-            <img class="icon-action" src="assets/icons/backward-fast-solid3.svg" alt="first" [ngClass]="{'disabled': tableConfig.pagination.actualPage === NUMBERS.N_1}">
+            <img class="icon-action" src="assets/icons/backward-fast-solid3.png" alt="first" [ngClass]="{'disabled': tableConfig.pagination.actualPage === NUMBERS.N_1}">
         </button>
         <button
           class="pagination-button"
           [disabled]="tableConfig.pagination.actualPage === NUMBERS.N_1"
           (click)="changePage(tableConfig.pagination.actualPage - NUMBERS.N_1)">
-            <img class="icon-action" src="assets/icons/backward-solid3.svg" alt="back" [ngClass]="{'disabled': tableConfig.pagination.actualPage === NUMBERS.N_1}">
+            <img class="icon-action" src="assets/icons/backward-solid3.png" alt="back" [ngClass]="{'disabled': tableConfig.pagination.actualPage === NUMBERS.N_1}">
         </button>
         <button
           class="pagination-button"
           [disabled]="tableConfig.pagination.actualPage === totalPages"
           (click)="changePage(tableConfig.pagination.actualPage + NUMBERS.N_1)">
-          <img class="icon-action" src="assets/icons/forward-solid3.svg" alt="next" [ngClass]="{'disabled': tableConfig.pagination.actualPage === totalPages}">
+          <img class="icon-action" src="assets/icons/forward-solid3.png" alt="next" [ngClass]="{'disabled': tableConfig.pagination.actualPage === totalPages}">
         </button>
         <button
           class="pagination-button"
           [disabled]="tableConfig.pagination.actualPage === totalPages"
           (click)="changePage(totalPages)">
-            <img class="icon-action" src="assets/icons/forward-fast-solid3.svg" alt="last" [ngClass]="{'disabled': tableConfig.pagination.actualPage === totalPages}">
+            <img class="icon-action" src="assets/icons/forward-fast-solid3.png" alt="last" [ngClass]="{'disabled': tableConfig.pagination.actualPage === totalPages}">
         </button>
       </div>
     </div>

@@ -3,7 +3,7 @@
 
   @if(edditMode){
     <form [formGroup]="form" class="u-width-100">
-      <div class="u-width-100 u-flex">
+      <div class="u-width-100 u-flex fexible">
         <app-input
           class="half-width"
           formControlName="name"
@@ -90,7 +90,7 @@
         <div class="article-group">
           <p >{{ "ARTICLE.NEW_PRICE" | translate }}</p>
         </div>
-        <div class="u-flex u-width-100">
+        <div class="u-flex u-width-100 fexible">
           <app-input
             class="half-width"
             formControlName="cost"
@@ -112,11 +112,11 @@
         </div>
         <div class="u-flex u-flex-end u-width-100 margin-top">
           <button class="secondary-button margin-right" (click)="handleAddPrice()">
-            <img class="icon icon-sm margin-right" src="assets/icons/trash-can-solid.svg" alt="cart">
+            <img class="icon icon-sm margin-right" src="assets/icons/trash-can-solid.png" alt="cart">
             {{ "ARTICLE.CANCEL_ADD_PRICE" | translate }}
           </button>
           <button class="primary-button" (click)="handleSavePrice()" [disabled]="!priceForm.valid">
-            <img class="icon icon-sm margin-right" src="assets/icons/floppy-disk-solid2.svg" alt="cart">
+            <img class="icon icon-sm margin-right" src="assets/icons/floppy-disk-solid2.png" alt="cart">
             {{ "SAVE" | translate }}
           </button>
         </div>
@@ -132,10 +132,10 @@
     </div>
   }
 
-  <div class="u-flex u-flex-space-between u-width-100 margin-top">
+  <div class="u-flex u-flex-space-between u-width-100 margin-top buttons">
     @if(currentTab === 1) {
       <button class="secondary-button margin-right" (click)="handleAddPrice()" [disabled]="addPriceMode || publicMode">
-        <img class="icon icon-sm margin-right" src="assets/icons/square-plus-solid.svg" alt="cart">
+        <img class="icon icon-sm margin-right" src="assets/icons/square-plus-solid.png" alt="cart">
         {{ "ARTICLE.ADD_PRICE" | translate }}
       </button>
     } @else {
@@ -143,21 +143,21 @@
     }
     <div class="u-flex">
       <button class="secondary-button margin-right" (click)="handleCancel()">
-        <img class="icon icon-sm margin-right" src="assets/icons/trash-can-solid.svg" alt="cart">
+        <img class="icon icon-sm margin-right" src="assets/icons/trash-can-solid.png" alt="cart">
         {{ "CLOSE" | translate }}
       </button>
       @if(!edditMode){
         <button class="primary-button" (click)="handleEdit()" [disabled]="publicMode">
-          <img class="icon icon-sm margin-right" src="assets/icons/pen-solid2.svg" alt="cart">
+          <img class="icon icon-sm margin-right" src="assets/icons/pen-solid2.png" alt="cart">
           {{ "EDIT" | translate }}
         </button>
       } @else {
         <button class="secondary-button margin-right" (click)="handleEdit()">
-          <img class="icon icon-sm margin-right" src="assets/icons/trash-can-solid.svg" alt="cart">
+          <img class="icon icon-sm margin-right" src="assets/icons/trash-can-solid.png" alt="cart">
           {{ "ARTICLE.CANCEL_EDIT" | translate }}
         </button>
         <button class="primary-button" (click)="handleSave()" [disabled]="!form.valid">
-          <img class="icon icon-sm margin-right" src="assets/icons/floppy-disk-solid2.svg" alt="cart">
+          <img class="icon icon-sm margin-right" src="assets/icons/floppy-disk-solid2.png" alt="cart">
           {{ "SAVE" | translate }}
         </button>
       }
