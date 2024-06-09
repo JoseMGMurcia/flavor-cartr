@@ -36,6 +36,7 @@
 }
 @media (max-width: 600px) {
   .recipes-main-component {
+    min-height: 100vh;
     padding: 8px;
 
     &__table {

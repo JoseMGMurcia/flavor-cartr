@@ -32,5 +32,5 @@ export const getApiUrl = (url: string, params: Params = {}): string => {
   Object.keys(params).forEach((key) => {
     newUrl = newUrl.replace(`{${key}}`, params[key])
   });
-  return `${BACK_LOCAL_URL}${newUrl}`;
+  return `${BACK_PROD_URL}${newUrl}`;
 }

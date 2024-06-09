@@ -40,3 +40,9 @@
 .but-img {
   margin-right: 8px !important;
 }
+
+@media (max-width: 600px) {
+  .user-container {
+    min-height: 100vh;
+  }
+}

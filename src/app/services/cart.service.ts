@@ -22,7 +22,7 @@ export class CartService {
     return new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this._token}`,
-      'Access-Control-Allow-Origin': 'localhost:4200'
+      'Access-Control-Allow-Origin': 'https://carritodesabor.com'
     });
   }
 

@@ -28,6 +28,7 @@
 // Small Mobile phone configuration
 @media (max-width: 600px) {
   .comunity-detail-wrapper {
+    min-height: 100vh;
     padding: 8px;
 
     .comunity-detail-card {
