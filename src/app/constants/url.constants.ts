@@ -1,5 +1,5 @@
 import { Params } from "@angular/router";
-import { BACK_LOCAL_URL, BACK_PROD_URL } from "./enviroment.constants";
+import { BAC_AZURE_RUL, BACK_LOCAL_URL, BACK_PROD_URL } from "./enviroment.constants";
 
 export const API_URLS = {
   ARTICLES: '/ArticleFirestore',
@@ -32,5 +32,5 @@ export const getApiUrl = (url: string, params: Params = {}): string => {
   Object.keys(params).forEach((key) => {
     newUrl = newUrl.replace(`{${key}}`, params[key])
   });
-  return `${BACK_PROD_URL}${newUrl}`;
+  return `${BAC_AZURE_RUL}${newUrl}`;
 }

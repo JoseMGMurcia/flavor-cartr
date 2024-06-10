@@ -52,5 +52,19 @@
     &__table {
       padding: 12px 4px;
     }
+
+    div {
+      display: block;
+
+      div {
+        margin-left: 15px;
+        max-width: calc(100% - 38px);
+       }
+
+       button {
+         margin: 8px 6px;
+         width: 100%;
+       }
+    }
   }
 }

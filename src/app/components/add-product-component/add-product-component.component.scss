@@ -65,6 +65,7 @@ button {
 
 @media (max-width: 450px) {
   .list-wrapper {
+    min-width: 420px;
     padding: 12px 0;
     .button-row {
       .button-group {
