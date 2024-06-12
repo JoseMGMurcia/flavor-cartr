@@ -19,6 +19,8 @@ import { ModalService } from 'app/services/modal.service';
     SocialAuthService,
   ]
 })
+
+// This component is used to display the login buttons
 export class LoggerComponent implements OnInit{
 
   constructor(

@@ -10,6 +10,7 @@ import { RecipesMainComponent } from './containers/receipts-main-component/recip
 import { ListsMainComponent } from './containers/lists-main-component/lists-main.component';
 import { UnknowComponent } from './components/unknow/unknow.component';
 
+// Routes of the app
 export const routes: Routes = [
   {
     path: ROUTES.HOME.path,

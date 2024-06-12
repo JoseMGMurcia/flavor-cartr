@@ -21,6 +21,7 @@ import { CommonModule } from '@angular/common';
 import { InputComponent } from '../input/input.component';
 import { TableComponent } from 'app/components/table/table.component';
 
+// Tabs ids
 const TABS = {
   PRICES: NUMBERS.N_1,
   CATEGORIES : NUMBERS.N_2,
@@ -40,7 +41,6 @@ const TABS = {
   styleUrl: './article-detail.component.scss'
 })
 export class ArticleDetailComponent extends ModalDataGet implements OnInit{
-
   form = this.getForm();
   priceForm = this.getPricesForm();
   article!: Article;
@@ -73,6 +73,7 @@ export class ArticleDetailComponent extends ModalDataGet implements OnInit{
     this.fetch();
   }
 
+  // Save or edit article
   handleSave(): void {
     this.edditMode = false;
     const values = this.form.getRawValue();
@@ -83,6 +84,7 @@ export class ArticleDetailComponent extends ModalDataGet implements OnInit{
     this.save(this.article);
   }
 
+  // Save article
   save(article: Article): void{
     this.loading.show();
     this.cartService.putArticle(article)
@@ -94,10 +96,12 @@ export class ArticleDetailComponent extends ModalDataGet implements OnInit{
           this.toast.showToast(TOAST_STATE.SUCCESS, this.translate.instant('TOAST.EDIT_ARTICLE_OK'));
           this.statusService.setReloadListsPending(true);
         },
+        // Show error toast
         error: () => this.toast.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.EDIT_ARTICLE_KO')),
       });
   }
 
+  // Save a new price
   handleSavePrice(): void {
     const values = this.priceForm.getRawValue();
     const price: Price = {
@@ -137,24 +141,29 @@ export class ArticleDetailComponent extends ModalDataGet implements OnInit{
     this.addPriceMode = !this.addPriceMode;
   }
 
+  // Change tab
   setTab(tab: number): void {
     this.currentTab = tab;
   }
 
+  // Get category names from article categories
   getCategoryName(): string {
     if(!this.article) return STRING_EMPTY;
     const articleCategoriesNames = this.article.categories?.map(categoryId => this.getCategoryNameById(categoryId));
     return articleCategoriesNames?.join(', ') || STRING_EMPTY;
   }
 
+  // Get formatted price
   getFormattedPrice(price: number): string {
     return formatPrice(price);
   }
 
+  // Get formatted average price
   private recalculateAveragePrice(): void {
     this.article.averagePrice = this.prices.reduce((acc, price) => acc + price.cost, NUMBERS.N_0) / this.prices.length;
   }
 
+  // Get category name by id
   private getCategoryNameById(categoryId: string): string {
     return this.categories.find(category => category.id === categoryId)?.name || STRING_EMPTY;
   }
@@ -169,6 +178,7 @@ export class ArticleDetailComponent extends ModalDataGet implements OnInit{
     });
   }
 
+  // Get form for prices
   private getPricesForm() {
     const literals = this.translate.instant('VALIDATORS');
     const max = NUMBERS.N_50;
@@ -183,6 +193,7 @@ export class ArticleDetailComponent extends ModalDataGet implements OnInit{
     });
   }
 
+  // Fetch data from modal
   private fetch(){
     if(!this.data) return;
     this.article = this.data['article'];
@@ -193,6 +204,7 @@ export class ArticleDetailComponent extends ModalDataGet implements OnInit{
     this.loadCategoriesTableData();
   }
 
+  // Load categories table data
   private loadCategoriesTableData(): void {
     this.categoriesTableData = this.categories.map(category => ({
       ...category,
@@ -202,6 +214,7 @@ export class ArticleDetailComponent extends ModalDataGet implements OnInit{
     this.categoriesTableConfig = this.getCategoriesTableConfig();
   }
 
+  // Get prices by article
   private getArticlePrices(): void {
     this.loading.show();
     this.cartService.getPricesByArticle(this.article.id)
@@ -220,11 +233,13 @@ export class ArticleDetailComponent extends ModalDataGet implements OnInit{
     });
   }
 
+  // Updte prices table data
   private updateTable(): void {
     this.pricesTableData = this.prices.map(price => ({...price, price: `${price.cost} ${price.currency}`}));
     this.pricesTableConfig = this.getPricesTableConfig();
   }
 
+  // Get prices table configuration
   private getPricesTableConfig(): TableConfig {
     const literals = this.translate.instant('ARTICLE');
     return {
@@ -254,6 +269,7 @@ export class ArticleDetailComponent extends ModalDataGet implements OnInit{
     };
   }
 
+  // Add category to article
   private addCategory(row: TableRow): void{
     if(this.article.categories?.includes(row['id'])) return;
     row['style'] = 'font-weight: bold;';
@@ -275,12 +291,14 @@ export class ArticleDetailComponent extends ModalDataGet implements OnInit{
       return
     }
 
+    // Remove the category from the article
     row['style'] = STRING_EMPTY;
     this.article.categories = this.article.categories?.filter(categoryId => categoryId !== row['id']);
     this.save(this.article);
     this.statusService.setReloadListsPending(true);
   }
 
+  // Get categories table configuration
   private getCategoriesTableConfig(): TableConfig {
     return {
       columns: [
@@ -314,6 +332,7 @@ export class ArticleDetailComponent extends ModalDataGet implements OnInit{
     };
   }
 
+  // Check if the url is an image
   isImageURL(url: string | undefined): boolean {
     if(!url) return false;
     const hasPrefix = url.startsWith('http');

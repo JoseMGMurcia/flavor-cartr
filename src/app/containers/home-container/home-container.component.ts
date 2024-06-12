@@ -10,6 +10,4 @@ import { TranslateModule } from '@ngx-translate/core';
     TranslateModule,
   ]
 })
-export class HomeContainerComponent{
-
-}
+export class HomeContainerComponent{ }

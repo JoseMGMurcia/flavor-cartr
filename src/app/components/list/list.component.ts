@@ -34,8 +34,9 @@ import { TableComponent } from 'app/components/table/table.component';
     TableComponent,
   ]
 })
-export class ListComponent implements OnInit{
 
+// This component is used to display a list of articles
+export class ListComponent implements OnInit{
   articles!: Article[];
   categories!: Category[];
   @Input({required: true}) user!: User;
@@ -46,6 +47,7 @@ export class ListComponent implements OnInit{
   tableData: TableRow[] = [];
   tableConfig: TableConfig = this.getTableConfig();
 
+  // Returns the name of the list and if it is public or private
   get listName(): string {
     return  `${stringFrom(this.list?.name)} (${this.translate.instant(this.list?.isPublic ? 'LISTS.PUBLIC_LIST' : 'LISTS.PRIVATE_LIST')})`;
   }
@@ -61,6 +63,7 @@ export class ListComponent implements OnInit{
     private toast: ToastService,
   ) {}
 
+  // Sets the data of the list
   public setData(list: List, articles: Article[], categories: Category[]): void {
     this.articles = articles;
     this.categories = categories;
@@ -73,7 +76,10 @@ export class ListComponent implements OnInit{
     this.updatetable();
   }
 
+ // Subscribes to the events of adding an article and a category
   assingEvents(): void {
+
+    // Add article to the list
     this.statusService.addedarticle$
       .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe((articleId: string) => {
@@ -83,7 +89,7 @@ export class ListComponent implements OnInit{
           const articleList: ArticleList = {
             articleId,
             amount: NUMBERS.N_1,
-            unit: STRING_EMPTY, //TODO: Add unit
+            unit: STRING_EMPTY,
             isActive: true,
           };
           this.list?.articleList.push(articleList);
@@ -92,6 +98,7 @@ export class ListComponent implements OnInit{
         }
       });
 
+      // Add category to the list
       this.statusService.addedCategory$
         .pipe(takeUntilDestroyed(this._destroyRef))
         .subscribe((category: Category) => {
@@ -102,6 +109,7 @@ export class ListComponent implements OnInit{
         });
   }
 
+  // Handles the deletion of the list by displaying a dialog
   handleDeleteList(): void {
     const literals = this.translate.instant('LISTS.DELETE_LIST_DIALOG');
     const dialog: DialogOptions = {
@@ -123,6 +131,7 @@ export class ListComponent implements OnInit{
     this.modalService.easyDialog(dialog);
   }
 
+  // Shows a modal to add an article
   handleAddArticle(): void {
     this.modalService.open(AddProductComponentComponent, {
       ...DEFAULT_MODAL_OPTIONS,
@@ -131,6 +140,7 @@ export class ListComponent implements OnInit{
     });
   }
 
+  // Shows a modal to transform the list into a recipe
   handleTransforToReceipt(): void {
     this.modalService.open(TransformListToRecipeComponent, {
       ...DEFAULT_MODAL_OPTIONS,
@@ -139,6 +149,7 @@ export class ListComponent implements OnInit{
     });
   }
 
+  // Shows a modal to edit the list details
   handleDetail(row: TableRow): void {
     const article = this.articles.find((a: Article) => a.id === row.id);
     this.modalService.open(ArticleDetailComponent, {
@@ -148,6 +159,7 @@ export class ListComponent implements OnInit{
     });
   }
 
+  // Returns a table row with the article details
   getTableRow(articleList: ArticleList): TableRow {
     const article = this.articles.find((a: Article) => a.id === articleList.articleId);
 
@@ -162,6 +174,7 @@ export class ListComponent implements OnInit{
 
   }
 
+  // Handles the edition of the list
   handleEditList(): void {
     this.modalService.open(AddListComponent, {
       ...DEFAULT_MODAL_OPTIONS,
@@ -189,6 +202,7 @@ export class ListComponent implements OnInit{
       });
   }
 
+  // Handles the download of the list in PDF format
   handlePdf(): void {
     this.loading.show();
     const id = this.list?.id || STRING_EMPTY;
@@ -198,6 +212,7 @@ export class ListComponent implements OnInit{
       .subscribe({
         next: (response) => {
 
+          // Show a modal with the PDF file
           const file = new Blob([response], { type: 'application/pdf' });
           this.modalService.open(PdfContainerComponent, {
             ...DEFAULT_MODAL_OPTIONS,
@@ -209,6 +224,7 @@ export class ListComponent implements OnInit{
       });
   }
 
+  // Shows a modal to import a recipe
   handleImportReceit(): void {
     this.modalService.open(ImportRecipeComponent, {
       ...DEFAULT_MODAL_OPTIONS,
@@ -217,10 +233,12 @@ export class ListComponent implements OnInit{
     });
   }
 
+  // Returns the total price of the list
   getFormattedPrice(): string {
     return formatPrice(this.list?.totalPrice || NUMBERS.N_0);
   }
 
+  // Deletes the list
   private deleteList(): void {
 
     // Can't delete last list
@@ -252,9 +270,11 @@ export class ListComponent implements OnInit{
       });
   }
 
+  // Returns the configuration of the table
   getTableConfig(): TableConfig {
     const literals = this.translate.instant('LISTS.HEADERS');
     return {
+      // Columns of the table
       columns: [
         {
           key: 'crossOut',
@@ -323,6 +343,8 @@ export class ListComponent implements OnInit{
           actionIcon: IconEmum.TRASH ,
         }
       ],
+
+      // Pagination of the table
       pagination: {
         actualPage: this.tableConfig ? this.tableConfig.pagination.actualPage : NUMBERS.N_1,
         itemsPerPage: this.tableConfig ? this.tableConfig.pagination.itemsPerPage : NUMBERS.N_10,
@@ -331,7 +353,10 @@ export class ListComponent implements OnInit{
     };
   }
 
+  // Handles the addition of an article to the cart or its removal
   private inOutChart(row: TableRow): void {
+
+    // If there is no list, return
     if (!this.list) {
       return;
     }
@@ -344,6 +369,7 @@ export class ListComponent implements OnInit{
     }
   }
 
+  // Handles the modification of the amount of an article in the list
   private alterAmount(row: TableRow, amount: number): void {
     if (!this.list || amount < NUMBERS.N_1) {
       return;
@@ -356,6 +382,7 @@ export class ListComponent implements OnInit{
     }
   }
 
+  // Removes an article from the list
   private removeArticleFromList(row: TableRow): void {
     if (!this.list) {
       return;
@@ -365,6 +392,7 @@ export class ListComponent implements OnInit{
     this.saveList();
   }
 
+  // Updates the table with the list data
   private updatetable(): void{
     if (!this.list) {
       return;
@@ -374,6 +402,8 @@ export class ListComponent implements OnInit{
     this.tableConfig = this.getTableConfig();
   }
 
+
+  // Sorts the list of articles alphabetically
   private sortList(): void {
     if (!this.list) {
       return;
@@ -388,6 +418,7 @@ export class ListComponent implements OnInit{
     });
   }
 
+  // Returns the total price of the list by adding the price of each article and its amount
   private getListPrice(): number {
     if (!this.list) {
       return NUMBERS.N_0;

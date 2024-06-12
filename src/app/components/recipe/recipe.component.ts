@@ -32,6 +32,8 @@ import { ArticleDetailComponent } from 'app/components/article-detail/article-de
     TableComponent
   ]
 })
+
+// This component is used to display a recipe with its articles and description
 export class RecipeComponent implements OnInit{
 
   articles!: Article[];
@@ -55,6 +57,7 @@ export class RecipeComponent implements OnInit{
     private toast: ToastService,
   ) {}
 
+  // Sets the data of the recipe
   public setData(recipe: Recipe, articles: Article[], categories: Category[]): void {
     this.articles = articles;
     this.categories = categories;
@@ -67,6 +70,8 @@ export class RecipeComponent implements OnInit{
     this.updatetable();
   }
 
+
+  // Handles the events of the recipe for adding articles and categories
   assingEvents(): void {
     this.statusService.addedarticle$
       .pipe(takeUntilDestroyed(this._destroyRef))
@@ -96,6 +101,7 @@ export class RecipeComponent implements OnInit{
         });
   }
 
+  // Shows a dialog to delete the recipe
   handleDeleteList(): void {
     const literals = this.translate.instant('RECIPES.DELETE_RECIPE_DIALOG');
     const dialog: DialogOptions = {
@@ -117,6 +123,7 @@ export class RecipeComponent implements OnInit{
     this.modalService.easyDialog(dialog);
   }
 
+  // Shows a modal to add a new article
   handleAddArticle(): void {
     this.modalService.open(AddProductComponentComponent, {
       ...DEFAULT_MODAL_OPTIONS,
@@ -125,6 +132,7 @@ export class RecipeComponent implements OnInit{
     });
   }
 
+  // Shows a modal to add a new category
   handleDetail(row: TableRow): void {
     const article = this.articles.find((a: Article) => a.id === row.id);
     this.modalService.open(ArticleDetailComponent, {
@@ -134,6 +142,7 @@ export class RecipeComponent implements OnInit{
     });
   }
 
+  // Returns a table row with the data of the article list
   getTableRow(articleList: ArticleList): TableRow {
     const article = this.articles.find((a: Article) => a.id === articleList.articleId);
 
@@ -146,6 +155,7 @@ export class RecipeComponent implements OnInit{
     };
   }
 
+  // Shows a modal to edit the recipe
   handleEditRecipe(): void {
     this.modalService.open(AddRecipeComponent, {
       ...DEFAULT_MODAL_OPTIONS,
@@ -161,6 +171,7 @@ export class RecipeComponent implements OnInit{
     }
     this.sortRecipe();
     this.loading.show();
+    // Save recipe in the database
     this.cartService.putRecipe(this.recipe)
       .pipe(takeUntilDestroyed(this._destroyRef),
         finalize(() => this.loading.hide()))
@@ -173,6 +184,7 @@ export class RecipeComponent implements OnInit{
       });
   }
 
+  // Shows a modal with the pdf of the recipe
   handlePdf(): void {
     this.loading.show();
     const id = this.recipe?.id || STRING_EMPTY;
@@ -193,6 +205,7 @@ export class RecipeComponent implements OnInit{
       });
   }
 
+  // Returns the formatted price of the recipe
   getFormattedPrice(): string {
     return formatPrice(this.recipe?.totalPrice || NUMBERS.N_0);
   }
@@ -300,6 +313,7 @@ export class RecipeComponent implements OnInit{
     };
   }
 
+  // Alter the amount of an article in the recipe
   private alterAmount(row: TableRow, amount: number): void {
     if (!this.recipe || amount < NUMBERS.N_1) {
       return;
@@ -312,6 +326,7 @@ export class RecipeComponent implements OnInit{
     }
   }
 
+  // Remove an article from the recipe
   private removeArticleFromList(row: TableRow): void {
     if (!this.recipe) {
       return;
@@ -321,6 +336,7 @@ export class RecipeComponent implements OnInit{
     this.saveRecipe();
   }
 
+  // Update the table with the new data
   private updatetable(): void{
     if (!this.recipe) {
       return;
@@ -330,6 +346,7 @@ export class RecipeComponent implements OnInit{
     this.tableConfig = this.getTableConfig();
   }
 
+  // Sort the recipe articles by name
   private sortRecipe(): void {
     if (!this.recipe) {
       return;
@@ -344,6 +361,7 @@ export class RecipeComponent implements OnInit{
     });
   }
 
+  // Get the price of the recipe
   private getRecipePrice(): number {
     if (!this.recipe) {
       return NUMBERS.N_0;

@@ -140,6 +140,10 @@
   .table-wraper .columns .column {
     .column-header {
       font-size: 0.9rem !important;
+
+      .not-small {
+        display: none;
+      }
     }
 
     .column-row {
@@ -148,12 +152,8 @@
 
     .not-small {
       height: 20px;
+
       p {
-        display: none;
-      }
-    }
-    .column-header {
-      .not-small {
         display: none;
       }
     }

@@ -62,6 +62,7 @@ export class AddRecipeComponent extends ModalDataGet implements OnInit {
     this.modalService.close();
   }
 
+  // Get the list from the form
   private getList(initialList: Recipe): Recipe {
     const values = this.form.getRawValue();
     return {
@@ -71,6 +72,7 @@ export class AddRecipeComponent extends ModalDataGet implements OnInit {
     };
   }
 
+  // Edit the list if it already exists in the database
   private editlist(): void {
     if (!this.data || !this.data['recipe']) {
       return;
@@ -94,6 +96,7 @@ export class AddRecipeComponent extends ModalDataGet implements OnInit {
       });
   }
 
+  // Save the list in the database
   private savelist(): void {
     const recipe = this.getList(getNewRecipe(this.translate, this._userId));
     this.loadingService.show();
@@ -130,6 +133,7 @@ export class AddRecipeComponent extends ModalDataGet implements OnInit {
     }
   }
 
+  // Get the form with the validators
   private getForm() {
     return new FormGroup({
      name: new FormControl({ value: STRING_EMPTY, disabled: false}, this.getValidators(NUMBERS.N_100)),
@@ -137,6 +141,7 @@ export class AddRecipeComponent extends ModalDataGet implements OnInit {
    });
  }
 
+ // Get the validators for the form
  private getValidators(max: number) {
     const literals = this.translate.instant('VALIDATORS');
     return [

@@ -2,6 +2,9 @@
   [@toastTrigger]="(toast.showsToast$ | async) ? 'open' : 'close'"
   [class]="toast.toastState$ | async"
 >
+  <!-- This is the toast message -->
   <div>{{ toast.toastMessage$ | async }}</div>
+
+  <!-- This is the toast action for deleting the toast -->
   <img class="icon-action" src="assets/icons/trash-can-solid.png" alt="close" (click)="dismiss()">
 </div>

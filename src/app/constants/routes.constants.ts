@@ -1,4 +1,5 @@
 
+// Routes constants of the app
 export const ROUTES = {
   HOME: {
     path: '',

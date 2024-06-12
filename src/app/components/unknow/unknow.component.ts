@@ -12,6 +12,5 @@ import { TranslateModule } from '@ngx-translate/core';
     TranslateModule,
   ]
 })
-export class UnknowComponent {
-
-}
+// This component is used to display a message when the user tries to access an unknown route
+export class UnknowComponent { }

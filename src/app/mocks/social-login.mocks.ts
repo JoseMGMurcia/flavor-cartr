@@ -1,5 +1,5 @@
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialAuthServiceConfig } from "@abacritt/angularx-social-login";
-import { FACEBBOK_CLIENT_ID, GOOGLE_CLIENT_ID } from "@shared/constants/social.constants";
+import { FACEBBOK_CLIENT_ID, GOOGLE_CLIENT_ID } from "app/constants/social.constants";
 
 export const socialLoginMock = {
   provide: SocialAuthService,
@@ -8,7 +8,7 @@ export const socialLoginMock = {
     providers: [
       {
         id: GoogleLoginProvider.PROVIDER_ID,
-        provider: new GoogleLoginProvider(GOOGLE_CLIENT_ID )
+        provider: new GoogleLoginProvider(GOOGLE_CLIENT_ID)
       },
       {
         id: FacebookLoginProvider.PROVIDER_ID,

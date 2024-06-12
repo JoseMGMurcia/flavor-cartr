@@ -64,6 +64,7 @@ export type TableRowStatusType =
 export interface TableRow {
   id: string;
   status?: TableRowStatusType;
+  /* eslint-disable-next-line */
   [key: string]: any | undefined;
 }
 

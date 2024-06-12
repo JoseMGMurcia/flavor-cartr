@@ -10,11 +10,14 @@ import { ModalService } from 'app/services/modal.service';
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.scss'
 })
+
+// This component is used to easily display a dialog with a message and buttons
 export class DialogComponent {
   @Input() options: DialogOptions = {}
 
   constructor( private modalService: ModalService) { }
 
+  // Calls the action of the button and closes the dialog if the button is not set to prevent closing
   doAction(button: DialogButton) {
     button.action?.();
     button.preventClose || this.modalService.close();

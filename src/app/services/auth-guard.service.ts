@@ -1,11 +1,13 @@
 import {inject} from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, Router, CanActivateFn } from '@angular/router';
+import { Router, CanActivateFn } from '@angular/router';
 import { SocialService } from 'app/services/social.service';
 import { ROUTES } from "app/constants/routes.constants";
 
-export const AuthGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+// This guard is used to check if the user is logged in and prevent them from accessing certain pages
+export const AuthGuard: CanActivateFn = () => {
   const socialService = inject(SocialService);
 
+  // If the user is not logged in, we redirect them to the forbidden page
   const isLogged = socialService.isLogged();
   if (!isLogged) {
     const router = inject(Router);

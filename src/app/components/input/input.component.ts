@@ -18,6 +18,8 @@ import { RECIPE_DESCRIPTION_MAX_LENGTH } from "app/models/cart.models";
   ],
   imports: [CommonModule, FormsModule],
 })
+
+// This component is used to easily display an input field with a label and error messages
 export class InputComponent implements ControlValueAccessor {
   @Input() public label = STRING_EMPTY;
   @Input() public type = 'text';
@@ -32,6 +34,7 @@ export class InputComponent implements ControlValueAccessor {
     this.value = obj;
   }
 
+  // ControlValueAccessor interface methods
   registerOnChange(fn: any): void {
     this.propagateChange = fn;
   }
@@ -43,6 +46,7 @@ export class InputComponent implements ControlValueAccessor {
   propagateChange = (_: any) => {};
   propagateTouched = () => {};
 
+  // It there are errors, return them
   getErrors(): string[] {
     const errors = this.control.errors;
     if (!errors) {

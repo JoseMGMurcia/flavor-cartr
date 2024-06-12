@@ -39,6 +39,7 @@ export class AddProductComponentComponent extends ModalDataGet implements OnInit
   publicMode: boolean = false;
   control = new FormControl();
 
+  // Returns true if the save button should be disabled
   get disableSavingButton(): boolean {
     const categoryKO = (!this.addingCategory && !this.form.get('category')?.value) || (this.addingCategory && !this.form.valid);
     const articleKO = (!this.addingArticle && !this._selectedArticleId) || (this.addingArticle && !this.form.valid);
@@ -66,6 +67,7 @@ export class AddProductComponentComponent extends ModalDataGet implements OnInit
   }
 
   ngOnInit(): void {
+    // If the modal is in public mode, the user can only add articles to the list
     if (this.data) {
       this.publicMode = !!this.data['publicMode'];
       this._articles = this.data['articles'] ? [...this.data['articles']] : [];
@@ -85,6 +87,7 @@ export class AddProductComponentComponent extends ModalDataGet implements OnInit
     }
   }
 
+  // Change the selected category and update the article options
   changeCategory(id: string): void {
     this._selectedCategoryId = id;
     this.articleOptions = this._articles.filter((article: Article) => article.categories?.includes(id)).map((article: Article) => {
@@ -96,10 +99,12 @@ export class AddProductComponentComponent extends ModalDataGet implements OnInit
     this._selectedArticleId = this.articleOptions.length ? this.articleOptions[NUMBERS.N_0].value : STRING_EMPTY;
   }
 
+  // Change the selected article
   changeArticle(id: string): void {
     this._selectedArticleId = id;
   }
 
+  // Save the selected article or category and if it must add a new one, it will do it
   handleAdd() {
     if(this.addingCategory) {
       this.addCategory();
@@ -115,6 +120,7 @@ export class AddProductComponentComponent extends ModalDataGet implements OnInit
     this.modalService.close();
   }
 
+  // Add a new category
   addCategory(): void {
     const newCategory: Category = {
       id: STRING_EMPTY,
@@ -141,6 +147,8 @@ export class AddProductComponentComponent extends ModalDataGet implements OnInit
       });
   }
 
+
+  // Add a new article
   addArticle(categoryId: string): void {
     const values = this.form.getRawValue();
     const newArticle: Article = {
@@ -170,6 +178,7 @@ export class AddProductComponentComponent extends ModalDataGet implements OnInit
     this.modalService.close();
   }
 
+  // handle response from adding category
   handleAddCategory(): void {
     this.addingCategory = !this.addingCategory;
     if (this.addingCategory) {
@@ -182,6 +191,7 @@ export class AddProductComponentComponent extends ModalDataGet implements OnInit
     this.form.get('newCategory')?.updateValueAndValidity();
   }
 
+  // handle response from adding article
   handleAddArticle(): void {
     this.addingArticle = !this.addingArticle;
     if (this.addingArticle) {
@@ -206,6 +216,7 @@ export class AddProductComponentComponent extends ModalDataGet implements OnInit
     this.form.get('newArticleURL')?.updateValueAndValidity();
   }
 
+  // Get the form with the initial values
   private getForm() {
     return new FormGroup({
       category: new FormControl({ value: STRING_EMPTY, disabled: false}),
@@ -218,6 +229,7 @@ export class AddProductComponentComponent extends ModalDataGet implements OnInit
     });
   }
 
+  // Get the validators for the form
   private getValidators(max: number, isRequired = true) {
     const literals = this.translate.instant('VALIDATORS');
     const validators = isRequired ? [required(literals.REQUIRED)] : [];

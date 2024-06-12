@@ -16,6 +16,8 @@ import { InputComponent } from 'app/components/input/input.component';
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
 })
+
+// This component is used to display a table with the data provided in the tableData input and the configuration in the tableConfig input
 export class TableComponent implements OnInit, OnChanges{
   @Input({required: true}) tableConfig!: TableConfig;
   @Input({required: true}) tableData!: TableRow[];
@@ -44,6 +46,7 @@ export class TableComponent implements OnInit, OnChanges{
     );
   }
 
+  // This method is called when the tableData or tableConfig inputs change
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['tableData']) {
       this.currentPageData = this.tableData.slice(
@@ -62,6 +65,7 @@ export class TableComponent implements OnInit, OnChanges{
     }
   }
 
+  // This method is called when the user clicks on a page number
   changePage(page: number): void {
     this.tableConfig.pagination.actualPage = page;
     this.currentPageData = this.tableData.slice(
@@ -70,17 +74,20 @@ export class TableComponent implements OnInit, OnChanges{
     );
   }
 
+  // This method is called when the user changes the number of items per page
   changePageSize(size: string): void {
     this.tableConfig.pagination.itemsPerPage = Number(size);
     this.changePage(NUMBERS.N_1);
   }
 
+  // This method returns the class for the header of the table
   getHeaderClass(columnIndex: number, type: TableColumnType, notDisplayHeader: NotDisplayColumnsType |undefined  ): string {
     const roundRight = columnIndex === this.tableConfig.columns.length - NUMBERS.N_1 ? 'round-right' : STRING_EMPTY;
     const positionClass =  columnIndex === NUMBERS.N_0 ? 'round-left' : roundRight;
     return `${positionClass} ${notDisplayHeader ?? STRING_EMPTY} ${type === TableColumnTypeEnum.ACTIONS ? 'not-small' : STRING_EMPTY}`;
   }
 
+  // This method returns the class for the rows of the table
   getRowClass(rowIndex: number, columnIndex: number): string {
     const roundRight = columnIndex === this.tableConfig.columns.length - NUMBERS.N_1 ? 'round-right' : STRING_EMPTY;
     const round = columnIndex === NUMBERS.N_0 ? 'round-left' : roundRight;
@@ -90,16 +97,19 @@ export class TableComponent implements OnInit, OnChanges{
     return `${evenOdd} ${lastPageRow || lastRow ? round : STRING_EMPTY}`;
   }
 
+  // This method returns the class for the cells of the table
   doAction(row: TableRow, column: TableColumn): void {
     if (column.action) {
       column.action(row);
     }
   }
 
+  // This method cuts the string if it is longer than the maxChars
   cutString(value: string, maxChars: number | undefined): string {
     return (value && maxChars) ? cutString(value, maxChars): value;
   }
 
+  // This method indicates if a number is multiple of another
   private isMultipleOf(number: number, multiple: number): boolean {
     return number % multiple === NUMBERS.N_0;
   }

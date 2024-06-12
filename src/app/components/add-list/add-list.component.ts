@@ -50,6 +50,7 @@ export class AddListComponent extends ModalDataGet implements OnInit{
     this.fetch();
   }
 
+  // Save or edit list
   handleSave(): void {
     if (this.edditMode) {
       this.editlist();
@@ -62,6 +63,7 @@ export class AddListComponent extends ModalDataGet implements OnInit{
     this.modalService.close();
   }
 
+  // Get list from form
   private getList(initialList: List): List {
     const values = this.form.getRawValue();
     return {
@@ -71,6 +73,7 @@ export class AddListComponent extends ModalDataGet implements OnInit{
     };
   }
 
+  // Edit list, call service and show toast
   private editlist(): void {
     if (!this.data || !this.data['list']) {
       return;
@@ -90,10 +93,13 @@ export class AddListComponent extends ModalDataGet implements OnInit{
           this.statusService.setReloadListsPending(true)
           this.toastService.showToast(TOAST_STATE.SUCCESS, this.translate.instant('TOAST.EDIT_LIST_OK'));
         },
+
+        // Show toast if error
         error: () => this.toastService.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.EDIT_LIST_KO')),
       });
   }
 
+  // Save list, call service and show toast
   private savelist(): void {
     const list = this.getList(getNewList(this.translate, this._userId));
     this.loadingService.show();
@@ -116,6 +122,7 @@ export class AddListComponent extends ModalDataGet implements OnInit{
       });
   }
 
+  // Fetch data from modal
   private fetch(): void {
     if (this.data) {
       this._userId = this.data['userId'];
@@ -137,6 +144,7 @@ export class AddListComponent extends ModalDataGet implements OnInit{
    });
  }
 
+ // Get validators for form
  private getValidators(max: number) {
     const literals = this.translate.instant('VALIDATORS');
     return [

@@ -17,6 +17,8 @@ import { STRING_EMPTY } from 'app/constants/string.constants';
   ],
   imports: [CommonModule, FormsModule],
 })
+
+// This component is used to easily display a select field with a label and options
 export class SelectComponent implements ControlValueAccessor{
   @Input() public label = STRING_EMPTY;
   @Input() public options: CartOption[] = [];
@@ -25,6 +27,7 @@ export class SelectComponent implements ControlValueAccessor{
 
   @Output() public valueChanges = new EventEmitter<string>();
 
+  // ControlValueAccessor interface method to write the value
   writeValue(obj: any): void {
     this.value = obj;
     this.options.forEach((option) => {
@@ -32,6 +35,7 @@ export class SelectComponent implements ControlValueAccessor{
     });
   }
 
+  // ControlValueAccessor interface method to register the change
   registerOnChange(fn: any): void {
     this.propagateChange = fn;
   }
@@ -53,6 +57,8 @@ export class SelectComponent implements ControlValueAccessor{
   }
 }
 
+
+// this is the model for the options of the select component
 export class CartOption {
   label = STRING_EMPTY;
   value = STRING_EMPTY;

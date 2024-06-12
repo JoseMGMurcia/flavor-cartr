@@ -88,6 +88,7 @@ export class ModalService {
     this.appRef.attachView(this.newModalComponent.hostView);
   }
 
+  // Close the modal
   close() {
     this.newModalComponent.instance.close();
   }

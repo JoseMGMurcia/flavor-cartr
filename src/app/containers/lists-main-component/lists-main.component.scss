@@ -50,14 +50,14 @@
     padding: 8px 0;
 
     &__table {
-      padding: 12px 0px;
+      padding: 12px 0;
 
       div {
         display: block;
 
         div {
-         margin-left: 15px;
-         max-width: calc(100% - 38px);
+          margin-left: 15px;
+          max-width: calc(100% - 38px);
         }
 
         button {
@@ -68,5 +68,3 @@
     }
   }
 }
-
-

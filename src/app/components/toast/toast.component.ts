@@ -1,12 +1,17 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { STRING_EMPTY } from '@shared/constants/string.constants';
-import { ToastService } from '@shared/services/toast.service';
+import { STRING_EMPTY } from 'app/constants/string.constants';
+import { ToastService } from 'app/services/toast.service';
 
 @Component({
   selector: 'app-toast',
   templateUrl: './toast.component.html',
   styleUrls: ['./toast.component.scss'],
+  standalone: true,
+  imports: [
+    AsyncPipe,
+  ],
   animations: [
     trigger('toastTrigger', [ // This refers to the @trigger we created in the template
       state('open', style({ transform: 'translateY(0%)' })), // This is how the 'open' state is styled
@@ -25,6 +30,7 @@ export class ToastComponent {
 
   constructor(public toast: ToastService ) { }
 
+  // This function is used to display the toast
   dismiss(): void {
     this.toast.dismissToast();
   }

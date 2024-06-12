@@ -142,6 +142,7 @@
   margin-bottom: 35px;
 
   ::ng-deep .columns {
+
     // Do  scrollbar to appear
     max-height: 40dvh;
     overflow: auto;
@@ -187,8 +188,6 @@
       .card {
         max-width: 520px;
         width: 100%;
-
-
       }
     }
   }
@@ -201,6 +200,7 @@
 
     .article-card {
       display: block;
+
       .image-wrapper {
         padding-left: 35%;
       }
@@ -225,32 +225,29 @@
       display: block;
       min-width: 100%;
 
-      button{
-        width: 100%;
+      button {
         margin: 0 0 8px 0;
+        width: 100%;
       }
 
       div {
         display: block;
         min-width: 100%;
 
-        button{
-          width: 100%;
+        button {
           margin: 0 0 8px 0;
+          width: 100%;
         }
-       }
+      }
     }
-
   }
 
   .fexible {
     flex-wrap: wrap;
     width: 100%;
 
-      .half-width {
-        width: calc(100% - 16px);
-      }
-
-
+    .half-width {
+      width: calc(100% - 16px);
+    }
   }
 }

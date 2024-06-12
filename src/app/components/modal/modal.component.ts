@@ -8,6 +8,7 @@ import { Observable, fromEvent, zip } from 'rxjs';
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss'
 })
+// This component is used to display a modal with a template or a component
 export class ModalComponent implements AfterViewInit {
   @ViewChild('modal') modal!: ElementRef<HTMLDivElement>;
   @ViewChild('overlay') overlay!: ElementRef<HTMLDivElement>;
@@ -24,6 +25,7 @@ export class ModalComponent implements AfterViewInit {
     private element: ElementRef
   ) {}
 
+  // Close the modal on escape key press
   @HostListener('document:keydown.escape')
   onEscape() {
     // closing modal on escape
@@ -33,7 +35,7 @@ export class ModalComponent implements AfterViewInit {
   }
 
   onClose() {
-    // closing modal when clicking on the overlay
+    // closing modal when clicking on the overlay ( outside the modal ).
     if (!this.options?.prevenCloseOutside) {
       this.modalService.close();
     }
@@ -45,6 +47,7 @@ export class ModalComponent implements AfterViewInit {
     this.addEnterAnimations();
   }
 
+  // Add enter animations to the modal and overlay
   addEnterAnimations() {
     this.modal.nativeElement.style.animation =
       this.options?.animations?.modal?.enter || '';
@@ -79,16 +82,19 @@ export class ModalComponent implements AfterViewInit {
     this.overlayLeaveTiming = this.getAnimationTime(this.overlayLeaveAnimation);
   }
 
+  // Create an observable from the animationend event
   animationendEvent(element: HTMLDivElement) {
     return fromEvent(element, 'animationend');
   }
 
+  // Remove element if no animation
   removeElementIfNoAnimation(element: HTMLDivElement, animation: string) {
     if (!animation) {
       element.remove();
     }
   }
 
+  // Close the modal
   close() {
     this.modal.nativeElement.style.animation = this.modalLeaveAnimation;
     this.overlay.nativeElement.style.animation = this.overlayLeaveAnimation;
@@ -132,6 +138,7 @@ export class ModalComponent implements AfterViewInit {
     this.modalService.options = undefined;
   }
 
+  // Get animation time from the animation string
   getAnimationTime(animation: string) {
     // Example animation = 'fade-in 0.8s'
     let animationTime = 0;
@@ -146,6 +153,8 @@ export class ModalComponent implements AfterViewInit {
     return animationTime;
   }
 }
+
+// ----- USAGE TIPS -----
 
 /* Usage
 

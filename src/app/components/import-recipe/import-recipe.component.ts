@@ -44,6 +44,7 @@ export class ImportRecipeComponent extends ModalDataGet implements OnInit {
     super();
   }
 
+  // Handles the change of the selected recipe
   handleRecipeChange(recipeId: string): void {
     this.selectedRecipeId = recipeId;
   }
@@ -60,6 +61,7 @@ export class ImportRecipeComponent extends ModalDataGet implements OnInit {
     this.modalService.close();
   }
 
+  // Save the list with the selected recipe and show a toast
   private savelist(): void {
     if(!this._list) return;
     this.cartService.putAddRecipeToList(this.selectedRecipeId, this._list)
@@ -79,6 +81,7 @@ export class ImportRecipeComponent extends ModalDataGet implements OnInit {
     });
   }
 
+  // Fetch the recipes of the user
   private fetch(): void {
     if (this.data && this.data['userId']) {
       this._userId = this.data['userId'];
@@ -88,6 +91,7 @@ export class ImportRecipeComponent extends ModalDataGet implements OnInit {
       this._list = this.data['list'];
     }
 
+    // Get the recipes of the user from the service
     this.loadingService.show();
     this.cartService.getRecipesByUser(this._userId)
     .pipe(
@@ -96,11 +100,15 @@ export class ImportRecipeComponent extends ModalDataGet implements OnInit {
     )
     .subscribe({
       next: (response: Recipe[]) => {
+
+        // Show toast if no recipes
         if (!response || response.length === NUMBERS.N_0) {
           this.toastService.showToast(TOAST_STATE.SUCCESS, this.translate.instant('TOAST.NO_RECIPES'));
           this.modalService.close();
           return;
         }
+
+        // Set the recipes options
         this.recipesOptions = response.map((recipe: Recipe) => ({ label: recipe.name, value: recipe.id }));
         this.selectedRecipeId = this.recipesOptions[NUMBERS.N_0].value;
         this.toastService.showToast(TOAST_STATE.SUCCESS, this.translate.instant('TOAST.GET_LISTS_KO'));

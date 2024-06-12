@@ -1,9 +1,11 @@
-@if(loading){
+
+<!--  Show loading gif while the app is loading -->
+ @if(loading){
   <div class="loading">
     <img src="../assets/images/loading.gif" alt="Icono de carga">
   </div>
 }
 <app-menu/>
-<!-- <app-toast/>  -->
+<app-toast/>
 <router-outlet></router-outlet>
 <app-footer/>

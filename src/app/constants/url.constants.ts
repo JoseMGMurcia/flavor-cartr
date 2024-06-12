@@ -1,6 +1,8 @@
 import { Params } from "@angular/router";
+/* eslint-disable-next-line */
 import { BAC_AZURE_RUL, BACK_LOCAL_URL, BACK_PROD_URL } from "./enviroment.constants";
 
+// API URLS
 export const API_URLS = {
   ARTICLES: '/ArticleFirestore',
   ARTICLE_ID: '/ArticleFirestore/{id}',
@@ -27,10 +29,11 @@ export const API_URLS = {
   RECIPE_PDF_ID: '/api/pdfcreator/recipe/{id}'
 };
 
+// This function returns the full API URL with the params replaced
 export const getApiUrl = (url: string, params: Params = {}): string => {
   let newUrl = url;
   Object.keys(params).forEach((key) => {
     newUrl = newUrl.replace(`{${key}}`, params[key])
   });
-  return `${BAC_AZURE_RUL}${newUrl}`;
+  return `${BACK_LOCAL_URL}${newUrl}`;
 }

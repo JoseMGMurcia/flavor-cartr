@@ -25,6 +25,7 @@ import { ROUTES } from 'app/constants/routes.constants';
     TableComponent,
   ]
 })
+// This component is used to display the public lists
 export class ComunityMainComponent implements OnInit{
 
   tableData: TableRow[] = [];
@@ -45,6 +46,7 @@ export class ComunityMainComponent implements OnInit{
     this.fetch();
   }
 
+  // This function is used to fetch the public lists from the server and set the table data
   private fetch(): void {
     this.loading.show();
     this.cartService.getPublicLists()
@@ -62,6 +64,7 @@ export class ComunityMainComponent implements OnInit{
     });
   }
 
+  // This function is used to navigate to the detail of a public list
   private goDetail(row: TableRow): void {
     this.router.navigate([ROUTES.COMUNITY.DETAIL.fullPath, row.id]);
   }

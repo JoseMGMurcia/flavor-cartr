@@ -6,7 +6,10 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
+// This service is used to manage the status of the app, like the lists reload, the added article and the added category
 export class StatusService {
+  // Observables to get the status of the lists reload, the added article and the added category
   public get reloadListsPending$(): BehaviorSubject<boolean> { return this.reloadListsPending; }
   public get addedarticle$(): BehaviorSubject<string> { return this.addedarticle; }
   public get addedCategory$(): BehaviorSubject<Category> { return this.addedCategory; }

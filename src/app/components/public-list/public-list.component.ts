@@ -32,6 +32,7 @@ import { TableComponent } from 'app/components/table/table.component';
     TableComponent,
   ]
 })
+// This component is used to display a public list
 export class PublicListComponent implements OnInit {
 
   @Input({required: true}) articles!: Article[];
@@ -54,6 +55,7 @@ export class PublicListComponent implements OnInit {
     private toast: ToastService,
   ) {}
 
+  // Update the table with the list data
   public updatetable(): void{
     if (!this.list) {
       return;
@@ -73,6 +75,7 @@ export class PublicListComponent implements OnInit {
     this.getUser();
   }
 
+  // Show a modal for copping the list to the user's private lists
   handleCopyList(): void {
     const literals = this.translate.instant('COMUNITY');
     const dialog: DialogOptions = {
@@ -94,7 +97,9 @@ export class PublicListComponent implements OnInit {
     this.modalService.easyDialog(dialog);
   }
 
+  // Assign the events for the status service
   assingEvents(): void {
+    // Add article to the list
     this.statusService.addedarticle$
       .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe((articleId: string) => {
@@ -104,7 +109,7 @@ export class PublicListComponent implements OnInit {
           const articleList: ArticleList = {
             articleId,
             amount: NUMBERS.N_1,
-            unit: STRING_EMPTY, //TODO: Add unit
+            unit: STRING_EMPTY,
             isActive: true,
           };
           this.list?.articleList.push(articleList);
@@ -112,6 +117,7 @@ export class PublicListComponent implements OnInit {
         }
       });
 
+      // Add category to the list of categories
       this.statusService.addedCategory$
         .pipe(takeUntilDestroyed(this._destroyRef))
         .subscribe((category: Category) => {
@@ -122,6 +128,7 @@ export class PublicListComponent implements OnInit {
         });
   }
 
+  // Show a modal for adding a new article
   handleAddArticle(): void {
     this.modalService.open(AddProductComponentComponent, {
       ...DEFAULT_MODAL_OPTIONS,
@@ -130,6 +137,7 @@ export class PublicListComponent implements OnInit {
     });
   }
 
+  // Show a modal for adding a new category
   handleDetail(row: TableRow): void {
     const article = this.articles.find((a: Article) => a.id === row.id);
     this.modalService.open(ArticleDetailComponent, {
@@ -139,6 +147,7 @@ export class PublicListComponent implements OnInit {
     });
   }
 
+  // Get the table row for the list
   getTableRow(articleList: ArticleList): TableRow {
     const article = this.articles.find((a: Article) => a.id === articleList.articleId);
 
@@ -152,10 +161,12 @@ export class PublicListComponent implements OnInit {
     };
   }
 
+  // Get the formatted price of the list
   getFormattedPrice(): string {
     return formatPrice(this.list?.totalPrice || NUMBERS.N_0);
   }
 
+  // Get the table configuration for the list
   getTableConfig(): TableConfig {
     const literals = this.translate.instant('LISTS.HEADERS');
     return {
@@ -196,6 +207,8 @@ export class PublicListComponent implements OnInit {
           key: 'detail',
           label: STRING_EMPTY,
           type: TableColumnTypeEnum.ACTIONS,
+
+          // Remove an article from the list
           action: (row: TableRow) => this.alterAmount(row, Number(row['amount']) - NUMBERS.N_1),
           actionIcon: IconEmum.MINUS ,
         },
@@ -203,6 +216,8 @@ export class PublicListComponent implements OnInit {
           key: 'detail',
           label: STRING_EMPTY,
           type: TableColumnTypeEnum.ACTIONS,
+
+          // Add an article to the list
           action: (row: TableRow) => this.alterAmount(row, Number(row['amount']) + NUMBERS.N_1),
           actionIcon: IconEmum.PLUS ,
         },
@@ -216,6 +231,8 @@ export class PublicListComponent implements OnInit {
           key: 'detail',
           label: literals.DETAIL,
           type: TableColumnTypeEnum.ACTIONS,
+
+          // Show the detail of the article
           action: (row: TableRow) => this.handleDetail(row),
           actionIcon: IconEmum.DETAIL ,
         },
@@ -223,6 +240,8 @@ export class PublicListComponent implements OnInit {
           key: 'delete',
           label: literals.DELETE,
           type: TableColumnTypeEnum.ACTIONS,
+
+          // Remove an article from the list
           action: (row: TableRow) => this.removeArticleFromList(row),
           actionIcon: IconEmum.TRASH ,
         }
@@ -235,6 +254,7 @@ export class PublicListComponent implements OnInit {
     };
   }
 
+  // Copy the list to the user's private lists
   private copyList(): void {
     if (!this.list || !this.user) return;
         this.loading.show();
@@ -249,12 +269,14 @@ export class PublicListComponent implements OnInit {
       });
   }
 
+  // Get the user from the social service
   private getUser(): void {
     this.socialService.user$
       .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe((user: User) => this.user = user);
   }
 
+  // Add an article to the chart or remove it
   private inOutChart(row: TableRow): void {
     if (!this.list) {
       return;
@@ -267,6 +289,7 @@ export class PublicListComponent implements OnInit {
     }
   }
 
+  // Alter the amount of an article in the list
   private alterAmount(row: TableRow, amount: number): void {
     if (!this.list || amount < NUMBERS.N_1) {
       return;
@@ -278,6 +301,7 @@ export class PublicListComponent implements OnInit {
     }
   }
 
+  // Remove an article from the list
   private removeArticleFromList(row: TableRow): void {
     if (!this.list) {
       return;
@@ -286,6 +310,7 @@ export class PublicListComponent implements OnInit {
     this.updatetable();
   }
 
+  // Get the price of the list
   private getListPrice(): number {
     if (!this.list) {
       return NUMBERS.N_0;

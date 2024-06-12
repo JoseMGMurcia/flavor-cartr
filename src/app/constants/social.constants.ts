@@ -1,5 +1,6 @@
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig } from "@abacritt/angularx-social-login";
 
+// Google Client ID
 export const GOOGLE_CLIENT_ID = '945913043267-lsp0ge3lufrghgfnc950qv8qmgjo9u6m.apps.googleusercontent.com';
 export const FACEBBOK_CLIENT_ID = '365580963065987';
 

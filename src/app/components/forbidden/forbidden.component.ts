@@ -8,6 +8,4 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './forbidden.component.html',
   styleUrl: './forbidden.component.scss'
 })
-export class ForbiddenComponent {
-
-}
+export class ForbiddenComponent { }

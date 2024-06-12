@@ -29,6 +29,8 @@ import { CartOption, SelectComponent } from 'app/components/select/select.compon
     ListComponent,
   ]
 })
+
+// This component is used to display the main list of lists
 export class ListsMainComponent implements OnInit{
 
   @ViewChild('list', { static: false}) list!: ListComponent;
@@ -58,6 +60,7 @@ export class ListsMainComponent implements OnInit{
     private statusService: StatusService,
   ) { }
 
+  // Show a modal to add a new list
   handleNewList(): void {
     this.modalService.open(AddListComponent, {
       ...DEFAULT_MODAL_OPTIONS,
@@ -66,6 +69,7 @@ export class ListsMainComponent implements OnInit{
     });
   }
 
+  // Show a modal to edit the current list
   handleListChange(listId: string): void {
     this.selectedList = this._lists.find((list: List) => list.id === listId);
     if (!this.selectedList) {
@@ -79,6 +83,7 @@ export class ListsMainComponent implements OnInit{
     this.asingEvents();
   }
 
+  // This function is used to subscribe to the status service and reload the lists
   private asingEvents(): void {
     this.statusService.reloadListsPending$
       .pipe(takeUntilDestroyed(this._destroyRef))
@@ -89,6 +94,7 @@ export class ListsMainComponent implements OnInit{
       });
   }
 
+  // Get the user from the social service
   private getUser(): void {
     this.socialService.user$
       .pipe(takeUntilDestroyed(this._destroyRef))
@@ -105,6 +111,9 @@ export class ListsMainComponent implements OnInit{
       });
   }
 
+
+  // Load the data from the cart service by the forjJoin operator that will get the articles, categories and lists
+  // and then it will handle the response all at once
   private loadData(): void {
     this.loading.show();
     forkJoin([
@@ -130,6 +139,7 @@ export class ListsMainComponent implements OnInit{
       })
   }
 
+  // This function is used to handle the lists that are returned from the server
   private handleLists(lists: List[]): void {
     if (lists.length === NUMBERS.N_0) {
       this.createInitialList();
@@ -141,6 +151,7 @@ export class ListsMainComponent implements OnInit{
     this.list?.setData(this.selectedList, this.articles, this.categories);
   }
 
+  // This function is used to create a new list when there are no lists
   private createInitialList(): void {
     const list: List = getNewList(this.translate, this.user.id);
     this.loading.show();
@@ -158,6 +169,7 @@ export class ListsMainComponent implements OnInit{
       });
   }
 
+  // This function is used to get the options for the lists
   private getListOptions(lists: List[]): CartOption[] {
     return lists.map((list: List) => ({
       value: stringFrom(list.id),

@@ -1,9 +1,9 @@
 @use 'assets/scss/custom-colors.scss' as colors;
 
 .menu-wraper {
+  align-items: center;
   background-color: colors.$menu-background;
   display: flex;
-  align-items: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 1.5rem;
   font-weight: 500;
@@ -141,9 +141,9 @@
       }
     }
 
-    .menu-divider{
+    .menu-divider {
       .menu-right {
-       display: none;
+        display: none;
       }
 
       .menu-options {
@@ -201,8 +201,6 @@
       }
     }
   }
-
-
 }
 
 // Small Mobile phone configuration
@@ -216,7 +214,7 @@
       }
     }
 
-    .menu-divider{
+    .menu-divider {
       .menu-options {
         font-size: 1rem;
       }

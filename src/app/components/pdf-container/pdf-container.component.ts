@@ -15,6 +15,7 @@ import { ModalService } from 'app/services/modal.service';
     TranslateModule,
   ]
 })
+// This component is used to display the pdf file
 export class PdfContainerComponent extends ModalDataGet implements OnInit{
   listPreview = STRING_EMPTY;
 
@@ -31,10 +32,12 @@ export class PdfContainerComponent extends ModalDataGet implements OnInit{
     this.fetch();
   }
 
+  // Close the modal
   handleCancel(): void {
     this.modalService.close();
   }
 
+  // Fetch the file
   private fetch(): void {
     if (!this.data || !this.data['file']) {
       return;
@@ -44,6 +47,7 @@ export class PdfContainerComponent extends ModalDataGet implements OnInit{
     this.renderPdf();
   }
 
+  // Render the pdf file in the component view after fetching it
   private renderPdf(): void {
     const obj = this.document.createElement('object');
     obj.style.width = '100%';
@@ -54,6 +58,7 @@ export class PdfContainerComponent extends ModalDataGet implements OnInit{
     // Hide toolbar
     obj.setAttribute('toolbar', '0');
 
+    // Append the object to the pdf-container
     this.document.getElementsByClassName('pdf-container')[NUMBERS.N_0]?.appendChild(obj);
   }
 }

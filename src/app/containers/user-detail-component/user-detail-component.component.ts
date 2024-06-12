@@ -16,18 +16,22 @@ import { LanguageEnum } from 'app/models/language.models';
 import { InputComponent } from 'app/components/input/input.component';
 import { CartOption, SelectComponent } from 'app/components/select/select.component';
 
+const imports = [
+  TranslateModule,
+  InputComponent,
+  ReactiveFormsModule,
+  SelectComponent,
+];
+
 @Component({
   selector: 'app-user-detail-component',
   templateUrl: './user-detail-component.component.html',
   styleUrl: './user-detail-component.component.scss',
   standalone: true,
-  imports: [
-    TranslateModule,
-    InputComponent,
-    ReactiveFormsModule,
-    SelectComponent,
-  ]
+  imports,
 })
+
+// This component is used to display the user details in a form
 export class UserDetailComponentComponent implements OnInit {
 
   form = this.getForm();
@@ -45,6 +49,8 @@ export class UserDetailComponentComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    // If the user is logged in, we get the user details and set them in the form
     this.socialService.user$
       .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe((user: User) => {
@@ -63,6 +69,7 @@ export class UserDetailComponentComponent implements OnInit {
     this.form.controls.language.enable();
   }
 
+  // Save the user details ( ninckname and language )
   saveUser() {
     if (this.form.controls.nickname.valid) {
       this._user.nickname = this.form.controls.nickname.value!;
@@ -93,6 +100,7 @@ export class UserDetailComponentComponent implements OnInit {
     });
   }
 
+  // This function is used to get the validators for the form
   private getValidators(max: number, includeMail = false) {
     const literals = this.translate.instant('VALIDATORS');
     return [

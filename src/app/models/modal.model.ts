@@ -1,3 +1,4 @@
+/* eslint-disable */
 export interface ModalOptions {
   animations?: {
     modal?: {
@@ -23,6 +24,7 @@ export interface ModalOptions {
   preventCloseOnEsc?: boolean;
 }
 
+// for the modal options, we can set the default options
 export const DEFAULT_MODAL_OPTIONS: ModalOptions = {
   animations: {
     modal: {
@@ -46,8 +48,8 @@ export interface DialogButton {
 }
 
 export class ModalDataGet {
-  data?: { [key: string]: any};
 
+  data?: { [key: string]: any};
   constructor(data?: { [key: string]: any}) {
     this.data = data;
   }

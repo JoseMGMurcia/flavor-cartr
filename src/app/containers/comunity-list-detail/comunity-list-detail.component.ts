@@ -19,6 +19,8 @@ import { TranslateModule } from '@ngx-translate/core';
     TranslateModule,
   ]
 })
+
+// This component is used to display the details of a public list
 export class ComunityListDetailComponent implements OnInit{
   @ViewChild('listComponent', { static: false}) listComponent!: PublicListComponent;
 
@@ -50,7 +52,8 @@ export class ComunityListDetailComponent implements OnInit{
     this.loadData();
   }
 
-
+  /* This function is used to load the data of the list, the articles and the categories
+    using a forkJoin to make the requests in parallel and process the data when all the requests are completed */
   private loadData(): void {
     this.loading.show();
     forkJoin([

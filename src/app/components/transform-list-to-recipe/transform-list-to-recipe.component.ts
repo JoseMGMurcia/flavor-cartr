@@ -26,6 +26,8 @@ import { InputComponent } from 'app/components/input/input.component';
     InputComponent,
   ]
 })
+
+// This component is used to transform a list into a recipe
 export class TransformListToRecipeComponent extends ModalDataGet implements OnInit {
   form = this.getForm();
 
@@ -55,6 +57,8 @@ export class TransformListToRecipeComponent extends ModalDataGet implements OnIn
     this.modalService.close();
   }
 
+
+  // Save the list as a recipe
   private savelist(): void {
     if (!this._list) return;
     this.loadingService.show();
@@ -64,32 +68,41 @@ export class TransformListToRecipeComponent extends ModalDataGet implements OnIn
       .pipe(
         takeUntilDestroyed(this._destroyRef),
         finalize(() => {
+
+          // Hide the loading spinner and close the modal
           this.loadingService.hide();
           this.modalService.close();
         })
       )
       .subscribe({
         next: () => {
+
+          // If the request is successful, set the reload flag to true and show a success toast
           this.statusService.setReloadListsPending(true)
           this.toastService.showToast(TOAST_STATE.SUCCESS, this.translate.instant('TOAST.TRANSFOR_TO_RECIPE_OK'));
           this.modalService.close();
         },
+
+        // If the request fails, show an error toast
         error: () => this.toastService.showToast(TOAST_STATE.ERROR, this.translate.instant('TOAST.TRANSFOR_TO_RECIPE_KO')),
       });
   }
 
+  // Fetch the list to transform
   private fetch(): void {
     if (this.data && this.data['list']) {
       this._list = this.data['list'];
     }
   }
 
+  // Get the form
   private getForm() {
     return new FormGroup({
      description: new FormControl({ value: STRING_EMPTY, disabled: false}, this.getValidators(RECIPE_DESCRIPTION_MAX_LENGTH)),
    });
  }
 
+  // Get the validators for the form
   private getValidators(max: number) {
     const literals = this.translate.instant('VALIDATORS');
     return [

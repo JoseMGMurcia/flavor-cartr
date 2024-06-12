@@ -31,6 +31,8 @@ import { socialAuthServiceConfigProvider } from 'app/constants/social.constants'
     SocialAuthService,
    ]
 })
+
+// This component is used to display the header menu
 export class MenuComponent implements OnInit{
   socialUser!: SocialUser;
   user!: User;
@@ -61,6 +63,7 @@ export class MenuComponent implements OnInit{
     });
   }
 
+  // Handles the response from google authentification ands sets the user
   handleGoogleResponse(socialUser: SocialUser): void {
     this.socialUser = socialUser;
     this.socialService.setSocialUser(socialUser);
@@ -79,6 +82,7 @@ export class MenuComponent implements OnInit{
     }
   }
 
+  // Handles the user response and sets the user
   handleUserResponse(user: User, socialUser: SocialUser): void {
     this.user = {
       id: user.id,
@@ -91,14 +95,17 @@ export class MenuComponent implements OnInit{
     this.socialService.setUser(this.user);
   }
 
+  // Opens the login modal
   logIn(): void {
     this.modalService.open(LoggerComponent, DEFAULT_MODAL_OPTIONS);
   }
 
+  // Navigates to the selected section
   goSection(section: string) {
     this.router.navigate([section], section === ROUTES.USER.path ? { state: { user: this.user } } : {});
   }
 
+  // Signs out the user
   signOut(): void {
     this.cartService.setToken(STRING_EMPTY);
     this.socialService.signOut(this.authService);

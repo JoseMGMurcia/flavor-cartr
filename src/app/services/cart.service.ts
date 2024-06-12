@@ -12,12 +12,14 @@ import { Observable } from 'rxjs';
 })
 export class CartService {
 
+  // Token for the requests with the API
   private _token = STRING_EMPTY;
 
   constructor(
     private http: HttpClient,
   ) { }
 
+  // Headers with the token for the requests
   get headers(): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',

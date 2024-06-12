@@ -32,8 +32,8 @@
       text-shadow: 2px 2px 2px colors.$menu-text-color-fade;
     }
   }
-
 }
+
 @media (max-width: 600px) {
   .recipes-main-component {
     min-height: 100vh;
@@ -59,12 +59,12 @@
       div {
         margin-left: 15px;
         max-width: calc(100% - 38px);
-       }
+      }
 
-       button {
-         margin: 8px 6px;
-         width: 100%;
-       }
+      button {
+        margin: 8px 6px;
+        width: 100%;
+      }
     }
   }
 }

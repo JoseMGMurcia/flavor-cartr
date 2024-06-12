@@ -29,6 +29,8 @@ import { CartOption, SelectComponent } from 'app/components/select/select.compon
     SelectComponent,
   ]
 })
+
+// This component is used to display the main list of recipes
 export class RecipesMainComponent implements OnInit{
 
   @ViewChild('recipe', { static: false}) recipe!: RecipeComponent;
@@ -58,6 +60,7 @@ export class RecipesMainComponent implements OnInit{
     private statusService: StatusService,
   ) { }
 
+  // Show a modal to add a new recipe
   handleNewRecipe(): void {
     this.modalService.open(AddRecipeComponent, {
       ...DEFAULT_MODAL_OPTIONS,
@@ -66,6 +69,7 @@ export class RecipesMainComponent implements OnInit{
     });
   }
 
+  // Show a modal to edit the selected recipe
   handleRecipeChange(recipeId: string): void {
     this.selectedRecipe = this._recipes.find((recipe: Recipe) => recipe.id === recipeId);
     if (!this.selectedRecipe) {
@@ -79,6 +83,7 @@ export class RecipesMainComponent implements OnInit{
     this.asingEvents();
   }
 
+  // This function is used to subscribe to the status service and reload the lists
   private asingEvents(): void {
     this.statusService.reloadListsPending$
       .pipe(takeUntilDestroyed(this._destroyRef))
@@ -89,6 +94,7 @@ export class RecipesMainComponent implements OnInit{
       });
   }
 
+  // This function is used to get the user from the social service
   private getUser(): void {
     this.socialService.user$
       .pipe(takeUntilDestroyed(this._destroyRef))
@@ -105,6 +111,8 @@ export class RecipesMainComponent implements OnInit{
       });
   }
 
+  // Load the data from the cart service by the forjJoin operator that will get the articles, categories and recipes
+  // and then it will handle the response all at once
   private loadData(): void {
     this.loading.show();
     forkJoin([
@@ -130,6 +138,7 @@ export class RecipesMainComponent implements OnInit{
       })
   }
 
+  // handle the recipes response and set the selected recipe
   private handleRecipes(recipes: Recipe[]): void {
     if (recipes.length === NUMBERS.N_0) {
       this.createInitialRecipe();
@@ -141,6 +150,7 @@ export class RecipesMainComponent implements OnInit{
     this.recipe?.setData(this.selectedRecipe, this.articles, this.categories);
   }
 
+  // Create a new recipe and set it as the selected recipe when there are no recipes
   private createInitialRecipe(): void {
     const recipe: Recipe = getNewRecipe(this.translate, this.user.id);
     this.loading.show();
@@ -158,6 +168,7 @@ export class RecipesMainComponent implements OnInit{
       });
   }
 
+  // Get the recipes options to display in the select component
   private getRecipesOptions(recipes: Recipe[]): CartOption[] {
     return recipes.map((recipe: Recipe) => ({
       value: stringFrom(recipe.id),
