@@ -1,8 +1,8 @@
-@use 'assets/scss/custom-colors.scss' as colors;
+@use '../../../assets/scss/custom-colors.scss' as colors;
 
 .comunity-detail-wrapper {
   background-attachment: fixed;
-  background-image: url('assets/images/list-detail.jpg');
+  background-image: url('../../../assets/images/list-detail.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
@@ -43,7 +43,7 @@
     padding: 4px;
 
     .comunity-detail-card {
-      padding: 12px 0;
+      padding: 12px 0px;
     }
   }
 }

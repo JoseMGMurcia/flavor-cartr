@@ -10,7 +10,7 @@ describe('DialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DialogComponent]
+      imports: [DialogComponent]
     })
     .compileComponents();
 

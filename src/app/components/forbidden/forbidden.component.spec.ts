@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ForbiddenComponent } from './forbidden.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('Forbidden Component', () => {
   let component: ForbiddenComponent;
@@ -8,7 +9,10 @@ describe('Forbidden Component', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ForbiddenComponent]
+      imports: [
+        ForbiddenComponent,
+        TranslateModule.forRoot(),
+      ]
     })
     .compileComponents();
 

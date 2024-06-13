@@ -1,23 +1,39 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import { FooterComponent } from './components/footer/footer.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { ToastComponent } from './components/toast/toast.component';
+import { cartServiceMock } from './services/mocks/cart.service.mock';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [AppComponent],
+  let component: AppComponent;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        CommonModule,
+        RouterOutlet,
+        TranslateModule,
+        FooterComponent,
+        MenuComponent,
+        ToastComponent,
+        TranslateModule.forRoot(),
+        BrowserAnimationsModule,
+      ],
+      providers: [
+        cartServiceMock,
+      ]
     }).compileComponents();
+
+    component = TestBed.createComponent(AppComponent).componentInstance;
   });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, carrito');
+    component.ngOnInit();
+    expect(component).toBeTruthy();
   });
 });

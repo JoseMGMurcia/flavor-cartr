@@ -171,7 +171,6 @@ export class ListComponent implements OnInit{
       id: articleList.articleId,
       style: articleList.isActive ? STRING_EMPTY : 'text-decoration: line-through',
     };
-
   }
 
   // Handles the edition of the list

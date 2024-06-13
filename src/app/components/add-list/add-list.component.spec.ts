@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddListComponent } from './add-list.component';
+import { cartServiceMock } from 'app/services/mocks/cart.service.mock';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('AddListComponent', () => {
   let component: AddListComponent;
@@ -8,10 +10,14 @@ describe('AddListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AddListComponent]
+      imports: [
+        AddListComponent,
+        TranslateModule.forRoot(),
+      ],
+      providers: [cartServiceMock]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(AddListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

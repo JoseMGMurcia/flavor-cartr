@@ -1,9 +1,9 @@
-@use 'assets/scss/custom-colors.scss' as colors;
+@use '../../../assets/scss/custom-colors.scss' as colors;
 
 .forbidden-container {
   align-items: center;
   background-attachment: fixed;
-  background-image: url('assets/images/forbiden.jpg');
+  background-image: url('../../../assets/images/forbiden.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;

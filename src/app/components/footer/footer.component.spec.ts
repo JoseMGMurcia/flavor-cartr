@@ -9,8 +9,9 @@ describe('FooterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FooterComponent],
+      declarations: [],
       imports: [
+        FooterComponent,
         TranslateModule.forRoot(),
       ],
     })

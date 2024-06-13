@@ -23,7 +23,6 @@ import { socialAuthServiceConfigProvider } from 'app/constants/social.constants'
   standalone: true,
   imports: [
     TranslateModule,
-    SocialLoginModule,
     GoogleSigninButtonModule,
   ],
   providers: [

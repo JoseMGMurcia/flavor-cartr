@@ -2,12 +2,12 @@ import { TestBed } from '@angular/core/testing';
 import { ModalService } from '../modal.service';
 import { ComponentRef } from '@angular/core';
 import { ModalComponent } from '../../../app/components/modal/modal.component';
-import { DialogComponent } from '@shared/components/dialog/dialog.component';
+import { DialogComponent } from 'app/components/dialog/dialog.component';
 
 describe('ModalService', () => {
   let modalService: ModalService;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       providers: [ModalService],
     });

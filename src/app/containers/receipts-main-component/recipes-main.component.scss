@@ -1,8 +1,8 @@
-@use 'assets/scss/custom-colors.scss' as colors;
+@use '../../../assets/scss/custom-colors.scss' as colors;
 
 .recipes-main-component {
   background-attachment: fixed;
-  background-image: url('assets/images/recipes.jpg');
+  background-image: url('../../../assets/images/recipes.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;

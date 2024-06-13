@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ToastComponent } from './toast.component';
+import { AsyncPipe } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('ToastComponent', () => {
   let component: ToastComponent;
@@ -8,10 +10,14 @@ describe('ToastComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ToastComponent]
+      imports: [
+        ToastComponent,
+        AsyncPipe,
+        BrowserAnimationsModule,
+      ]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(ToastComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

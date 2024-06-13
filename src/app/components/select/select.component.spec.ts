@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SelectComponent } from './select.component';
+import { FormControl } from '@angular/forms';
+import { TEST } from 'app/constants/test.constant';
 
 describe('SelectComponent', () => {
   let component: SelectComponent;
@@ -8,12 +10,13 @@ describe('SelectComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SelectComponent]
+      imports: [SelectComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(SelectComponent);
     component = fixture.componentInstance;
+    component.control = new FormControl(TEST);
     fixture.detectChanges();
   });
 

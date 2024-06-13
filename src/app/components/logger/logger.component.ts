@@ -10,7 +10,6 @@ import { ModalService } from 'app/services/modal.service';
   templateUrl: './logger.component.html',
   styleUrl: './logger.component.scss',
   imports: [
-    SocialLoginModule,
     GoogleSigninButtonModule,
     TranslateModule
   ],

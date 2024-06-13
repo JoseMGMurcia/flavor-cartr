@@ -9,8 +9,8 @@ describe('HomeContainerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HomeContainerComponent],
       imports: [
+        HomeContainerComponent,
         TranslateModule.forRoot(),
         HttpClientTestingModule,
       ],

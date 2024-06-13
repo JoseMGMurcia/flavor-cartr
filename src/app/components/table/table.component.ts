@@ -40,6 +40,7 @@ export class TableComponent implements OnInit, OnChanges{
   }
 
   ngOnInit(): void {
+    if (!this.tableData || !this.tableConfig) return;
     this.currentPageData = this.tableData.slice(
       (this.tableConfig.pagination.actualPage - NUMBERS.N_1) * this.tableConfig.pagination.itemsPerPage,
       this.tableConfig.pagination.actualPage * this.tableConfig.pagination.itemsPerPage
