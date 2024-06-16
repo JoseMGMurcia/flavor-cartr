@@ -111,7 +111,6 @@ export class ListsMainComponent implements OnInit{
       });
   }
 
-
   // Load the data from the cart service by the forjJoin operator that will get the articles, categories and lists
   // and then it will handle the response all at once
   private loadData(): void {
@@ -145,7 +144,8 @@ export class ListsMainComponent implements OnInit{
       this.createInitialList();
       return;
     }
-        const selectedList = this._lists.find((list: List) => list.id === this.selectedList?.id);
+
+    const selectedList = this._lists.find((list: List) => list.id === this.selectedList?.id);
     this.selectedList = selectedList || lists[NUMBERS.N_0];
     this.listsOptions = this.getListOptions(lists);
     this.list?.setData(this.selectedList, this.articles, this.categories);
@@ -155,6 +155,7 @@ export class ListsMainComponent implements OnInit{
   private createInitialList(): void {
     const list: List = getNewList(this.translate, this.user.id);
     this.loading.show();
+
     this.cartService.postList(list)
       .pipe(takeUntilDestroyed(this._destroyRef),
         finalize(() => this.loading.hide()))
